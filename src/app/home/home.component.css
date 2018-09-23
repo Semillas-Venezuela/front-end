@@ -1,0 +1,13 @@
+
+.home{
+    height: 100%;
+    width: 100%;
+    background: var(--color-amarillo);
+    font-size: 4em;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+.home h1{
+    display: block;
+}
