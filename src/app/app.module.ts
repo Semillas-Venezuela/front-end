@@ -6,11 +6,13 @@ import { AppComponent } from './app-base/app.component';
 import { HomeComponent } from './home/home.component';
 import {TransferHttpCacheModule} from '@nguniversal/common';
 import { routes } from './routes';
+import { MapComponent } from './map/map.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'my-app'}),
