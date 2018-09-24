@@ -74,4 +74,4 @@ typings/
 
 .DS_Store
 
-/src/environments/**
+/src/environments/*
