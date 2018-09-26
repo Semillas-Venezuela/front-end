@@ -10,7 +10,7 @@ import * as mapboxgl from 'mapbox-gl';
 export class MapComponent implements OnInit {
 /// default settings
   map: mapboxgl.Map;
-  style = 'mapbox://styles/rembrandtsx/cjmcktbbm5ies2ro6w9ed43i5';
+  style = 'mapbox://styles/rembrandtsx/cjmi5heyc6qdf2rmxuzz0dafk';
   lat = 17.760267;
   lng = -29.72925;
 

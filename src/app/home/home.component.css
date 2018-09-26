@@ -1,7 +1,7 @@
 
 .home{
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
     background: var(--color-amarillo);
     font-size: 4em;
     display: table-cell;
@@ -10,4 +10,7 @@
 }
 .home h1{
     display: block;
+}
+a{
+    cursor: pointer;
 }
