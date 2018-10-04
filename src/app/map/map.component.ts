@@ -10,7 +10,7 @@ import * as mapboxgl from 'mapbox-gl';
 export class MapComponent implements OnInit {
 /// default settings
   map: mapboxgl.Map;
-  style = 'mapbox://styles/rembrandtsx/cjmi5heyc6qdf2rmxuzz0dafk';
+  style = 'mapbox://styles/mapbox/satellite-streets-v9';
   lat = 17.760267;
   lng = -29.72925;
 
@@ -44,5 +44,44 @@ export class MapComponent implements OnInit {
       zoom: 2,
       center: [this.lng, this.lat]
     });
+    var geojson = {
+      type: 'FeatureCollection',
+      features: [{
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [-77.032, 38.913]
+        },
+        properties: {
+          title: 'Mapbox',
+          description: 'Washington, D.C.'
+        }
+      },
+      {
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [-122.414, 37.776]
+        },
+        properties: {
+          title: 'Mapbox',
+          description: 'San Francisco, California'
+        }
+      }]
+    };
+    geojson.features.forEach(function(marker) {
+
+      // create a HTML element for each feature
+      var el = document.createElement('div');
+      el.className = 'marker';
+    
+      // make a marker for each feature and add to the map
+      new mapboxgl.Marker(el)
+      .setLngLat(marker.geometry.coordinates)
+      .addTo(this.map);
+    });
+    
+
+  
 }
 }
