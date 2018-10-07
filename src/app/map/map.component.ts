@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, AfterViewInit} from '@angular/core';
 import { environment } from '../../environments/environment';
 import * as mapboxgl from 'mapbox-gl';
 
@@ -7,21 +7,50 @@ import * as mapboxgl from 'mapbox-gl';
   templateUrl:'./map.component.html',
   styleUrls:['./map.component.css']
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements OnInit, AfterViewInit {
 /// default settings
   map: mapboxgl.Map;
   style = 'mapbox://styles/mapbox/satellite-streets-v9';
   lat = 17.760267;
   lng = -29.72925;
-
+  geojson = {
+    type: 'FeatureCollection',
+    features: [{
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [-77.032, 38.913]
+      },
+      properties: {
+        title: 'Mapbox',
+        description: 'Washington, D.C.'
+      }
+    },
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [-122.414, 37.776]
+      },
+      properties: {
+        title: 'Mapbox',
+        description: 'San Francisco, California'
+      }
+    }]
+  };
   constructor() {
     mapboxgl.accessToken = environment.mapbox.accessToken;
+    this.map= mapboxgl.Map;
+    
   }
-
-  ngOnInit() {
-    console.log("Entré")
+  ngAfterViewInit(){
     this.initializeMap();
   }
+  ngOnInit() {
+    console.log("Entré")
+    
+  }
+  
   private initializeMap() {
     /// locate the user
     if (navigator.geolocation) {
@@ -37,50 +66,15 @@ export class MapComponent implements OnInit {
     this.buildMap()
 
   }
-  buildMap() {
+  public buildMap() {
     this.map = new mapboxgl.Map({
       container: 'map',
       style: this.style,
-      zoom: 2,
+      zoom: 4,
       center: [this.lng, this.lat]
     });
-    var geojson = {
-      type: 'FeatureCollection',
-      features: [{
-        type: 'Feature',
-        geometry: {
-          type: 'Point',
-          coordinates: [-77.032, 38.913]
-        },
-        properties: {
-          title: 'Mapbox',
-          description: 'Washington, D.C.'
-        }
-      },
-      {
-        type: 'Feature',
-        geometry: {
-          type: 'Point',
-          coordinates: [-122.414, 37.776]
-        },
-        properties: {
-          title: 'Mapbox',
-          description: 'San Francisco, California'
-        }
-      }]
-    };
-    geojson.features.forEach(function(marker) {
-
-      // create a HTML element for each feature
-      var el = document.createElement('div');
-      el.className = 'marker';
     
-      // make a marker for each feature and add to the map
-      new mapboxgl.Marker(el)
-      .setLngLat(marker.geometry.coordinates)
-      .addTo(this.map);
-    });
-    
+    this.map.addLayer();
 
   
 }
