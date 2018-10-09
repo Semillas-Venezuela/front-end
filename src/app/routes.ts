@@ -4,5 +4,6 @@ import { MapComponent } from './map/map.component';
 
 export const routes = [
     { path: '', component: HomeComponent, pathMatch: 'full'},
-    { path:'map', component: MapComponent,pathMatch:'full'}
+    { path:'map', component: MapComponent,pathMatch:'full'},
+    { path:'map/:id', component: MapComponent, pathMatch:'full'}
   ]

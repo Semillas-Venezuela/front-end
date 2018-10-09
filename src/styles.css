@@ -12,3 +12,7 @@
     box-sizing: border-box;
     
 }
+.marker-semilla svg {
+    width: 2vh;
+    cursor: pointer;
+}
