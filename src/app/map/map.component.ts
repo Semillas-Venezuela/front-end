@@ -1,7 +1,8 @@
 import {Component, OnInit, AfterViewInit} from '@angular/core';
 import { environment } from '../../environments/environment';
 import * as mapboxgl from 'mapbox-gl';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-map',
@@ -64,7 +65,7 @@ export class MapComponent implements OnInit, AfterViewInit {
         }
     ]
 };
-  constructor(public router: Router) {
+  constructor(public router: Router, private location: Location ) {
     mapboxgl.accessToken = environment.mapbox.accessToken;
     this.map= mapboxgl.Map;
     
@@ -109,6 +110,7 @@ export class MapComponent implements OnInit, AfterViewInit {
       <path style="fill:var(--color-${rand});"  d="M.11,1.94S-.53.12,1.31,1c.09.05,2.4,2.16,2.4,2.16L6.59,0s1.77-.3,1,1.2c-.09.17-3.12,3.36-3.12,3.36v9.6a1,1,0,0,1,.48.24,1,1,0,0,1,.24.72c0,1-.05,7-.48,8.64h0s-1.92,2.68-2.64,0c0-.1-.34-9.41.24-9.36,0,0,.07-.24.72-.48.13,0,0-9.6,0-9.6Z"/>
       </svg>`
       el.className = 'marker-semilla';
+      el.id = marker.properties.urlID;
       //el.style.backgroundImage = 'url("../../assets/mapbox-icon.png")';
 
 
@@ -127,6 +129,11 @@ export class MapComponent implements OnInit, AfterViewInit {
 }
   public displayContent(idSemilla){
     console.log(idSemilla);
-    this.router.navigate([`/map/${idSemilla}`]);
+
+
+    this.location.replaceState(`/map/${idSemilla}`);
+    document.getElementById("aside").classList.add("aside-active");
+    document.getElementById(`${idSemilla}`).classList.add("marker-big")
+    
   }
 }

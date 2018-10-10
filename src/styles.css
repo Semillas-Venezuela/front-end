@@ -15,4 +15,8 @@
 .marker-semilla svg {
     width: 2vh;
     cursor: pointer;
+    transition: all 500ms ease-in-out;
+}
+.marker-big > svg{
+    width: 4vh;
 }
