@@ -1,7 +1,7 @@
 import {Component, OnInit, AfterViewInit} from '@angular/core';
 import { environment } from '../../environments/environment';
 import * as mapboxgl from 'mapbox-gl';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 @Component({
@@ -10,12 +10,33 @@ import { Location } from '@angular/common';
   styleUrls:['./map.component.css']
 })
 export class MapComponent implements OnInit, AfterViewInit {
-/// default settings
+/// default settings 4.7258806,-74.2677694,15z
   map: mapboxgl.Map;
   style = 'mapbox://styles/mapbox/satellite-streets-v9';
   lat = 17.760267;
   lng = -29.72925;
-  geojson = {
+  objectsAddedToMap=[];
+  geojson2= {
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Semilla",
+            "properties": {
+                "message": "Baz",
+                "iconSize": [40, 40],
+                "urlID": "edb76afd399b272b5f1090bd661c0447"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                  -74.2677694,15,
+                    4.7258806
+                ]
+            }
+        }
+    ]
+};
+  geojson={
     "type": "FeatureCollection",
     "features": [
         {
@@ -65,17 +86,20 @@ export class MapComponent implements OnInit, AfterViewInit {
         }
     ]
 };
-  constructor(public router: Router, private location: Location ) {
-    mapboxgl.accessToken = environment.mapbox.accessToken;
+  constructor(public router: Router,private route:ActivatedRoute, private location: Location ) {
+    mapboxgl.accessToken = environment['mapbox'].accessToken;
     this.map= mapboxgl.Map;
     
   }
   ngAfterViewInit(){
-    this.initializeMap();
+    
   }
   ngOnInit() {
-    console.log("Entré")
-    
+    this.initializeMap();
+    console.log(this.route.snapshot.params.id)
+    if( !(typeof this.route.snapshot.params.id === "undefined")){
+       this.displayContent(this.route.snapshot.params.id)
+    }
   }
   
   private initializeMap() {
@@ -119,17 +143,22 @@ export class MapComponent implements OnInit, AfterViewInit {
       });
 
     // add marker to map
-      new mapboxgl.Marker(el)
+      
+     var markeri =  new mapboxgl.Marker(el)
         .setLngLat(marker.geometry.coordinates)
         .addTo(this.map);
+      
+      this.objectsAddedToMap.push(markeri);
     })
-
-
+ 
   
 }
   public displayContent(idSemilla){
     console.log(idSemilla);
-
+    this.objectsAddedToMap.forEach(element => {
+      if(!(element.getElement().id == idSemilla))
+        { element.remove()}
+    });
 
     this.location.replaceState(`/map/${idSemilla}`);
     document.getElementById("aside").classList.add("aside-active");
