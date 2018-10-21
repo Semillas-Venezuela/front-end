@@ -14,7 +14,7 @@ export class UserService {
     
 
     getUsers(): Observable<any> {
-        return this.http.get<Book[]>(API_URL + books);
+        return this.http.get<any[]>(API_URL);
     }
 
 

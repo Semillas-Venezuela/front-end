@@ -1,6 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
+import {NgxOAuthModule} from 'ngx-oauth-client';
 
 import { AppComponent } from './app-base/app.component';
 import { HomeComponent } from './home/home.component';
@@ -23,6 +24,7 @@ import { MapService } from './services/map.service';
     BrowserModule.withServerTransition({appId: 'my-app'}),
     RouterModule.forRoot(routes),
     TransferHttpCacheModule,
+    NgxOAuthModule
   ],
   providers: [MapService],
   bootstrap: [AppComponent]
