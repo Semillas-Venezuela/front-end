@@ -1,0 +1,26 @@
+.navbar{
+    width: 100vw; 
+    position: fixed; 
+    background: var(--color-negro); 
+    height: 10vh;
+    z-index: 999; 
+    top:0;
+    margin-bottom: 10vh;
+    padding: 2vw;
+}
+ul{
+    display: flex;
+    justify-content: space-around;
+
+    color: var(--color-blanco);
+
+
+}
+ul a{
+    color: inherit;
+    text-decoration: none;
+}
+ul a li{
+    list-style: none;
+    
+}

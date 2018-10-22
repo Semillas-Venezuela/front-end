@@ -1,16 +1,22 @@
 
 .home{
-    height: 100vh;
+    height: 90vh;
     width: 100vw;
     background: var(--color-amarillo);
     font-size: 4em;
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .home h1{
     display: block;
+    width: 100vw;
 }
 a{
     cursor: pointer;
+}
+.texto{
+    width: 100vw;
+    display: table-cell;
+    text-align: center;
 }

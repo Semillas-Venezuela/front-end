@@ -20,3 +20,19 @@
 .marker-big > svg{
     width: 4vh;
 }
+svg > g > g > g > g > path {
+    cursor: pointer;
+
+}
+svg > g > g > g > g > path:hover {
+    stroke: crimson;
+    stroke-width: 1%;
+}
+svg > g > g > g > path {
+    cursor: pointer;
+
+}
+svg > g > g > g > path:hover {
+    stroke: crimson;
+    stroke-width: 1%;
+}
