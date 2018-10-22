@@ -1,10 +1,11 @@
 
 .home{
-    height: 90vh;
+    min-height: 90vh;
     width: 100vw;
     background: var(--color-amarillo);
     font-size: 4em;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
