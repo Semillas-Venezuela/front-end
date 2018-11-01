@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
-*{
+*{  
+    
     font-family: 'Montserrat', sans-serif;
     --color-amarillo:#f2d576;
     --color-blanco:#fff9fb;
@@ -11,6 +12,10 @@
     margin: 0;
     box-sizing: border-box;
     
+}
+html{
+    
+    background: var(--color-amarillo)
 }
 .marker-semilla svg {
     width: 2vh;
@@ -25,7 +30,7 @@ svg > g > g > g > g > path {
 
 }
 svg > g > g > g > g > path:hover {
-    stroke: crimson;
+    stroke: var(--color-naranja);
     stroke-width: 1%;
 }
 svg > g > g > g > path:not(#el_HdhOav4eNkk) {
@@ -33,6 +38,6 @@ svg > g > g > g > path:not(#el_HdhOav4eNkk) {
 
 }
 svg > g > g > g > path:not(#el_HdhOav4eNkk):hover {
-    stroke: crimson;
+    stroke: var(--color-naranja);
     stroke-width: 1%;
 }
