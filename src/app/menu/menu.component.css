@@ -7,11 +7,14 @@
     top:0;
     margin-bottom: 10vh;
     padding: 2vw;
+    display: flex;
+    
 }
 ul{
     display: flex;
     justify-content: space-around;
-
+    height: 100%;
+    width: 100%;
     color: var(--color-blanco);
 
 
@@ -23,4 +26,8 @@ ul a{
 ul a li{
     list-style: none;
     
+}
+ul a:hover{
+    color: var(--color-naranja);
+    text-decoration: underline;
 }

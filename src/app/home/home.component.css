@@ -1,28 +1,43 @@
 
 .home{
-    min-height: 90vh;
+    min-height: 40vh;
     width: 100vw;
-    background: var(--color-amarillo);
-    font-size: 4em;
+    background: var(--color-verde);
+    font-size: 2em;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    color: var(--color-blanco);
+    padding: 3vh 0;
 }
-.home h1{
-    display: block;
-    width: 100vw;
+h1{
+    margin-bottom: 1.5vh;
 }
 a{
     cursor: pointer;
 }
+p{
+    font-size: 0.56em;
+    text-align: justify;
+    max-width: 40vw;
+    font-weight: 0;
+}
 .texto{
-    width: 100vw;
-    display: table-cell;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    word-wrap: break-word;
+
 }
 
+.flor{
+    margin-top: 10vh;
+    height: 50vh;
+    background: var(--color-amarillo);
 
+}
 
 
 

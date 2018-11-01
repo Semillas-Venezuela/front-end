@@ -49,8 +49,10 @@ export class MapComponent implements OnInit, AfterViewInit {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    -66.324462890625,
-                    -16.024695711685304
+                    28.0289837,
+                    1.6666663
+
+                     
                 ]
             }
         },
