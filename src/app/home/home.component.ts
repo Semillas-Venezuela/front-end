@@ -45,6 +45,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.anim = anim;
     setTimeout(()=>{
       this.anim.play()
+      setTimeout(()=>{
+        this.overlay();
+
+          console.log("cambios")
+      },2500)
     },900)
     
   }
@@ -60,7 +65,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
   pause() {
     this.anim.pause();
   }
-
+  overlay(){
+    document.getElementsByTagName("lottie-animation-view")[0].classList.add("blur");
+    document.getElementsByClassName("boton")[0].classList.add("display-true");
+  }
   setSpeed(speed: number) {
     this.animationSpeed = speed;
     this.anim.setSpeed(speed);
