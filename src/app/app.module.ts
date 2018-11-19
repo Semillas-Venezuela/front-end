@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
-
+import { LottieAnimationViewModule } from 'ng-lottie';
 
 
 import { AppComponent } from './app-base/app.component';
@@ -28,6 +28,7 @@ import { TipoUser } from './registro/tipoUser.component/tipoUser.component';
     BrowserModule.withServerTransition({appId: 'my-app'}),
     RouterModule.forRoot(routes),
     TransferHttpCacheModule,
+    LottieAnimationViewModule
    
   ],
   providers: [MapService],
