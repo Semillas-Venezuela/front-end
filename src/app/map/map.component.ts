@@ -1,7 +1,7 @@
 import {Component, OnInit, AfterViewInit} from '@angular/core';
 import { environment } from '../../environments/environment';
 import * as mapboxgl from 'mapbox-gl';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Location } from '@angular/common';
 
 @Component({
@@ -16,6 +16,7 @@ export class MapComponent implements OnInit, AfterViewInit {
   lat = 17.760267;
   lng = -29.72925;
   objectsAddedToMap=[];
+  navigationSubscription;
   geojson2= {
     "type": "FeatureCollection",
     "features": [
@@ -91,6 +92,11 @@ export class MapComponent implements OnInit, AfterViewInit {
   constructor(public router: Router,private route:ActivatedRoute, private location: Location ) {
     mapboxgl.accessToken = environment['mapbox'].accessToken;
     this.map= mapboxgl.Map;
+    this.navigationSubscription = this.router.events.subscribe((e: any) => {
+        if (e instanceof NavigationEnd) {
+            this.ngOnInit();
+        }
+    });
     
   }
   ngAfterViewInit(){
@@ -102,6 +108,7 @@ export class MapComponent implements OnInit, AfterViewInit {
     if( !(typeof this.route.snapshot.params.id === "undefined")){
        this.displayContent(this.route.snapshot.params.id)
     }
+
   }
   
   private initializeMap() {
