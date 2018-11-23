@@ -45,7 +45,9 @@ export class MapComponent implements OnInit, AfterViewInit {
             "properties": {
                 "message": "Foo",
                 "iconSize": [60, 60],
-                "urlID": "6e0f6f63b0f2b8f1ef2eed991dcc75dc"
+                "urlID": "6e0f6f63b0f2b8f1ef2eed991dcc75dc",
+                "imagen":"",
+                "audio1":""
             },
             "geometry": {
                 "type": "Point",
