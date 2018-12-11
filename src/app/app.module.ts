@@ -10,10 +10,17 @@ import { TransferHttpCacheModule } from '@nguniversal/common';
 import { routes } from './routes';
 import { MapComponent } from './map/map.component';
 import { MenuComponent } from './menu/menu.component';
-
+import { JwtModule } from '@auth0/angular-jwt';
 import { MapService } from './services/map.service';
 
 import { TipoUser } from './registro/tipoUser.component/tipoUser.component';
+import { HttpClientModule } from '@angular/common/http';
+import { oAuth } from './services/oAuth';
+
+
+export function tokenGetter() {
+  return localStorage.getItem('access_token');
+}
 
 @NgModule({
   declarations: [
@@ -28,10 +35,11 @@ import { TipoUser } from './registro/tipoUser.component/tipoUser.component';
     BrowserModule.withServerTransition({appId: 'my-app'}),
     RouterModule.forRoot(routes),
     TransferHttpCacheModule,
-    LottieAnimationViewModule
+    LottieAnimationViewModule,
+    HttpClientModule
    
   ],
-  providers: [MapService],
+  providers: [MapService,oAuth],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
