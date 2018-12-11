@@ -26,7 +26,8 @@
     "generate:prerender": "cd dist && node prerender",
     "webpack:server": "webpack --config webpack.server.config.js --progress --colors",
     "serve:prerender": "cd dist/browser && http-server",
-    "serve:ssr": "node dist/server"
+    "serve:ssr": "node dist/server",
+    "build-prod":"ng build --prod"
   },
   "pre-commit": [],
   "private": true,
