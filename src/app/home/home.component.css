@@ -15,7 +15,7 @@ lottie-animation-view div {
 .home{
     min-height: 80vh;
     width: 100vw;
-    background: var(--color-amarillo);
+    
     font-size: 2em;
     background-image: url('../../assets/background.png');
     background-size: cover;
@@ -28,7 +28,7 @@ lottie-animation-view div {
 .home2{
     
     width: 100vw;
-    background: var(--color-amarillo);
+    
     font-size: 2em;
     
    
@@ -58,14 +58,7 @@ p.centrado{
    
 
 }
-.blur{
-    -webkit-filter: blur(5px);
-    -moz-filter: blur(5px);
-    -o-filter: blur(5px);
-    -ms-filter: blur(5px);
-    filter: blur(5px);
-    transition: 5ms all ease-in-out;
-}
+
 
 .boton{
     color: var(--color-naranja);
