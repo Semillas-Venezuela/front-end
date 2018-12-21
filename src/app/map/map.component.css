@@ -17,8 +17,17 @@
     z-index: 999;
     left: -30vw;
     transition: all 500ms ease-in-out;
+    padding: 1vw;
 }
 .aside-active{
     left: 0;
 }
+.close{
+    display: flex;
+    
+}
+.social{
+    display: flex;
+    justify-content: space-around;
 
+}

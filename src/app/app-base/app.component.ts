@@ -10,6 +10,6 @@ export class AppComponent implements OnInit {
 
     }
     ngOnInit(){
-      this.authService.setAuthToken();
+      // this.authService.setAuthToken();
     }
 }
