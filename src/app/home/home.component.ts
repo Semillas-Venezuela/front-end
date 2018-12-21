@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
@@ -15,8 +15,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   private anim: any;
   private animationSpeed: number = 1;
   constructor(public router: Router) {
-
-
+ 
     this.lottieConfig = {
       path: 'assets/dataAnim.json',
       renderer: 'svg',
@@ -27,8 +26,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     
-
+    
+    
   }
+
+  
+
   ngAfterViewInit() {
 
    
