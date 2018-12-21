@@ -1,7 +1,7 @@
 import {Component, OnInit, AfterViewInit} from '@angular/core';
 import { environment } from '../../environments/environment';
 import * as mapboxgl from 'mapbox-gl';
-import *  as something  from '@mapbox/mapbox-sdk/services/geocoding';
+
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Location } from '@angular/common';
 import { element } from '@angular/core/src/render3/instructions';
@@ -16,7 +16,7 @@ import { MapService } from '../services/map.service';
 export class MapComponent implements OnInit, AfterViewInit {
 /// default settings 4.7258806,-74.2677694,15z
   map: mapboxgl.Map;
-  mapboxClient: something;
+
   style = 'mapbox://styles/mapbox/satellite-streets-v9';
   currentSemilla:semillaInfo;
   lat = 17.760267;
@@ -99,7 +99,7 @@ export class MapComponent implements OnInit, AfterViewInit {
     ]
 };
   constructor(public router: Router,private route:ActivatedRoute, private location: Location, private serviceSemillas:MapService ) {
-    this.mapboxClient = something({ accessToken: environment['mapbox'].accessToken });
+   
     mapboxgl.accessToken = environment['mapbox'].accessToken;
     this.map= mapboxgl.Map;
    
@@ -251,7 +251,7 @@ export class MapComponent implements OnInit, AfterViewInit {
         }
     });
    
-    
+    this.map.removeLayer()
  
 
   }
