@@ -12,5 +12,13 @@ export const environment = {
     clientId:"5bc8c44efab799bf3ec8587c",
     clientSecret:"WT1mFFWHPU1YOoorv10wCzP2b2zCNh07zMGsO2ZkGtI=",
     url:"https://semillas-venezuela.herokuapp.com"
+  },
+  firebase:{
+    apiKey: "AIzaSyAyLJnt_FCiyFQ3ztPTdYBDzqlNsj56F_Y",
+    authDomain: "semillasdiasporavenezuela.firebaseapp.com",
+    databaseURL: "https://semillasdiasporavenezuela.firebaseio.com",
+    projectId: "semillasdiasporavenezuela",
+    storageBucket: "semillasdiasporavenezuela.appspot.com",
+    messagingSenderId: "997349370911"
   }
 };

@@ -1,5 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
+import { SemillasService } from '../../services/semillas.service';
 
 @Component({
     selector: 'app-new-semilla',
@@ -7,11 +8,11 @@ import { Router } from '@angular/router';
     styleUrls: ['tipoUser.component.css']
 })
 export class TipoUser implements OnInit{
-    constructor(public router: Router){
+    constructor(public router: Router, public semillasService : SemillasService){
         
     }
 
     ngOnInit(){
-
+        this.semillasService.test();
     }
 }
