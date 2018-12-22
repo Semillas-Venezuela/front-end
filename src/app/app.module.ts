@@ -16,8 +16,11 @@ import { MapService } from './services/map.service';
 import { TipoUser } from './registro/tipoUser.component/tipoUser.component';
 import { HttpClientModule } from '@angular/common/http';
 import { oAuth } from './services/oAuth';
-
-
+import { SemillasService } from './services/semillas.service';
+import { AngularFireStorage } from "@angular/fire/storage";
+import { AngularFirestoreModule } from "@angular/fire/firestore";
+import { environment } from "../environments/environment";
+import { AngularFireModule } from "@angular/fire";
 export function tokenGetter() {
   return localStorage.getItem('access_token');
 }
@@ -36,10 +39,13 @@ export function tokenGetter() {
     RouterModule.forRoot(routes),
     TransferHttpCacheModule,
     LottieAnimationViewModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    
+    AngularFirestoreModule
    
   ],
-  providers: [MapService,oAuth],
+  providers: [MapService,oAuth, SemillasService, AngularFireStorage],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
