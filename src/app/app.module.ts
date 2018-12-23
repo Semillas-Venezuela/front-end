@@ -21,6 +21,10 @@ import { AngularFireStorage } from "@angular/fire/storage";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { environment } from "../environments/environment";
 import { AngularFireModule } from "@angular/fire";
+import { CrearSemillaComponent } from './semilla/crearSemilla.component/crearSemilla.component';
+import { FormsModule } from "@angular/forms";
+import { AuthService } from './services/auth.service';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 export function tokenGetter() {
   return localStorage.getItem('access_token');
 }
@@ -31,7 +35,8 @@ export function tokenGetter() {
     HomeComponent,
     MapComponent,
     MenuComponent,
-    TipoUser
+    TipoUser,
+    CrearSemillaComponent
 
   ],
   imports: [
@@ -41,11 +46,12 @@ export function tokenGetter() {
     LottieAnimationViewModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
-    
-    AngularFirestoreModule
+    FormsModule,
+    AngularFirestoreModule,
+    AngularFireAuthModule
    
   ],
-  providers: [MapService,oAuth, SemillasService, AngularFireStorage],
+  providers: [MapService,oAuth, SemillasService, AngularFireStorage, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
