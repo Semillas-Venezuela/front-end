@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { SemillasService } from '../../services/semillas.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
     selector: 'app-new-semilla',
@@ -8,11 +9,29 @@ import { SemillasService } from '../../services/semillas.service';
     styleUrls: ['tipoUser.component.css']
 })
 export class TipoUser implements OnInit{
-    constructor(public router: Router, public semillasService : SemillasService){
+    idUsuario:any;
+    constructor(public router: Router, 
+        public semillasService : SemillasService,
+        public authService : AuthService){
         
     }
 
     ngOnInit(){
-        this.semillasService.test();
+        //this.semillasService.test();
+        this.idUsuario=null;
+        this.authService.getUser().subscribe(
+            (user)=>{
+                if(user!=null)
+                this.idUsuario=user.uid;
+            }
+        );
+    }
+    loginAnonimo(){
+        this.authService.loginAnonimo();
+    }
+    logout(){
+        this.authService.logout().then(
+           ()=> {this.idUsuario=null;}
+        );
     }
 }
