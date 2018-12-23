@@ -35,15 +35,19 @@ export class SemillasService{
             }
         )
         var semilla= new semillaInfo()
-        semilla={_id:"qwerty",imagenUrl:'',audios:null,textos:null,desc:''};
+        semilla={
+            _id:"",
+            imagenUrl:`https://picsum.photos/200/300/?random`,
+            audios:null,
+            textos:null,
+            desc:'Loreeeem'
+        };
         this.anadirSemilla(semilla);
         this.obtenerSemilla("qwerty").subscribe(
             (semillaEncontrada)=>{
                 console.log("Semilla encontrada");
                 console.log(semillaEncontrada);
-                this.eliminarSemilla(semillaEncontrada).then(
-                    ()=>{console.log("Semilla eliminada")}
-                )
+              
             }
         )
     };
@@ -54,7 +58,9 @@ export class SemillasService{
      */
     public anadirSemilla(semilla : semillaInfo){
         console.log(semilla);
-        return this.semillas.doc(semilla._id+'').set(semilla).catch(console.log);
+        let idBefore =  this.afs.createId();
+        semilla._id = idBefore;
+        return this.semillas.doc(idBefore).set(semilla).catch(x=>console.log(x));
     }
 
     /**
