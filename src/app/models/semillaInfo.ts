@@ -1,8 +1,9 @@
 export class semillaInfo{
-    _id:String;
-    imagenUrl:String;
-    audios:String[];
-    textos:String[];
-    desc:String;
+    _id:string;
+    imagenUrl?:string;
+    audios?:string[];
+    textos?:string[];
+    desc?:string;
+    geoInfo?:any;
     
 }

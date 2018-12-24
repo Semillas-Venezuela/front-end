@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subscriber } from 'rxjs';
 import { semillaInfo } from '../models/semillaInfo';
 import { HttpClient } from '@angular/common/http';
-import { ResponseSemillas } from '../models/response';
+
 
 @Injectable({
   providedIn: 'root'

@@ -17,7 +17,7 @@ export class TipoUser implements OnInit{
     }
 
     ngOnInit(){
-        //this.semillasService.test();
+        this.semillasService.test();
         this.idUsuario=null;
         this.authService.getUser().subscribe(
             (user)=>{
