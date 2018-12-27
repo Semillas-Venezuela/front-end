@@ -159,6 +159,7 @@ export class MapComponent implements OnInit, AfterViewInit {
     this.serviceSemillas.observableSemillas.subscribe(semillas=>{
         semillas.forEach(semilla=>{
             {
+                console.log(semilla)
                 var coloresSemillas = ['amarillo','blanco','verde','naranja'];
                 var rand = coloresSemillas[Math.floor(Math.random() * coloresSemillas.length)];
                 var el = document.createElement('div');
@@ -182,7 +183,7 @@ export class MapComponent implements OnInit, AfterViewInit {
                 // });
           
               // add marker to map
-            
+                  console.log(JSON.stringify(semilla.geoInfo));
                var markeri =  new mapboxgl.Marker(el)
                   .setLngLat(semilla.geoInfo.source.data.geometry.coordinates[semilla.geoInfo.source.data.geometry.coordinates.length -1])
                   .addTo(this.map);
