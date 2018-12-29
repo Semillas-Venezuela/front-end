@@ -159,7 +159,8 @@ export class MapComponent implements OnInit, AfterViewInit {
     this.serviceSemillas.observableSemillas.subscribe(semillas=>{
         semillas.forEach(semilla=>{
             {
-                console.log(semilla)
+                console.log(JSON.stringify(semilla))
+                
                 var coloresSemillas = ['amarillo','blanco','verde','naranja'];
                 var rand = coloresSemillas[Math.floor(Math.random() * coloresSemillas.length)];
                 var el = document.createElement('div');
@@ -184,8 +185,9 @@ export class MapComponent implements OnInit, AfterViewInit {
           
               // add marker to map
                   console.log(JSON.stringify(semilla.geoInfo));
+                  let coordenadasMapeadas = this.serviceSemillas.geoPointsToArray(semilla.geoInfo.source.data.geometry.coordinates);
                var markeri =  new mapboxgl.Marker(el)
-                  .setLngLat(semilla.geoInfo.source.data.geometry.coordinates[semilla.geoInfo.source.data.geometry.coordinates.length -1])
+                  .setLngLat(coordenadasMapeadas[coordenadasMapeadas.length -1])
                   .addTo(this.map);
                 
                 this.objectsAddedToMap.push(markeri);
@@ -230,51 +232,26 @@ export class MapComponent implements OnInit, AfterViewInit {
   public displayContent(idSemilla){
     console.log(idSemilla);
 
-    this.objetosAnteriores = this.objectsAddedToMap;
-    this.objectsAddedToMap.forEach(element => {
-      
-      if(!(element.getElement().id == idSemilla))
-        { element.remove()}
-    });
+    
 
-    this.location.replaceState(`/map/${idSemilla}`);
-    document.getElementById("aside").classList.add("aside-active");
-    document.getElementById(`${idSemilla}`).classList.add("marker-big")
-    this.map.addLayer({
-        "id": "camino",
-        "type": "line",
-        "source": {
-            "type": "geojson",
-            "data": {
-                "type": "Feature",
-                "properties": {},
-                "geometry": {
-                    "type": "LineString",
-                    "coordinates": [
-                        [-122.48369693756104, 37.83381888486939],
-                        [-122.48348236083984, 37.83317489144141],
-                        [-122.48339653015138, 37.83270036637107],
-                        [-122.48356819152832, 37.832056363179625],
-                        [-122.48404026031496, 37.83114119107971],
-                        [
-                            -63.29223632812499,
-                            -18.28151823530889
-                        ]
+    
+    this.serviceSemillas.obtenerSemilla(idSemilla).subscribe((data)=>{
+        this.currentSemilla = data;
+        data.geoInfo.source.data.geometry.coordinates = this.serviceSemillas.geoPointsToArray(data.geoInfo.source.data.geometry.coordinates);
+        this.objetosAnteriores = this.objectsAddedToMap;
+        this.objectsAddedToMap.forEach(element => {
+            if(!(element.getElement().id == idSemilla))
+                { element.remove()}
+        });
+        this.location.replaceState(`/map/${idSemilla}`);
+        document.getElementById("aside").classList.add("aside-active");
+        document.getElementById(`${idSemilla}`).classList.add("marker-big")
+        console.log("Este es el que se pinta:"+JSON.stringify(data))
+        this.map.addLayer(
+                data.geoInfo
+            );
+    })
 
-                    ]
-                }
-            }
-        },
-        "layout": {
-            "line-join": "round",
-            "line-cap": "round"
-        },
-        "paint": {
-            "line-color": "red",
-            "line-width": 3
-        }
-    }
-    );
    
     
  
@@ -285,6 +262,7 @@ export class MapComponent implements OnInit, AfterViewInit {
       console.log("funcionando")
       this.location.replaceState(`/map`);
       document.getElementById("aside").classList.remove("aside-active");
+      this.map.removeLayer(this.currentSemilla.geoInfo);
       this.pintarMarkers();
       this.router.navigate(['/map'])
   }
