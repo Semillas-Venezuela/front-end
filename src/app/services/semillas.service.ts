@@ -29,13 +29,6 @@ export class SemillasService {
     }
 
     public test() {
-        console.log('Semillas service')
-        this.observableSemillas.subscribe(
-            (semillas) => {
-                console.log("Semillas:");
-                console.log(semillas);
-            }
-        )
         var semilla = new semillaInfo()
         let geoInfo = [
             [-122.48369693756104, 37.83381888486939],
@@ -96,13 +89,6 @@ export class SemillasService {
             }
         };
         this.anadirSemilla(semilla);
-        this.obtenerSemilla("qwerty").subscribe(
-            (semillaEncontrada) => {
-                console.log("Semilla encontrada");
-                console.log(semillaEncontrada);
-
-            }
-        )
     };
 
     /**
