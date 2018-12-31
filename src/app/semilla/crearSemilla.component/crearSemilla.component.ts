@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { SemillasService } from '../../services/semillas.service';
 import { semillaInfo } from '../../models/semillaInfo';
 
+
 @Component({
     selector: 'app-crear-semilla',
     templateUrl: 'crearSemilla.component.html',
