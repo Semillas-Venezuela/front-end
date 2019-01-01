@@ -26,3 +26,8 @@ Audio4:
 Audio5: 
 <input type="text" name="" id=""><br>
 <button (click)="crearSemilla()">Crear</button>
+
+
+
+    <button [disabled]="isRecording" (click)="record()">Record</button>
+    <button [disabled]="!isRecording" (click)="stop()">Stop</button>
