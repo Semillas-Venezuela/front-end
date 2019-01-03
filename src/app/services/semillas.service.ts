@@ -3,6 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection } from "@angular/fire/fire
 import { semillaInfo } from "../models/semillaInfo";
 import { Observable } from "rxjs";
 import 'rxjs/add/operator/map';
+import { AngularFireStorage } from "@angular/fire/storage";
 
 
 @Injectable()
@@ -12,7 +13,7 @@ export class SemillasService {
 
     public observableSemillas: Observable<semillaInfo[]>;
 
-    constructor(public afs: AngularFirestore) {
+    constructor(public afs: AngularFirestore, private storage: AngularFireStorage) {
         //Obtiene la referencia a la coleccion de semillas de FireStorage
         this.semillas = this.afs.collection<semillaInfo>('semillas');
 
@@ -121,25 +122,14 @@ export class SemillasService {
         return this.semillas.doc(semilla._id + '').delete();
     }
 
-    public darFuncionHash(texto: string): string {
-        var today = new Date();
-        var d = today.getDate();
-        texto += today.getHours() + today.getMinutes() + today.getDay() + today.getMilliseconds() + today.getMonth() + today.getFullYear();
-        var hash;
-        if (texto.length == 0) {
-            return '0';
-        }
-        for (var i = 0; i < texto.length; i++) {
-            var char = texto.charCodeAt(i);
-            hash = ((hash << 5) - hash) + char;
-            hash = hash & hash; // Convert to 32bit integer
-        }
-        if (hash < 0)
-            hash = -hash;
-        return hash;
-
+    
+    uploadFile(file,path){
+        let a=this.storage.ref(path)
+        a.put(file);
+        const customMetadata = { app: 'VinylApp' };
+        let task= this.storage.upload(path,file, {customMetadata})
+        return task
     }
-
 
     arrayToGeopoints(arreglo): Object[] {
         let arregloPuntos = new Array();

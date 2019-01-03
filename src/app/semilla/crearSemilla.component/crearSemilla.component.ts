@@ -22,9 +22,16 @@ export class CrearSemillaComponent implements OnInit{
             this.mediaRecorder = new MediaRecorder(stream);
             this.mediaRecorder.onstop = e => {
               const audio = new Audio();
-              const blob = new Blob(this.chunks, { 'type': 'audio/ogg; codecs=opus' });
+              let blob2 = new Blob(this.chunks, {type: 'audio/mp3'});
+              let file:any = blob2;
+              let blob = new Blob(["something"], {type: 'audio/mp3'})
+              file.lastModifiedDate = new Date();
+              file.name = "fileName";
+                this.semillasService.uploadFile("test",blob);
+
               this.chunks.length = 0;
               audio.src = window.URL.createObjectURL(blob);
+              
               audio.load();
               audio.play();
             };
@@ -47,7 +54,7 @@ export class CrearSemillaComponent implements OnInit{
 
     crearSemilla(){
         console.log(1)
-        this.semilla._id=this.semillasService.darFuncionHash(this.semilla.desc+'');
+        
         this.semillasService.anadirSemilla(this.semilla).then(
             ()=>{
                 console.log("Semilla creada");
