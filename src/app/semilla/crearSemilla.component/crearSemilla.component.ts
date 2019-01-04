@@ -25,7 +25,7 @@ export class CrearSemillaComponent implements OnInit {
                 const audio = new Audio();
                 let blob = new Blob(this.chunks, { type: 'audio/mp3' });
                 console.warn(blob)
-                this.semillasService.uploadFile("test", blob);
+                this.semillasService.uploadFile("fileName", blob);
                 this.chunks.length = 0;
                 audio.src = window.URL.createObjectURL(blob);
                 audio.load();
@@ -35,7 +35,6 @@ export class CrearSemillaComponent implements OnInit {
 
             this.mediaRecorder.ondataavailable = e => this.chunks.push(e.data);
         };
-
         navigator.getUserMedia = (navigator.getUserMedia ||
             navigator.webkitGetUserMedia ||
             navigator.mozGetUserMedia ||
@@ -43,15 +42,14 @@ export class CrearSemillaComponent implements OnInit {
 
         navigator.getUserMedia({ audio: true }, onSuccess, e => console.log(e));
 
+        
+
     }
 
     ngOnInit() {
         this.semilla = new semillaInfo();
     }
-    guardar(a, b) {
 
-
-    }
     crearSemilla() {
         console.log(1)
 
@@ -63,6 +61,7 @@ export class CrearSemillaComponent implements OnInit {
     }
 
     public record() {
+        
         this.isRecording = true;
         this.mediaRecorder.start();
     }
