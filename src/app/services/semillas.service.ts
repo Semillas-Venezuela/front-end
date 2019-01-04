@@ -123,7 +123,7 @@ export class SemillasService {
     }
 
     
-    uploadFile(file,path){
+    uploadFile(path, file){
         let a=this.storage.ref(path)
         a.put(file);
         const customMetadata = { app: 'VinylApp' };
