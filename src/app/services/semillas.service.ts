@@ -29,6 +29,71 @@ export class SemillasService {
         })
     }
 
+
+
+    /**
+     * Anade una semilla a la base de datos
+     * @param semilla semilla a anadir
+     */
+    public anadirSemilla(semilla: semillaInfo) {
+        console.log(semilla);
+        let idBefore = this.afs.createId();
+        semilla._id = idBefore;
+        return this.semillas.doc(idBefore).set(Object.assign({}, semilla)).catch(console.log);
+    }
+
+    /**
+     * Obtiene una semilla por su id
+     * @param _id id de la semilla
+     */
+    public obtenerSemilla(_id: string): Observable<semillaInfo> {
+        return this.semillas.doc(_id).snapshotChanges().map(item => {
+            const data = item.payload.data() as semillaInfo;
+            return data
+        });
+    }
+
+    /**
+     * Eliminar semilla
+     * @param semilla Semilla a eliminar
+     */
+    public eliminarSemilla(semilla: semillaInfo): Promise<void> {
+        return this.semillas.doc(semilla._id + '').delete();
+    }
+
+    
+    uploadFile(path, file){
+        let a=this.storage.ref(path)
+        a.put(file);
+        const customMetadata = { app: 'VinylApp' };
+        let task= this.storage.upload(path,file, {customMetadata})
+        return task
+    }
+
+    arrayToGeopoints(arreglo): Object[] {
+        let arregloPuntos = new Array();
+        arreglo.forEach(punto => {
+            let geoPunto= {latitude:punto[0], longitude:punto[1]}
+            arregloPuntos.push(geoPunto);
+        });
+        return arregloPuntos;
+    }
+    geoPointsToArray(geopoints): Array<Number> {
+        let arregloArreglos = new Array();
+        geopoints.forEach((geoPunto) => {
+            let arreglo = [geoPunto.latitude, geoPunto.longitude]
+            arregloArreglos.push(arreglo);
+        })
+        return arregloArreglos;
+    }
+
+
+
+
+
+
+
+
     public test() {
         var semilla = new semillaInfo()
         let geoInfo = [
@@ -91,60 +156,4 @@ export class SemillasService {
         };
         this.anadirSemilla(semilla);
     };
-
-    /**
-     * Anade una semilla a la base de datos
-     * @param semilla semilla a anadir
-     */
-    public anadirSemilla(semilla: semillaInfo) {
-        console.log(semilla);
-        let idBefore = this.afs.createId();
-        semilla._id = idBefore;
-        return this.semillas.doc(idBefore).set(Object.assign({}, semilla)).catch(console.log);
-    }
-
-    /**
-     * Obtiene una semilla por su id
-     * @param _id id de la semilla
-     */
-    public obtenerSemilla(_id: string): Observable<semillaInfo> {
-        return this.semillas.doc(_id).snapshotChanges().map(item => {
-            const data = item.payload.data() as semillaInfo;
-            return data
-        });
-    }
-
-    /**
-     * Eliminar semilla
-     * @param semilla Semilla a eliminar
-     */
-    public eliminarSemilla(semilla: semillaInfo): Promise<void> {
-        return this.semillas.doc(semilla._id + '').delete();
-    }
-
-    
-    uploadFile(path, file){
-        let a=this.storage.ref(path)
-        a.put(file);
-        const customMetadata = { app: 'VinylApp' };
-        let task= this.storage.upload(path,file, {customMetadata})
-        return task
-    }
-
-    arrayToGeopoints(arreglo): Object[] {
-        let arregloPuntos = new Array();
-        arreglo.forEach(punto => {
-            let geoPunto= {latitude:punto[0], longitude:punto[1]}
-            arregloPuntos.push(geoPunto);
-        });
-        return arregloPuntos;
-    }
-    geoPointsToArray(geopoints): Array<Number> {
-        let arregloArreglos = new Array();
-        geopoints.forEach((geoPunto) => {
-            let arreglo = [geoPunto.latitude, geoPunto.longitude]
-            arregloArreglos.push(arreglo);
-        })
-        return arregloArreglos;
-    }
 }
