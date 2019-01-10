@@ -1,29 +1,18 @@
-import { Injectable } from '@angular/core';
-import { Observable, Subscriber } from 'rxjs';
-import { semillaInfo } from '../models/semillaInfo';
-import { HttpClient } from '@angular/common/http';
-
+import { Injectable } from "@angular/core";
+import { AngularFirestore, AngularFirestoreCollection } from "@angular/fire/firestore";
+import { semillaInfo } from "../models/semillaInfo";
+import { Observable } from "rxjs";
+import 'rxjs/add/operator/map';
+import { AngularFireStorage } from "@angular/fire/storage";
 
 @Injectable({
   providedIn: 'root'
 })
 export class MapService{
 
-  constructor(private http: HttpClient) { }
+  constructor() { }
 
 
-  getSemilla(id:String){
-    let semilla;
-    this.http.get("../../assets/json-prueba/semillas.json").subscribe( (x:semillaInfo[])=>{
-      x.filter(y=>{
-        y._id == id;
-        semilla = y
-      })
-      
-      alert(JSON.stringify(semilla))
-      
-    })
-    return semilla;
-  }
+ 
 
 }
