@@ -5,9 +5,7 @@ import { Observable } from "rxjs";
 import 'rxjs/add/operator/map';
 import { AngularFireStorage } from "@angular/fire/storage";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class MapService{
 
   constructor() { }

@@ -15,7 +15,6 @@ import { MapService } from './services/map.service';
 
 import { TipoUser } from './registro/tipoUser.component/tipoUser.component';
 import { HttpClientModule } from '@angular/common/http';
-import { oAuth } from './services/oAuth';
 import { SemillasService } from './services/semillas.service';
 import { AngularFireStorage } from "@angular/fire/storage";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
@@ -25,9 +24,7 @@ import { CrearSemillaComponent } from './semilla/crearSemilla.component/crearSem
 import { FormsModule } from "@angular/forms";
 import { AuthService } from './services/auth.service';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-export function tokenGetter() {
-  return localStorage.getItem('access_token');
-}
+
 
 @NgModule({
   declarations: [
@@ -51,7 +48,7 @@ export function tokenGetter() {
     AngularFireAuthModule
    
   ],
-  providers: [MapService,oAuth, SemillasService, AngularFireStorage, AuthService],
+  providers: [MapService, SemillasService, AngularFireStorage, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
