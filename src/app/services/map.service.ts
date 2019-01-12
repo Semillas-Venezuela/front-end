@@ -7,8 +7,12 @@ import { AngularFireStorage } from "@angular/fire/storage";
 
 @Injectable()
 export class MapService{
+  public semillas: AngularFirestoreCollection<semillaInfo>;
 
-  constructor() { }
+    public observableSemillas: Observable<semillaInfo[]>;
+
+    constructor(public afs: AngularFirestore, private storage: AngularFireStorage) {
+     }
 
 
  
