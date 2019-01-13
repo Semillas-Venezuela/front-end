@@ -10,4 +10,8 @@ export class DataUser{
     dateCreated?:Date;
     place?:string;
     timesShared?:number;
+    step1:boolean=false;
+    step2:boolean=false;
+    step3:boolean=false;
+    id?:string;
 }

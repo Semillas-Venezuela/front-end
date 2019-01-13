@@ -9,5 +9,5 @@ export class semillaInfo{
     textos?:string[];
     desc?:string;
     geoInfo?:GeoInfo;
-    
+    published?:boolean;
 }
