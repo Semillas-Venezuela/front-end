@@ -69,5 +69,8 @@ export class CrearSemillaComponent implements OnInit {
     public stop() {
         this.isRecording = false;
         this.mediaRecorder.stop();
+        this.mediaRecorder.getTracks().forEach(function(track) {
+            track.stop();
+        });
     }
 }
