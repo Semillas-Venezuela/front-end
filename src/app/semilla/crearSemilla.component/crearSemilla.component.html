@@ -31,3 +31,6 @@ Audio5:
 
     <button [disabled]="isRecording" (click)="record()">Record</button>
     <button [disabled]="!isRecording" (click)="stop()">Stop</button>
+<step1 *ngIf="semilla.step1 == false" [(status)]="semilla.step1"></step1>
+<step1 *ngIf="semilla.step1 == true" ></step1>
+<step1 *ngIf="(semilla.step1 == true)&&(semilla.step2 == true)"></step1>

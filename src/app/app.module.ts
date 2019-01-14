@@ -24,6 +24,9 @@ import { CrearSemillaComponent } from './semilla/crearSemilla.component/crearSem
 import { FormsModule } from "@angular/forms";
 import { AuthService } from './services/auth.service';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { Step1 } from './semilla/crearSemilla.component/step1/step1.component';
+import { Step2 } from './semilla/crearSemilla.component/step2/step2.component';
+import { Step3 } from './semilla/crearSemilla.component/step3/step3.component';
 
 
 @NgModule({
@@ -33,8 +36,10 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
     MapComponent,
     MenuComponent,
     TipoUser,
-    CrearSemillaComponent
-
+    CrearSemillaComponent,
+    Step1,
+    Step2,
+    Step3
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'my-app'}),

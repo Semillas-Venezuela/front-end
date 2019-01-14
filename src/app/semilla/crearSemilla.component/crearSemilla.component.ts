@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { SemillasService } from '../../services/semillas.service';
 import { semillaInfo } from '../../models/semillaInfo';
@@ -13,6 +13,9 @@ declare const MediaRecorder: any;
 export class CrearSemillaComponent implements OnInit {
 
     public semilla: semillaInfo;
+    @ViewChild('step1') step1:boolean;
+    @ViewChild('step2') step2:boolean;
+    @ViewChild('step3') step3:boolean;
     public isRecording: boolean = false;
     private chunks: any = [];
     private mediaRecorder: any;
