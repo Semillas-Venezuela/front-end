@@ -8,8 +8,8 @@ import {Component,OnInit, Input, Output, EventEmitter} from '@angular/core';
 export class Step1 implements OnInit {
 
 
-    @Input() status: boolean;
-    @Output() statusChange= new EventEmitter<boolean>();
+    @Input() boton1: boolean;
+    @Output() boton1Change= new EventEmitter<boolean>();
     
     constructor(){
 
@@ -19,7 +19,8 @@ export class Step1 implements OnInit {
     }
     setStatus(status:boolean){
       console.log(status);
-      this.status=status;
-      this.statusChange.emit(status);
+      this.boton1=status;
+      console.log(this.boton1)
+      this.boton1Change.emit(status);
     }
 }

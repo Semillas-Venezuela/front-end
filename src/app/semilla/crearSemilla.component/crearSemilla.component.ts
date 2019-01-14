@@ -4,6 +4,7 @@ import { SemillasService } from '../../services/semillas.service';
 import { semillaInfo } from '../../models/semillaInfo';
 declare const navigator: any;
 declare const MediaRecorder: any;
+import * as RecordRTC from 'recordrtc';
 
 @Component({
     selector: 'app-crear-semilla',
@@ -12,45 +13,26 @@ declare const MediaRecorder: any;
 })
 export class CrearSemillaComponent implements OnInit {
 
-    public semilla: semillaInfo;
+    public semilla: semillaInfo = new semillaInfo();
+    booleano:boolean;
     @ViewChild('step1') step1:boolean;
     @ViewChild('step2') step2:boolean;
     @ViewChild('step3') step3:boolean;
-    public isRecording: boolean = false;
-    private chunks: any = [];
-    private mediaRecorder: any;
+    private stream: MediaStream;
+    private recordRTC: any;
+    private isRecording:boolean;
+    private interval:any;
 
     constructor(public router: Router, public semillasService: SemillasService) {
-        const onSuccess = stream => {
-            this.mediaRecorder = new MediaRecorder(stream);
-            this.mediaRecorder.onstop = e => {
-                console.log(e)
-                const audio = new Audio();
-                let blob = new Blob(this.chunks, { type: 'audio/mp3' });
-                console.warn(blob)
-                this.semillasService.uploadFile("fileName", blob);
-                this.chunks.length = 0;
-                audio.src = window.URL.createObjectURL(blob);
-                audio.load();
-                audio.play()
-
-            };
-
-            this.mediaRecorder.ondataavailable = e => this.chunks.push(e.data);
-        };
-        navigator.getUserMedia = (navigator.getUserMedia ||
-            navigator.webkitGetUserMedia ||
-            navigator.mozGetUserMedia ||
-            navigator.msGetUserMedia);
-
-        navigator.getUserMedia({ audio: true }, onSuccess, e => console.log(e));
-
-        
 
     }
 
     ngOnInit() {
-        this.semilla = new semillaInfo();
+        setInterval(x=>{
+            console.log(this.semilla.step1)
+        },500)
+            
+        
     }
 
     crearSemilla() {
@@ -64,16 +46,58 @@ export class CrearSemillaComponent implements OnInit {
     }
 
     public record() {
-        
-        this.isRecording = true;
-        this.mediaRecorder.start();
+        this.isRecording= true;
+        let mediaConstraints = {
+            video: false,
+            audio: true
+          };
+          navigator.mediaDevices
+            .getUserMedia(mediaConstraints)
+            .then(this.successCallback.bind(this), this.errorCallback.bind(this));
+       
     }
 
     public stop() {
-        this.isRecording = false;
-        this.mediaRecorder.stop();
-        this.mediaRecorder.getTracks().forEach(function(track) {
-            track.stop();
-        });
+        clearInterval(this.interval);
+        this.isRecording= false;
+        let recordRTC = this.recordRTC;
+        recordRTC.stopRecording(this.processVideo.bind(this));
+        let stream = this.stream;
+        stream.getAudioTracks().forEach(track => track.stop());
+        stream.getVideoTracks().forEach(track => track.stop());
     }
+
+
+    successCallback(stream: MediaStream) {
+        var options = {
+                type: 'audio'
+            };
+            this.stream = stream;
+            this.recordRTC = RecordRTC(stream, options);
+            this.recordRTC.startRecording();
+            let timer = 0;
+            this.interval = setInterval(()=>{
+                
+                console.log(timer)
+                timer++;
+                if(timer>20){
+                    this.stop()
+                    clearInterval(this.interval);
+                }
+            },1000)
+            
+          }
+          errorCallback() {
+            //handle error here
+          }
+        
+          processVideo(audioVideoWebMURL) {
+            
+            let recordRTC = this.recordRTC;
+            var recordedBlob = recordRTC.getBlob();
+            console.log(recordedBlob);
+            this.semillasService.uploadFile("hola", recordedBlob)
+            recordRTC.getDataURL(function (dataURL) { });
+
+          }
 }

@@ -19,24 +19,14 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.lottieConfig = {
       path: 'assets/dataAnim.json',
       renderer: 'svg',
-      autoplay: false,
+      autoplay: true,
       loop: false
     };
   }
 
-  ngOnInit() {
-    
-    
-    
-  }
-
+  ngOnInit() { }
+  ngAfterViewInit() { }
   
-
-  ngAfterViewInit() {
-
-   
-    
-  }
   redirectMap() {
 
     this.router.navigate(['/map']);
@@ -46,10 +36,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   handleAnimation(anim: any) {
     this.anim = anim;
-    setTimeout(()=>{
-      this.anim.play()
+    this.anim.addEventListener("complete", loopE => {
+      this.anim.goToAndStop(0, false)
+    });
 
-    },900)
     
   }
 

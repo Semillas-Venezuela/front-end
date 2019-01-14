@@ -20,13 +20,14 @@ import { AngularFireStorage } from "@angular/fire/storage";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { environment } from "../environments/environment";
 import { AngularFireModule } from "@angular/fire";
-import { CrearSemillaComponent } from './semilla/crearSemilla.component/crearSemilla.component';
+
 import { FormsModule } from "@angular/forms";
 import { AuthService } from './services/auth.service';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { Step1 } from './semilla/crearSemilla.component/step1/step1.component';
 import { Step2 } from './semilla/crearSemilla.component/step2/step2.component';
 import { Step3 } from './semilla/crearSemilla.component/step3/step3.component';
+import { CrearSemillaComponent } from './semilla/crearSemilla.component/crearSemilla.component';
 
 
 @NgModule({
