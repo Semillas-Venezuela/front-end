@@ -1,4 +1,5 @@
 import {Component,OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { semillaInfo } from '../../../models/semillaInfo';
 
 @Component({
   selector: 'step1',
@@ -9,6 +10,8 @@ export class Step1 implements OnInit {
 
 
     @Input() boton1: boolean;
+    @Input() semilla:semillaInfo;
+    @Output() semillaChange= new EventEmitter<semillaInfo>();
     @Output() boton1Change= new EventEmitter<boolean>();
     
     constructor(){
@@ -21,6 +24,7 @@ export class Step1 implements OnInit {
       console.log(status);
       this.boton1=status;
       console.log(this.boton1)
-      this.boton1Change.emit(status);
+      this.boton1Change.emit(this.boton1);
+      this.semillaChange.emit(this.semilla);
     }
 }
