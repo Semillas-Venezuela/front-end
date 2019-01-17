@@ -5,6 +5,7 @@ import { semillaInfo } from '../../models/semillaInfo';
 declare const navigator: any;
 declare const MediaRecorder: any;
 import * as RecordRTC from 'recordrtc';
+import { ConstantPool } from '@angular/compiler';
 
 @Component({
     selector: 'app-crear-semilla',
@@ -19,7 +20,7 @@ export class CrearSemillaComponent implements OnInit {
     private recordRTC: any;
     private isRecording:boolean;
     private interval:any;
-
+    private timers=[]
     constructor(public router: Router, public semillasService: SemillasService) {
 
     }
@@ -70,12 +71,20 @@ export class CrearSemillaComponent implements OnInit {
             this.stream = stream;
             this.recordRTC = RecordRTC(stream, options);
             this.recordRTC.startRecording();
-            let timer = 0;
+            let timer =0;
+            var time_in_minutes = 5;
+            var current_time = new Date();
+            var deadline = new Date(current_time.getTime() + time_in_minutes*60*1000);
+            
             this.interval = setInterval(()=>{
-                
-                console.log(timer)
-                timer++;
-                if(timer>20){
+                var t =new Date(deadline.getTime() - new Date().getTime());
+                var seconds = (Math.floor( (t.getTime()/1000) % 60 ))< 10 ? "0"+(Math.floor( (t.getTime()/1000) % 60 )) : (Math.floor( (t.getTime()/1000) % 60 ));
+                var minutes = Math.floor( (t.getTime()/1000/60) % 60 );
+                console.log(minutes+":"+seconds)
+                this.timers[0]=minutes+":"+seconds;
+               timer++;
+                if(timer>300){
+                    
                     this.stop()
                     clearInterval(this.interval);
                 }
