@@ -65,8 +65,9 @@ export class CrearSemillaComponent implements OnInit {
 
 
     successCallback(stream: MediaStream) {
+        var StereoAudioRecorder = RecordRTC.StereoAudioRecorder;
         var options = {
-                type: 'audio'
+                recorderType: StereoAudioRecorder
             };
             this.stream = stream;
             this.recordRTC = RecordRTC(stream, options);
