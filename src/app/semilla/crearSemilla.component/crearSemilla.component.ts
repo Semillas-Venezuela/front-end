@@ -18,9 +18,9 @@ export class CrearSemillaComponent implements OnInit {
     
     private stream: MediaStream;
     private recordRTC: any;
-    private isRecording:boolean;
-    private interval:any;
-    private timers=[]
+    public isRecording:boolean;
+    public interval:any;
+    public timers=[]
     constructor(public router: Router, public semillasService: SemillasService) {
 
     }
