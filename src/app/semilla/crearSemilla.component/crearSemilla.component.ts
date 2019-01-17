@@ -5,7 +5,7 @@ import { semillaInfo } from '../../models/semillaInfo';
 declare const navigator: any;
 declare const MediaRecorder: any;
 import * as RecordRTC from 'recordrtc';
-import { ConstantPool } from '@angular/compiler';
+
 
 @Component({
     selector: 'app-crear-semilla',
