@@ -4,15 +4,15 @@ import { semillaInfo } from '../../../models/semillaInfo';
 @Component({
   selector: 'step1',
   templateUrl:'./step1.component.html',
-  styles: ['./step1.component.html']
+  styleUrls: ['./step1.component.html']
 })
 export class Step1 implements OnInit {
 
 
-    @Input() boton1: boolean;
+    
     @Input() semilla:semillaInfo;
     @Output() semillaChange= new EventEmitter<semillaInfo>();
-    @Output() boton1Change= new EventEmitter<boolean>();
+   
     
     constructor(){
 
@@ -21,10 +21,10 @@ export class Step1 implements OnInit {
       
     }
     setStatus(status:boolean){
-      console.log(status);
-      this.boton1=status;
-      console.log(this.boton1)
-      this.boton1Change.emit(this.boton1);
+      
+      
+      
+      this.semilla.step1 = true;
       this.semillaChange.emit(this.semilla);
     }
 }

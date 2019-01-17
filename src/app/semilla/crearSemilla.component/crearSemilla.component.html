@@ -1,37 +1,10 @@
-<h1>Crear Semilla</h1> <br>
-<i>  Toca revisar el modelo de semillaInfo ya que segun json hay audios y textos que son objetos y segun models audios y textos son arreglos </i> <br>
-<br>
-Mensaje: 
-<input type="text" name="" id="" [(ngModel)]="semilla.desc"><br>
-Imagen: 
-<input type="text" name="" id="" [(ngModel)]="semilla.imagenUrl"><br>
-Texto1: 
-<input type="text" name="" id=""><br>
-Texto2: 
-<input type="text" name="" id=""><br>
-Texto3: 
-<input type="text" name="" id=""><br>
-Texto4: 
-<input type="text" name="" id=""><br>
-Texto5: 
-<input type="text" name="" id=""><br>
-Audio1: 
-<input type="text" name="" id=""><br>
-Audio2: 
-<input type="text" name="" id=""><br>
-Audio3: 
-<input type="text" name="" id=""><br>
-Audio4: 
-<input type="text" name="" id=""><br>
-Audio5: 
-<input type="text" name="" id=""><br>
-<button (click)="crearSemilla()">Crear</button>
+
 
 
 
     <button [disabled]="isRecording" (click)="record()">Record</button>
         <h2>{{timers[0]}}</h2>
     <button [disabled]="!isRecording" (click)="stop()">Stop</button>
-<step1 *ngIf="!semilla.step1" [(boton1)]="semilla.step1"></step1>
-<step2 *ngIf="semilla.step1 == true" ></step2>
+<step1 *ngIf="!semilla.step1" [(semilla)]="semilla"></step1>
+<step2 *ngIf="semilla.step1 && !semilla.step2" [(semilla)]="semilla"></step2>
 <step3 *ngIf="(semilla.step1 == true)&&(semilla.step2 == true)"></step3>
