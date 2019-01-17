@@ -14,10 +14,7 @@ import * as RecordRTC from 'recordrtc';
 export class CrearSemillaComponent implements OnInit {
 
     public semilla: semillaInfo = new semillaInfo();
-    booleano:boolean;
-    @ViewChild('step1') step1:boolean;
-    @ViewChild('step2') step2:boolean;
-    @ViewChild('step3') step3:boolean;
+    
     private stream: MediaStream;
     private recordRTC: any;
     private isRecording:boolean;
@@ -28,9 +25,7 @@ export class CrearSemillaComponent implements OnInit {
     }
 
     ngOnInit() {
-        setInterval(x=>{
-            console.log(this.semilla.step1)
-        },500)
+     
             
         
     }
