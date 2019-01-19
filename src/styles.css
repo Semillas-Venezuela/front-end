@@ -30,3 +30,70 @@ lottie-animation-view div svg{
     
     width: 100vw !important;
 }
+.mapboxgl-ctrl-geocoder input[type='text'] {
+    background: transparent;
+    outline: 0;
+    border: 0;
+    width: 100%;
+    height: 10vmin;
+    font: 25px/25px helvetica;
+    color: white;
+    box-sizing: border-box;
+    padding: 0 20px;
+}
+.geocoder-pin-right,.geocoder-pin-right * {
+    display: none;
+    background: transparent;
+    border: none;
+  }
+/* Suggestions */
+.mapboxgl-ctrl-geocoder ul {
+    background-color:#3e3e3e;;
+    
+    left:0;
+    list-style:none;
+    margin:0;
+    padding:0;
+    position:absolute;
+    width:100%;
+    top: -1;
+    z-index:1000;
+    overflow:hidden;
+    font: 25px/25px helvetica;
+    }
+    .mapboxgl-ctrl-bottom-left .mapboxgl-ctrl-geocoder ul,
+    .mapboxgl-ctrl-bottom-right .mapboxgl-ctrl-geocoder ul {
+      top:auto;
+      bottom:100%;
+      }
+    .mapboxgl-ctrl-geocoder ul > li > a {
+      clear:both;
+      cursor:default;
+      display:block;
+      padding:5px 10px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+      
+      color:#fff;
+      }
+      .mapboxgl-ctrl-geocoder ul > li:last-child > a { border-bottom:none; }
+      .mapboxgl-ctrl-geocoder ul > li > a:hover {
+        color:#3e3e3e;
+        background: #fff;
+        text-decoration:none;
+        cursor:pointer;
+        }
+      .mapboxgl-ctrl-geocoder ul > li.active > a {
+        color:#202020;
+        background-color:#eeeeee;
+        text-decoration:none;
+        cursor:pointer;
+        }
+
+  
+
+      .mapboxgl-ctrl-geocoder { min-width:100%; }
+
+

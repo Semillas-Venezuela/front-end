@@ -1,7 +1,14 @@
 .contenedor{
+    position: relative;
+    height: 90vh;
+
+}
+
+.busqueda{
     width: 100vw;
     position: absolute;
-    height: 10vmin;
+    min-height: 10vmin;
+    top: 0;
 }
 .search{
     width: 10vmin;
@@ -27,7 +34,7 @@
     width: 100%;
     max-width: calc(100% - 10vmin);
 }
-.search-bar input{
+.mapboxgl-ctrl-geocoder input[type='text'] {
     background: transparent;
     outline: 0;
     border: 0;
@@ -38,3 +45,89 @@
     box-sizing: border-box;
     padding: 0 20px;
 }
+.btn {
+    height: 50px;
+    width: 200px;
+    background: var(--color)
+}
+.map{
+    position: absolute;
+    right: 0;
+    width: 100vw;
+    overflow: unset;
+    height: 90vh;
+    z-index: 0;
+}
+/* Basics */
+
+
+
+
+
+.mapboxgl-ctrl-geocoder button {
+    display: none;
+  }
+
+
+
+
+/* Suggestions */
+.mapboxgl-ctrl-geocoder ul {
+  background-color:#fff;
+  border-radius: 0 0 3px 3px;
+  left:0;
+  list-style:none;
+  margin:0;
+  padding:0;
+  position:absolute;
+  width:100%;
+  bottom: 0;
+  z-index:1000;
+  overflow:hidden;
+  font-size:12px;
+  }
+  .mapboxgl-ctrl-bottom-left .mapboxgl-ctrl-geocoder ul,
+  .mapboxgl-ctrl-bottom-right .mapboxgl-ctrl-geocoder ul {
+    top:auto;
+    bottom:100%;
+    }
+  .mapboxgl-ctrl-geocoder ul > li > a {
+    clear:both;
+    cursor:default;
+    display:block;
+    padding:5px 10px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    border-bottom:1px solid rgba(0,0,0,0.1);
+    color:#404040;
+    }
+    .mapboxgl-ctrl-geocoder ul > li:last-child > a { border-bottom:none; }
+    .mapboxgl-ctrl-geocoder ul > li > a:hover {
+      color:#202020;
+      background-color:#f3f3f3;
+      text-decoration:none;
+      cursor:pointer;
+      }
+    .mapboxgl-ctrl-geocoder ul > li.active > a {
+      color:#202020;
+      background-color:#e3e3e3;
+      text-decoration:none;
+      cursor:pointer;
+      }
+
+@-webkit-keyframes rotate { from { -webkit-transform: rotate(0deg); } to { -webkit-transform: rotate(360deg); } }
+   @-moz-keyframes rotate { from { -moz-transform: rotate(0deg); } to { -moz-transform: rotate(360deg); } }
+    @-ms-keyframes rotate { from { -ms-transform: rotate(0deg); } to { -ms-transform: rotate(360deg); } }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+/* icons */
+.geocoder-icon {
+  display: none;
+  }
+
+    .geocoder {
+        
+    }
+    .mapboxgl-ctrl-geocoder { min-width:100%; }

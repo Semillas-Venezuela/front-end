@@ -1,10 +1,4 @@
 
-
-
-
-    <button [disabled]="isRecording" (click)="record()">Record</button>
-        <h2>{{timers[0]}}</h2>
-    <button [disabled]="!isRecording" (click)="stop()">Stop</button>
 <step1 *ngIf="!semilla.step1" [(semilla)]="semilla"></step1>
 <step2 *ngIf="semilla.step1 && !semilla.step2" [(semilla)]="semilla"></step2>
 <step3 *ngIf="(semilla.step1 == true)&&(semilla.step2 == true)"></step3>

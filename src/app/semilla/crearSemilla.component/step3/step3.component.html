@@ -1,1 +1,8 @@
 <h1>STEP3</h1>
+
+
+
+
+<button [disabled]="isRecording" (click)="record()">Record</button>
+<h2>{{timers[0]}}</h2>
+<button [disabled]="!isRecording" (click)="stop()">Stop</button>

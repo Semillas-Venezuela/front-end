@@ -1,14 +1,16 @@
-<h1>STEP2</h1>
-<div id="map" class="map"></div>
 <div class="contenedor">
-    <div class="search-bar">
-        <input type="text" id="geocoder"/>
-      </div>
-      <div class="search" (click)="search()">
-        <i class="fas fa-search"></i>
-
-      </div>
+    <div id="map" class="map"></div>
+    <div class="busqueda">
+        <div class="search-bar" id="geocoder">
+            
+          </div>
+          <div class="search" (click)="search()">
+            <i class="fas fa-search"></i>
+    
+          </div>
+    </div>
+    <div class="btn" (click)="setStatus(true)">Hola</div>
 </div>
 
 
-<button (click)="setStatus(true)">Hola</button>
+
