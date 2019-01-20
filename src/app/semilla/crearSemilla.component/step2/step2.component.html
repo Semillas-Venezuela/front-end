@@ -13,11 +13,21 @@
         <div class="chevron " (click)="chevron()">
                 <i class="fas fa-chevron-up bounce" id="chevron"></i>
         </div>
-        <ul>
-            <li>Lista</li>
-        </ul>
+        <ul class="timeline"  >
+                <li class="timeline-item" *ngFor="let user of users | reverse">
+                   
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Event Title</h3>
+                        <p>Nullam vel sem. Nullam vel sem. Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. Donec orci lectus, aliquam ut, faucibus non, euismod id, nulla. Donec vitae sapien ut libero venenatis faucibus. ullam dictum felis
+                            eu pede mollis pretium. Pellentesque ut neque.</p>
+                    </div>
+                </li>
+
+            </ul>
         
     </div>
+    <div style="background:red; z-index:100000; position: fixed;" (click)="pushElement()">Hola a todos</div>
     <div class="btn" (click)="step(1)"> <i class="fas fa-arrow-left"></i></div>
     <div class="btn" (click)="step(3)"> <i class="fas fa-arrow-right"></i></div>
 </div>

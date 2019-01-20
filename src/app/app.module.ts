@@ -28,6 +28,8 @@ import { Step1 } from './semilla/crearSemilla.component/step1/step1.component';
 import { Step2 } from './semilla/crearSemilla.component/step2/step2.component';
 import { Step3 } from './semilla/crearSemilla.component/step3/step3.component';
 import { CrearSemillaComponent } from './semilla/crearSemilla.component/crearSemilla.component';
+import { ReversePipe } from './pipes/reverse.pipe';
+
 
 
 @NgModule({
@@ -40,7 +42,9 @@ import { CrearSemillaComponent } from './semilla/crearSemilla.component/crearSem
     CrearSemillaComponent,
     Step1,
     Step2,
-    Step3
+    Step3,
+    ReversePipe,
+    
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'my-app'}),

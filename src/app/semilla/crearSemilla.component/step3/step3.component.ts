@@ -1,7 +1,8 @@
-import {Component,OnInit} from '@angular/core';
+import {Component,OnInit, Input, Output, EventEmitter} from '@angular/core';
 declare const navigator: any;
 declare const MediaRecorder: any;
 import * as RecordRTC from 'recordrtc';
+import { semillaInfo } from '../../../models/semillaInfo';
 @Component({
   selector: 'step3',
   templateUrl:'./step3.component.html',
@@ -11,7 +12,8 @@ export class Step3 implements OnInit {
 
 
 
-
+  @Input() semilla: semillaInfo;
+  @Output() semillaChange = new EventEmitter<semillaInfo>();
     private stream: MediaStream;
     private recordRTC: any;
     public isRecording:boolean;
@@ -21,7 +23,7 @@ export class Step3 implements OnInit {
 
     }
     ngOnInit(){
-      
+      this.semilla.testimonialType = "audio"
     }
     public record() {
       this.isRecording= true;
