@@ -17,6 +17,7 @@ export class Step2 implements OnInit {
     lng = -29.72925;
     style = 'mapbox://styles/mapbox/satellite-streets-v9';
     geocoder;
+    chev:boolean = false;
     constructor(){
       mapboxgl.accessToken = environment['mapbox'].accessToken;
         this.map = mapboxgl.Map;
@@ -67,11 +68,21 @@ export class Step2 implements OnInit {
     search(){
       document.querySelector(".search-bar").classList.toggle("active")
     }
-    setStatus(valor){
+    step(valor){
       console.log("cambió");
-      this.semilla.step=3;
+      this.semilla.step=valor;
     }
     chevron(){
       document.querySelector(".listed").classList.toggle("active")
+      let element:any = document.getElementById("chevron")
+      if(!this.chev){
+        this.chev = !this.chev;
+        element.classList.replace("fa-chevron-up","fa-chevron-down")
+      } 
+      else{
+        this.chev = !this.chev;
+        element.classList.replace("fa-chevron-down","fa-chevron-up")
+      }
+        
     }
 }
