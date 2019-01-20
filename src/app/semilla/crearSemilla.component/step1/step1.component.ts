@@ -4,7 +4,7 @@ import { semillaInfo } from '../../../models/semillaInfo';
 @Component({
   selector: 'step1',
   templateUrl:'./step1.component.html',
-  styleUrls: ['./step1.component.html']
+  styleUrls: ['./step1.component.css']
 })
 export class Step1 implements OnInit {
 
@@ -20,11 +20,9 @@ export class Step1 implements OnInit {
     ngOnInit(){
       
     }
-    setStatus(status:boolean){
-      
-      
-      
-      this.semilla.step1 = true;
+    step1(){     
+      //Avanza al step2
+      this.semilla.step = 2;
       this.semillaChange.emit(this.semilla);
     }
 }

@@ -27,7 +27,8 @@ export class Step2 implements OnInit {
              this.geocoder = new MapboxGeocoder({
           accessToken: environment['mapbox'].accessToken,
           placeholder: "Buscar",
-          zoom: 4
+          zoom: 16,
+          flyTo:true
       });
       document.getElementById('geocoder').appendChild(this.geocoder.onAdd(this.map));
       
@@ -68,6 +69,9 @@ export class Step2 implements OnInit {
     }
     setStatus(valor){
       console.log("cambió");
-      this.semilla.step2=true;
+      this.semilla.step=3;
+    }
+    chevron(){
+      document.querySelector(".listed").classList.toggle("active")
     }
 }

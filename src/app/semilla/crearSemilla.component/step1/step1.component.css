@@ -1,0 +1,26 @@
+form{
+    height: 90vh;
+    background: var(--color-amarillo)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Adaptando a Escritorio */
+@media screen and (min-width: 800px){
+
+}

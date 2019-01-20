@@ -1,4 +1,3 @@
-
-<step1 *ngIf="!semilla.step1" [(semilla)]="semilla"></step1>
-<step2 *ngIf="semilla.step1 && !semilla.step2" [(semilla)]="semilla"></step2>
-<step3 *ngIf="(semilla.step1 == true)&&(semilla.step2 == true)"></step3>
+<step1 class="content" *ngIf="semilla.step == 1 || !semilla.step" [(semilla)]="semilla"></step1>
+<step2 class="content" *ngIf="semilla.step == 2" [(semilla)]="semilla"></step2>
+<step3 class="content" *ngIf="semilla.step == 3"></step3>

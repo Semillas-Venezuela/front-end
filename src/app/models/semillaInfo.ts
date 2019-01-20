@@ -21,7 +21,5 @@ export class semillaInfo{
     dateCreated?:Date;
     place?:string;
     timesShared?:number;
-    step1?:boolean=false;
-    step2?:boolean=false;
-    step3?:boolean=false;
+    step?:number;
 }
