@@ -8,7 +8,8 @@ import { element } from '@angular/core/src/render3/instructions';
 import { semillaInfo } from '../models/semillaInfo';
 import { MapService } from '../services/map.service';
 import { SemillasService } from '../services/semillas.service';
-
+import { Meta } from '@angular/platform-browser';
+declare const FB: any;
 @Component({
     selector: 'app-map',
     templateUrl: './map.component.html',
@@ -27,7 +28,11 @@ export class MapComponent implements OnInit, AfterViewInit {
     subscripcion;
 
 
-    constructor(public router: Router, private route: ActivatedRoute, private location: Location, private serviceSemillas: SemillasService) {
+    constructor(public router: Router,
+        private route: ActivatedRoute,
+        private location: Location,
+        private serviceSemillas: SemillasService,
+        private meta: Meta) {
 
         mapboxgl.accessToken = environment['mapbox'].accessToken;
         this.map = mapboxgl.Map;
@@ -45,7 +50,7 @@ export class MapComponent implements OnInit, AfterViewInit {
             })
 
         }
-        
+
 
 
     }
@@ -77,21 +82,21 @@ export class MapComponent implements OnInit, AfterViewInit {
 
     }
     public pintarMarkers() {
-        
-        
+
+
         if (this.objetosAnteriores) {
             this.objectsAddedToMap = this.objetosAnteriores;
             this.objectsAddedToMap.forEach((marker) => {
                 marker.addTo(this.map);
             })
-            
+
         }
-        else{
+        else {
             this.subscripcion = this.serviceSemillas.observableSemillas.subscribe(semillas => {
                 semillas.forEach(semilla => {
                     {
-    
-    
+
+
                         var coloresSemillas = ['amarillo', 'blanco', 'verde', 'naranja'];
                         var rand = coloresSemillas[Math.floor(Math.random() * coloresSemillas.length)];
                         var el = document.createElement('div');
@@ -107,46 +112,57 @@ export class MapComponent implements OnInit, AfterViewInit {
                         el.childNodes[0].addEventListener('click', () => {
                             this.displayContent(semilla._id)
                         });
-    
+
                         // add marker to map
-    
+
                         let coordenadasMapeadas = this.serviceSemillas.geoPointsToArray(semilla.geoInfo.source.data.geometry.coordinates);
                         var markeri = new mapboxgl.Marker(el)
                             .setLngLat(coordenadasMapeadas[coordenadasMapeadas.length - 1])
                             .addTo(this.map);
-    
+
                         this.objectsAddedToMap.push(markeri);
                     }
                 })
             })
         }
 
-        
-        
+
+
     }
 
     public displayContent(idSemilla) {
+
+
         
-
-
-
+        this.meta.addTags([
+            { name: 'twitter:card', content: 'summary_large_image' },
+            { name: 'twitter:site', content: '@SemillasVenezue' },
+            { name: 'twitter:title', content: 'Semillas Venezuela | Testimonio' },
+            { name: 'twitter:description', content: 'Conoce el testimonio de esta semilla venezolana que está creciendo por el mundo' },
+            { name: 'twitter:image', content: 'https://pbs.twimg.com/profile_images/1033471960095715328/upP48B_I_400x400.jpg' },
+            { property: 'og:url', content: 'http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html' },
+            { property: 'og:type', content: 'http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html' },
+            { property: 'og:title', content: 'http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html' },
+            { property: 'og:description', content: 'http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html' },
+            { property: 'og:image', content: 'http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html' }
+        ])
 
         this.serviceSemillas.obtenerSemilla(idSemilla).subscribe((data) => {
             this.currentSemilla = data;
             data.geoInfo.source.data.geometry.coordinates = this.serviceSemillas.geoPointsToArray(data.geoInfo.source.data.geometry.coordinates);
             this.objetosAnteriores = this.objectsAddedToMap;
-            
-                this.objectsAddedToMap.forEach(element => {
-                    if (!(element.getElement().id == idSemilla)) { element.remove() }
-                });
-            
-            
-            
+
+            this.objectsAddedToMap.forEach(element => {
+                if (!(element.getElement().id == idSemilla)) { element.remove() }
+            });
+
+
+
 
             this.location.replaceState(`/map/${idSemilla}`);
             document.getElementById("aside").classList.add("aside-active");
             document.getElementById(`${idSemilla}`).classList.add("marker-big")
-            
+
             this.map.addLayer(data.geoInfo);
         })
 
@@ -157,14 +173,22 @@ export class MapComponent implements OnInit, AfterViewInit {
     }
 
     public closeAside() {
-        
+
         this.subscripcion.unsubscribe()
         this.location.replaceState(`/map`);
         document.getElementById("aside").classList.remove("aside-active");
         document.getElementById(this.currentSemilla._id).classList.remove("marker-big")
         this.map.removeLayer(this.currentSemilla.geoInfo.id + "");
         this.map.removeSource(this.currentSemilla.geoInfo.id + "");
-        
+
         this.router.navigate(['/map'])
+    }
+
+    shareFacebook() {
+        FB.ui({
+            method: 'share',
+            display: 'popup',
+            href: `https://beta.semillasvenezuela.org/${this.route.snapshot.params.id}`,
+        }, function (response) { });
     }
 }
