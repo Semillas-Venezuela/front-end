@@ -161,7 +161,7 @@ export class MapComponent implements OnInit, AfterViewInit {
 
             this.location.replaceState(`/map/${idSemilla}`);
             document.getElementById("aside").classList.add("aside-active");
-            document.getElementById(`${idSemilla}`).classList.add("marker-big")
+            // document.getElementById(`${idSemilla}`).classList.add("marker-big")
 
             this.map.addLayer(data.geoInfo);
         })
@@ -177,7 +177,7 @@ export class MapComponent implements OnInit, AfterViewInit {
         this.subscripcion.unsubscribe()
         this.location.replaceState(`/map`);
         document.getElementById("aside").classList.remove("aside-active");
-        document.getElementById(this.currentSemilla._id).classList.remove("marker-big")
+        // document.getElementById(this.currentSemilla._id).classList.remove("marker-big")
         this.map.removeLayer(this.currentSemilla.geoInfo.id + "");
         this.map.removeSource(this.currentSemilla.geoInfo.id + "");
 

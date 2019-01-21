@@ -1,6 +1,8 @@
 import {Component,OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { semillaInfo } from '../../../models/semillaInfo';
 
+
+
 @Component({
   selector: 'step1',
   templateUrl:'./step1.component.html',

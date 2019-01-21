@@ -1,45 +1,161 @@
 <form (ngSubmit)="step(2)" #semillasForm="ngForm">
-    <!-- <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" class="form-control" id="name"
-                       required
-                       [(ngModel)]="semilla.name" name="name"
-                       #name="ngModel">
-                <div [hidden]="name.valid || name.pristine"
-                     class="alert alert-danger">
-                  Name is required
-                </div>
-              </div> -->
-              <div class="form-group">
-                    <label for="username">Ingresa tu nombre</label>
-                    <div class="style-input">
-                        <input placeholder="Nombre/Apodo" type="text" id="name"
-                        required
-                        [(ngModel)]="semilla.name" name="name"
-                        #name="ngModel" />
-                    </div> 
-              </div>
-              <div class="form-group" >
-                    <span for="username"></span>
+
+    <p>Tus datos personales ayudan a entender las dinámicas de la migración venezolana. Solo tu nombre (o seudónimo),
+        género y edad aparecerán al lado de tu testimonio. Otros datos serán guardados en una base de datos protegida y
+        servirán únicamente fines investigativos. </p>
+    <!-- Nombre -->
+    <div class="form-group" style="margin-bottom: 2vh;">
+        <label for="username">Ingresa tu nombre</label>
+        <div class="style-input" [ngClass]="{'error': !name.valid }" >
+            <input placeholder="Nombre/Apodo" type="text" id="name" required [(ngModel)]="semilla.name" name="name"
+                #name="ngModel" />
+        </div>
+    </div>
+    <!-- Género -->
+    <div class="form-group radio-group">
+        <span>Género</span>
+
+
+        <ul class="list">
+            <li class="list__item">
+                <label class="label--radio">
+                    <input type="radio" class="radio" required [(ngModel)]="semilla.gender" #gender="ngModel" name="genero"
+                        value="hombre" checked="checked">
+                    Hombre
+                </label>
+            </li>
+            <li class="list__item">
+                <label class="label--radio">
+                    <input type="radio" class="radio" required [(ngModel)]="semilla.gender" #gender="ngModel" name="genero"
+                        value="mujer">
+                    Mujer
+                </label>
+            </li>
+            <li class="list__item">
+                <label class="label--radio">
+                    <input type="radio" class="radio" required [(ngModel)]="semilla.gender" #gender="ngModel" name="genero"
+                        value="otro">
+                    Otro
+                </label>
+            </li>
+        </ul>
+
+
+    </div>
+    <!-- Rango de edad -->
+    <div class="form-group radio-group">
+        <span>Rango de Edad</span>
+
+
+        <ul class="list">
+            <li class="list__item">
+                <label class="label--radio">
+                    <input type="radio" class="radio" required [(ngModel)]="semilla.age" #age="ngModel" name="age" id="b1"
+                        value="menos18" checked="checked">
+                    Menos de 18
+                </label>
+            </li>
+            <li class="list__item">
+                <label class="label--radio">
+                    <input type="radio" class="radio" required [(ngModel)]="semilla.age" #age="ngModel" name="age" id="b2"
+                        value="18-24">
+                    18 a 24 años
+                </label>
+            </li>
+            <li class="list__item">
+                <label class="label--radio">
+                    <input type="radio" class="radio" required [(ngModel)]="semilla.age" #age="ngModel" name="age" id="b3" value="25-34"  >
+                    25 a 34 años
+                </label>
+            </li>
+            <li class="list__item">
+                <label class="label--radio">
+                    <input type="radio" class="radio" required [(ngModel)]="semilla.age" #age="ngModel" name="age" id="b4" value="35-44"  >
+                    35 a 44 años
+                </label>
+            </li>
+            <li class="list__item">
+                <label class="label--radio">
+                    <input type="radio" class="radio" required [(ngModel)]="semilla.age" #age="ngModel" name="age" id="b5" value="45-54"  >
+                    45 a 54 años
+                </label>
+            </li>
+            <li class="list__item">
+                <label class="label--radio">
+                    <input type="radio" class="radio" required [(ngModel)]="semilla.age" #age="ngModel" name="age" id="b6" value="55-64"  >
+                    55 a 64 años
+                </label>
+            </li>
+            <li class="list__item">
+                <label class="label--radio">
+                    <input type="radio" class="radio" required [(ngModel)]="semilla.age" #age="ngModel" name="age" id="b7" value="65-74"  >
+                    65 a 74 años
+                </label>
+            </li>
+            <li class="list__item">
+                <label class="label--radio">
+                    <input type="radio" class="radio" required [(ngModel)]="semilla.age" #age="ngModel" name="age" id="b8" value="mas75"  >
+                    75 años o más
+                </label>
+            </li>
+
+        </ul>
+
+
+    </div>
+    <!-- Estado Civil -->
+    <!-- <div class="form-group radio-group"  >
+                    <span>Estado civil</span>
                     <div class="radio-object">
-                            <input type="radio" required [(ngModel)]="semilla.gender" #gender="ngModel" name="genero" id="r1" value="hombre" checked="checked" hidden>
-                            <label for="r1" class="radio"><span></span>Hombre</label>
+                            <input type="radio" required [(ngModel)]="semilla.martialStatus" #martial="ngModel" name="martial" id="r1" value="soltero/a" checked="checked"  >
+                            <label for="r1" class="radio"><span></span>Soltero/a</label>
                             
-                            <input type="radio" required [(ngModel)]="semilla.gender" #gender="ngModel" name="genero" id="r2" value="mujer" hidden>
-                            <label for="r2" class="radio"><span></span>Mujer</label>
+                            <input type="radio" required [(ngModel)]="semilla.martialStatus" #martial="ngModel" name="martial" id="r2" value="casado/a"  >
+                            <label for="r2" class="radio"><span></span>Casado/a</label>
                             
-                            <input type="radio" required [(ngModel)]="semilla.gender" #gender="ngModel" name="genero" id="r3" value="otro" hidden>
-                            <label for="r3" class="radio"><span></span>Otro</label>
+                            <input type="radio" required [(ngModel)]="semilla.martialStatus" #martial="ngModel" name="martial" id="r3" value="divorciado/a"  >
+                            <label for="r3" class="radio"><span></span>Divorciado/a</label>
+
+                            <input type="radio" required [(ngModel)]="semilla.martialStatus" #martial="ngModel" name="martial" id="r3" value="viudo/a"  >
+                            <label for="r3" class="radio"><span></span>Viudo/a</label>
                     </div>
                    
                    
-              </div>
+              </div> -->
+    <!-- Nivel Educativo -->
+    <!-- <div class="form-group radio-group"  >
+                    <span>Nivel Educativo</span>
+                    <div class="radio-object">
+                            <input type="radio" required [(ngModel)]="semilla.martialStatus" #martial="ngModel" name="martial" id="r1" value="soltero/a" checked="checked"  >
+                            <label for="r1" class="radio"><span></span>Primaria incompleta</label>
+                            
+                            <input type="radio" required [(ngModel)]="semilla.martialStatus" #martial="ngModel" name="martial" id="r2" value="casado/a"  >
+                            <label for="r2" class="radio"><span></span>Primaria completa</label>
+                            
+                            <input type="radio" required [(ngModel)]="semilla.martialStatus" #martial="ngModel" name="martial" id="r3" value="divorciado/a"  >
+                            <label for="r3" class="radio"><span></span>Secundaria incompleta</label>
+
+                            <input type="radio" required [(ngModel)]="semilla.martialStatus" #martial="ngModel" name="martial" id="r3" value="viudo/a"  >
+                            <label for="r3" class="radio"><span></span>Secundaria completa</label>
+
+                            <input type="radio" required [(ngModel)]="semilla.martialStatus" #martial="ngModel" name="martial" id="r3" value="viudo/a"  >
+                            <label for="r3" class="radio"><span></span>Universitario incompleto</label>
+
+                            <input type="radio" required [(ngModel)]="semilla.martialStatus" #martial="ngModel" name="martial" id="r3" value="viudo/a"  >
+                            <label for="r3" class="radio"><span></span>Universitario completo</label>
+
+                            <input type="radio" required [(ngModel)]="semilla.martialStatus" #martial="ngModel" name="martial" id="r3" value="viudo/a"  >
+                            <label for="r3" class="radio"><span></span>Sin formación</label>
+                    </div>
+                   
+                   
+              </div> -->
 
 
 
 
 
-    <button type="submit" class="btn btn-success" [disabled]="!semillasForm.form.valid">Submit</button>
+    <button type="submit" class="btn right" [disabled]="!semillasForm.form.valid"><i class="fas fa-arrow-right"></i></button>
 
 
 

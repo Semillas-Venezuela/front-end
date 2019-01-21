@@ -3,3 +3,50 @@ button{
     height: 100px;
     width: 40vw;
 }
+p.centrado{
+    font-size: 0.56em;
+    text-align: center;
+    padding: 10vw;
+    font-weight: 0;
+    
+}
+.text{
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    word-wrap: break-word;
+    flex-wrap: wrap;
+    text-align: center;
+    padding: 5vw;
+    font-style: italic;
+    color: var(--color-blanco);
+}
+.button {
+    border: none;
+    color: white;
+    display: inline-block;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 20px 50px;
+    border-radius: 3px;
+    margin:5px;
+    border-bottom-style: solid;
+    border-bottom-width: 3px;
+    transition: text-shadow 0.3s ease;
+    font-style: normal;
+  }
+  
+  .button:active {
+    position: relative;
+    top: 1px;
+    border-bottom-width: 2px;
+  }
+  
+  .button:hover {
+    text-shadow: 2px 2px 0px rgba(0,0,0,.3)
+  }
+  .green {
+    background-color: var(--color-verde-quem);
+    border-color: var(--color-verde);
+  }
