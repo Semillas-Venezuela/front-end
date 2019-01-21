@@ -18,7 +18,7 @@ export class Step2 implements OnInit {
   style = 'mapbox://styles/mapbox/satellite-streets-v9';
   geocoder;
   chev: boolean = false;
-  users=[1,2,3,4,5,6,7,8,9,10];
+  users:any=[];
   constructor() {
     mapboxgl.accessToken = environment['mapbox'].accessToken;
     this.map = mapboxgl.Map;
@@ -26,6 +26,16 @@ export class Step2 implements OnInit {
   }
 
   ngOnInit() {
+    this.users.remove  = function() {
+      var what, a = arguments, L = a.length, ax;
+      while (L && this.length) {
+          what = a[--L];
+          while ((ax = this.indexOf(what)) !== -1) {
+              this.splice(ax, 1);
+          }
+      }
+      return this;
+  };
     this.initializeMap();
     this.geocoder = new MapboxGeocoder({
       accessToken: environment['mapbox'].accessToken,
@@ -63,18 +73,44 @@ export class Step2 implements OnInit {
       zoom: 3,
       center: [this.lng, this.lat]
     });
-
+    this.map.on('click', (event) => {
+      const coordinates = [event.lngLat.lng, event.lngLat.lat]
+      this.geocoder.mapboxClient.geocodeReverse({
+        latitude:coordinates[1],
+        longitude:coordinates[0]
+      }, (err, res)=>{
+        
+        try{
+          let place=res;
+          place =place.features.filter(obj=>{
+            return obj.id.includes("place")
+          })[0].place_name
+          console.log(place)
+          this.users.push(place)
+          this.users=this.users.slice()
+        }
+          
+        catch(e){
+          let place=res;
+          place=`Lat: ${coordinates[1]} Lon: ${coordinates[0]}`
+          console.log(place)
+          this.users.push(place)
+          this.users=this.users.slice()
+        }
+        
+        
+      })
+    })
 
 
   }
 
 
- 
-  pushElement(){
-    this.users.push(this.users[this.users.length-1]+1)
-    this.users = this.users.slice()
-    console.log(this.users);
+  remove(user){
+    this.users.remove(user);
+    this.users= this.users.slice();
   }
+
   search() {
     document.querySelector(".search-bar").classList.toggle("active")
   }

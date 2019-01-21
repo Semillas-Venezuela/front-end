@@ -14,8 +14,18 @@
 </head>
 <body>
   <app-root></app-root>
-  
+
 <script>
+  Array.prototype.remove = function() {
+    var what, a = arguments, L = a.length, ax;
+    while (L && this.length) {
+        what = a[--L];
+        while ((ax = this.indexOf(what)) !== -1) {
+            this.splice(ax, 1);
+        }
+    }
+    return this;
+};
     window.fbAsyncInit = function() {
       FB.init({
         appId            : '1911185565676564',

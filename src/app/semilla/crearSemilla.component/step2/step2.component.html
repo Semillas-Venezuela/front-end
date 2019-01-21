@@ -18,16 +18,15 @@
                    
                     <div class="timeline-marker"></div>
                     <div class="timeline-content">
-                        <h3 class="timeline-title">Event Title</h3>
-                        <p>Nullam vel sem. Nullam vel sem. Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. Donec orci lectus, aliquam ut, faucibus non, euismod id, nulla. Donec vitae sapien ut libero venenatis faucibus. ullam dictum felis
-                            eu pede mollis pretium. Pellentesque ut neque.</p>
+                        <h3 class="timeline-title">{{user}}</h3>
+                        <p><i (click)="remove(user)" class="fas fa-times" style="color:red; font-size: 1.4em;"></i></p>
                     </div>
                 </li>
 
             </ul>
         
     </div>
-    <div style="background:red; z-index:100000; position: fixed;" (click)="pushElement()">Hola a todos</div>
+
     <div class="btn left" (click)="step(1)"> <i class="fas fa-arrow-left"></i></div>
     <div class="btn right" (click)="step(3)"> <i class="fas fa-arrow-right"></i></div>
 </div>
