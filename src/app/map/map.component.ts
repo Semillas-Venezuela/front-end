@@ -191,4 +191,7 @@ export class MapComponent implements OnInit, AfterViewInit {
             href: `https://beta.semillasvenezuela.org/${this.route.snapshot.params.id}`,
         }, function (response) { });
     }
+    shareTwitter(){
+        window.open('https://twitter.com/share?url=' + document.URL, 'twitter-popup', 'height=350,width=600');
+    }
 }
