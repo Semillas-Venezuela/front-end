@@ -1,8 +1,127 @@
+*{
+    outline: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
 form{
     height: 90vh;
     background: var(--color-amarillo)
 }
+.form-group{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.form-group label{
+    font-size: 1.5rem;
+    padding: 0.8vh 0;
+}
+.style-input {
+    position: relative;
+    width: 100%;
+    max-width: 80vw;
+    border-radius: 2px;
+    padding: 1vh;
+    background: #C7AF61;
+  
+  }
+  
+  .style-input input {
+    flex-grow: 1;
+    color: #ffffff;
+    font-size: 1rem;
+    
+    vertical-align: middle;
+    width: 100%;
+  }
+  .style-input input::-webkit-input-placeholder {
+    color: #ffffff;
+  }
+  
 
+
+  input {
+    border-style: none;
+    background: transparent;
+    outline: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover, 
+  input:-webkit-autofill:focus, 
+  input:-webkit-autofill:active  {
+      -webkit-box-shadow: 0 0 0 30px var(--color-amarillo-quem) inset !important;
+      
+      -webkit-text-fill-color: #fff !important;
+  }
+
+  /** %[Object] Radio buttons */
+/*------------------------------------*/
+@keyframes pulse {
+    0% { width: .7em; height: .7em; margin: .4em;  }
+    50% { width: 1.1em; height: 1.1em; margin: .2em; }
+    100% { width: .9em; height: .9em; margin: .3em; }
+}
+
+.radio {
+    color: #798188;
+    cursor: pointer; 
+    display: block; 
+    transform: scale(0.7)
+}
+
+.radio,
+.radio span:before {
+    transition: .25s ease;
+}
+
+.radio span {
+    width: 1.5em;
+    height: 1.5em;
+    margin-right: .5em;
+    border-radius: 3em;
+    background: var(--color-amarillo-quem);
+    vertical-align: top;
+    display: inline-block;
+}
+
+.radio span:before {
+    content: '';
+    width: .7em;
+    height: .7em;
+    margin: .4em;
+    border-radius: 3em;
+    display: inline-block;
+    background-color: var(--color-amarillo-quem);
+}
+
+.radio:hover span:before {
+    background-color: rgba(255,255,255, .9);
+}
+
+/*------------------------------------*/
+
+input[type="radio"]:checked + .radio {
+    color: #f8f8f8;
+}
+
+input[type="radio"]:checked + .radio span:before {
+    background-color: var(--color-naranja);
+    width: .9em;
+    height: .9em;
+    margin: .3em;
+    animation: pulse .25s;
+}
 
 
 

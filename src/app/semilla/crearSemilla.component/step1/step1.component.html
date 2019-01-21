@@ -1,5 +1,5 @@
-<form (ngSubmit)="step1()" #semillasForm="ngForm" >
-        <div class="form-group">
+<form (ngSubmit)="step(2)" #semillasForm="ngForm">
+    <!-- <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" class="form-control" id="name"
                        required
@@ -9,12 +9,39 @@
                      class="alert alert-danger">
                   Name is required
                 </div>
+              </div> -->
+              <div class="form-group">
+                    <label for="username">Ingresa tu nombre</label>
+                    <div class="style-input">
+                        <input placeholder="Nombre/Apodo" type="text" id="name"
+                        required
+                        [(ngModel)]="semilla.name" name="name"
+                        #name="ngModel" />
+                    </div> 
               </div>
-      
-         
-              <button type="submit" class="btn btn-success" [disabled]="!semillasForm.form.valid">Submit</button>
-              
+              <div class="form-group" >
+                    <span for="username"></span>
+                    <div class="radio-object">
+                            <input type="radio" required [(ngModel)]="semilla.gender" #gender="ngModel" name="genero" id="r1" value="hombre" checked="checked" hidden>
+                            <label for="r1" class="radio"><span></span>Hombre</label>
+                            
+                            <input type="radio" required [(ngModel)]="semilla.gender" #gender="ngModel" name="genero" id="r2" value="mujer" hidden>
+                            <label for="r2" class="radio"><span></span>Mujer</label>
+                            
+                            <input type="radio" required [(ngModel)]="semilla.gender" #gender="ngModel" name="genero" id="r3" value="otro" hidden>
+                            <label for="r3" class="radio"><span></span>Otro</label>
+                    </div>
+                   
+                   
+              </div>
 
 
-      
+
+
+
+    <button type="submit" class="btn btn-success" [disabled]="!semillasForm.form.valid">Submit</button>
+
+
+
+
 </form>

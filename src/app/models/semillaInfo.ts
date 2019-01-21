@@ -23,4 +23,5 @@ export class semillaInfo{
     place?:string;
     timesShared?:number;
     step?:number;
+    userId?:number;
 }

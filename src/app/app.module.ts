@@ -29,7 +29,7 @@ import { Step2 } from './semilla/crearSemilla.component/step2/step2.component';
 import { Step3 } from './semilla/crearSemilla.component/step3/step3.component';
 import { CrearSemillaComponent } from './semilla/crearSemilla.component/crearSemilla.component';
 import { ReversePipe } from './pipes/reverse.pipe';
-
+import { DeviceDetectorModule } from 'ngx-device-detector';
 
 
 @NgModule({
@@ -55,7 +55,8 @@ import { ReversePipe } from './pipes/reverse.pipe';
     AngularFireModule.initializeApp(environment.firebase),
     FormsModule,
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    DeviceDetectorModule.forRoot()
    
   ],
   providers: [MapService, SemillasService, AngularFireStorage, AuthService],

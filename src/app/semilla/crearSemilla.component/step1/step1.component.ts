@@ -18,11 +18,11 @@ export class Step1 implements OnInit {
 
     }
     ngOnInit(){
-      
+     
     }
-    step1(){     
+    step(value){     
       //Avanza al step2
-      this.semilla.step = 2;
+      this.semilla.step = value;
       this.semillaChange.emit(this.semilla);
     }
 }
