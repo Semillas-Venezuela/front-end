@@ -1,16 +1,48 @@
-<h1>STEP3</h1>
-<div class="switch switch--horizontal">
-    <input id="radio-a" type="radio" name="first-switch" checked="checked" value="audio" [(ngModel)]="semilla.testimonialType"/>
-    <label for="radio-a"><i class="fas fa-microphone"></i></label>
-    <input id="radio-b" type="radio" name="first-switch" value="text" [(ngModel)]="semilla.testimonialType"/>
-    <label for="radio-b"><i class="fas fa-pencil-alt"></i></label>
-    <span class="toggle-outside">
-        <span class="toggle-inside"></span>
-    </span>
+<div class="recording">
+
+    <p>
+        Tu historia es única en el mundo. A través de cuatro etapas cronológicas de tu migración, desde salir de
+        Venezuela hasta echar raíces en un país nuevo, te invitamos a contar tu historia en tus propias palabras.
+        Semillas de la Diáspora es un proyecto inclusivo y constructivo. Valoramos tus opiniones, sin embargo te
+        pedimos no incitar la violencia y no limitarte a hacer proposiciones políticos que no guardan ninguna relación
+        con la migración venezolana. Nos reservamos el derecho de no publicar tu testimonio si viola alguna de estas
+        condiciones de respeto mutuo.
+    </p>
+    <div class="switch switch--horizontal">
+        <input id="radio-a" type="radio" name="first-switch" checked="checked" value="audio" [(ngModel)]="semilla.testimonialType" />
+        <label for="radio-a"><i class="fas fa-microphone"></i></label>
+        <input id="radio-b" type="radio" name="first-switch" value="text" [(ngModel)]="semilla.testimonialType" />
+        <label for="radio-b"><i class="fas fa-pencil-alt"></i></label>
+        <span class="toggle-outside">
+            <span class="toggle-inside"></span>
+        </span>
+    </div>
+    {{semilla.testimonialType}}
+
+
+    <div class="c100" id="audio1">
+        <span>
+            <span class="inner record" (click)="record()" *ngIf="!isRecording && semilla.audios.audio1 === undefined">
+                    <i class="fas fa-microphone"  ></i>
+            </span>
+            <span class="inner stop" (click)="stop()" *ngIf="isRecording">
+                
+                <i class="fas fa-stop"></i>
+                <p style="font-size:0.7em">{{timers[0]}}</p>
+            </span>
+            <span class="inner record" (click)="record()" *ngIf="!isRecording && semilla.audios.audio1 !== undefined">
+                    <i class="fas fa-redo"></i>
+            </span>
+        </span>
+        <div class="slice">
+            <div class="bar"></div>
+            <div class="fill">
+            </div>
+        </div>
+    </div>
 </div>
-{{semilla.testimonialType}}
 
 
-<button [disabled]="isRecording" (click)="record()">Record</button>
-<h2>{{timers[0]}}</h2>
+
+
 <button [disabled]="!isRecording" (click)="stop()">Stop</button>

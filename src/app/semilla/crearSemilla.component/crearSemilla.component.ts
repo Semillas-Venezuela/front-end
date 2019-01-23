@@ -27,8 +27,7 @@ export class CrearSemillaComponent implements OnInit {
     }
 
     ngOnInit() {
-        JSON.stringify(this.semilla)
-       setInterval(x=>console.log(JSON.stringify(this.semilla)),20000)
+        
         
         
     }
@@ -44,13 +43,15 @@ export class CrearSemillaComponent implements OnInit {
     }
 
     step(valor){
+        
         let boilerplate={
             timesShared:0,
             CurrentOcupation:"",
             VenezuelaOcupation:"",
             dateCreated:new Date(),
             age:"",
-            device:`${this.deviceService.os} ${this.deviceService.device} ${this.deviceService.browser} `
+            device:`${this.deviceService.os} ${this.deviceService.device} ${this.deviceService.browser} `,
+            _id:this.semillasService.generateSemillaID()
           }
         if(!localStorage.getItem("idUser")){
             this.authService.loginAnonimo();

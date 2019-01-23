@@ -5,10 +5,14 @@
 }
 
 .busqueda{
-    width: 100vw;
+    width: 10vmin;
     position: absolute;
     min-height: 10vmin;
     top: 0;
+    transition: width 400ms ease-in-out;
+}
+.busqueda.active{
+    width: 100vw;
 }
 .search{
     width: 10vmin;

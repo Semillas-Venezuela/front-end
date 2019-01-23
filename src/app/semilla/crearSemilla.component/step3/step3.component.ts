@@ -3,10 +3,15 @@ declare const navigator: any;
 declare const MediaRecorder: any;
 import * as RecordRTC from 'recordrtc';
 import { semillaInfo } from '../../../models/semillaInfo';
+import { SemillasService } from '../../../services/semillas.service';
+import { Observable } from 'rxjs/Observable';
+import { finalize } from 'rxjs/operators';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { Element } from '@angular/compiler';
 @Component({
   selector: 'step3',
   templateUrl:'./step3.component.html',
-  styles: ['./step3.component.html']
+  styleUrls: ['./step3.component.css','./percentage.css']
 })
 export class Step3 implements OnInit {
 
@@ -19,12 +24,14 @@ export class Step3 implements OnInit {
     public isRecording:boolean;
     public interval:any;
     public timers=[]
-    constructor(){
+    constructor(private semillasService: SemillasService, private storage: AngularFireStorage){
 
     }
     ngOnInit(){
       this.semilla.testimonialType = "audio"
+      this.semilla.audios={}
     }
+  
     public record() {
       this.isRecording= true;
       let mediaConstraints = {
@@ -38,6 +45,8 @@ export class Step3 implements OnInit {
   }
 
   public stop() {
+    document.getElementById("audio1").className ="";
+    document.getElementById("audio1").classList.add("c100")
       clearInterval(this.interval);
       this.isRecording= false;
       let recordRTC = this.recordRTC;
@@ -62,7 +71,13 @@ export class Step3 implements OnInit {
           var deadline = new Date(current_time.getTime() + time_in_minutes*60*1000);
           
           this.interval = setInterval(()=>{
+              var bar = document.getElementById("audio1")
+              // document.querySelector("#audio1").classList.replace("","")
               var t =new Date(deadline.getTime() - new Date().getTime());
+              console.log()
+              bar.classList.remove(`p${99-(Math.floor((t.getTime()/1000)/3))}`)
+              bar.classList.add(`p${100-(Math.floor((t.getTime()/1000)/3))}`)
+
               var seconds = (Math.floor( (t.getTime()/1000) % 60 ))< 10 ? "0"+(Math.floor( (t.getTime()/1000) % 60 )) : (Math.floor( (t.getTime()/1000) % 60 ));
               var minutes = Math.floor( (t.getTime()/1000/60) % 60 );
               console.log(minutes+":"+seconds)
@@ -73,7 +88,7 @@ export class Step3 implements OnInit {
                   this.stop()
                   clearInterval(this.interval);
               }
-          },1000)
+          },1010)
           
         }
         errorCallback() {
@@ -85,8 +100,22 @@ export class Step3 implements OnInit {
           let recordRTC = this.recordRTC;
           var recordedBlob = recordRTC.getBlob();
           console.log(recordedBlob);
-          // this.semillasService.uploadFile("hola", recordedBlob)
+          this.upload(recordedBlob)
           recordRTC.getDataURL(function (dataURL) { });
 
         }
+
+        upload(blob){
+          let downloadURL;
+          let task = this.semillasService.uploadFile(this.semilla._id, blob)
+          let snapshot   = task.snapshotChanges();
+          snapshot.pipe(finalize(() => {
+            downloadURL = this.storage.ref(this.semilla._id).getDownloadURL()
+            downloadURL.subscribe(val => {
+                  this.semilla.audios['audio1'] = val;              
+            });
+        })).subscribe();
+        }
+
+
 }

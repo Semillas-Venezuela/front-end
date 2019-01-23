@@ -18,7 +18,8 @@ export class Step2 implements OnInit {
   style = 'mapbox://styles/mapbox/satellite-streets-v9';
   geocoder;
   chev: boolean = false;
-  users:any=[];
+  users: any = [];
+  lineString = []
   constructor() {
     mapboxgl.accessToken = environment['mapbox'].accessToken;
     this.map = mapboxgl.Map;
@@ -26,16 +27,7 @@ export class Step2 implements OnInit {
   }
 
   ngOnInit() {
-    this.users.remove  = function() {
-      var what, a = arguments, L = a.length, ax;
-      while (L && this.length) {
-          what = a[--L];
-          while ((ax = this.indexOf(what)) !== -1) {
-              this.splice(ax, 1);
-          }
-      }
-      return this;
-  };
+
     this.initializeMap();
     this.geocoder = new MapboxGeocoder({
       accessToken: environment['mapbox'].accessToken,
@@ -75,44 +67,119 @@ export class Step2 implements OnInit {
     });
     this.map.on('click', (event) => {
       const coordinates = [event.lngLat.lng, event.lngLat.lat]
-      this.geocoder.mapboxClient.geocodeReverse({
-        latitude:coordinates[1],
-        longitude:coordinates[0]
-      }, (err, res)=>{
-        
-        try{
-          let place=res;
-          place =place.features.filter(obj=>{
-            return obj.id.includes("place")
-          })[0].place_name
-          console.log(place)
-          this.users.push(place)
-          this.users=this.users.slice()
-        }
-          
-        catch(e){
-          let place=res;
-          place=`Lat: ${coordinates[1]} Lon: ${coordinates[0]}`
-          console.log(place)
-          this.users.push(place)
-          this.users=this.users.slice()
-        }
-        
-        
+      this.geocoding(coordinates);
+    })
+    this.map.on("load", x=>{
+     
+      this.map.addSource("linea-pintada", {
+        "type": "geojson",
+        "data": {
+          "type": "FeatureCollection",
+          "features": []
+      }
       })
+      this.map.addLayer({
+        "id": "linea",
+        "type": "line",
+        "paint": {
+          "line-color": "yellow",
+          "line-opacity": 0.75,
+          "line-width": 5
+        },
+        "source": "linea-pintada",
+        "filter": ["==", "$type", "LineString"]
+      });
+      
+      this.map.addLayer({
+        "id": "puntos",
+        "type": "circle",
+        "source": "linea-pintada",
+        "paint": {
+          "circle-radius": 6,
+          "circle-color": "#B42222"
+        },
+        "filter": ["==", "$type", "Point"],
+      });
+   
+  
+    })
+   
+    
+
+  }
+  geocoding(coordinates) {
+    this.geocoder.mapboxClient.geocodeReverse({
+      latitude: coordinates[1],
+      longitude: coordinates[0]
+    }, (err, res) => {
+
+      try {
+        let place = res;
+        place = place.features.filter(obj => {
+          return obj.id.includes("place")
+        })[0].place_name
+        console.log(place)
+        this.users.push(place)
+        this.users = this.users.slice()
+      }
+
+      catch (e) {
+        let place = res;
+        place = `Lat: ${coordinates[1]} Lon: ${coordinates[0]}`
+        console.log(place)
+        this.users.push(place)
+        this.users = this.users.slice()
+      }
+    })
+
+    this.lineString.push(coordinates)
+    this.pintarLinea(this.lineString)
+  }
+  pintarLinea(coordinates) {
+
+    let line = {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": coordinates
+      }
+    }
+    let features = [line]
+    this.lineString.forEach(element => {
+      let object = {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": element
+        }
+      }
+      features.push(object)
+    });
+
+
+    this.map.getSource("linea-pintada").setData({
+      "type": "FeatureCollection",
+      "features": features
     })
 
 
+
   }
-
-
-  remove(user){
+  remove(user) {
+    this.lineString.splice(this.users.indexOf(user), 1)
+    console.log(this.lineString)
+    this.pintarLinea(this.lineString)
+    console.log(this.users)
     this.users.remove(user);
-    this.users= this.users.slice();
+    this.users = this.users.slice();
+    console.log(this.users)
+    console.log(this.lineString)
+    
   }
 
   search() {
     document.querySelector(".search-bar").classList.toggle("active")
+    document.querySelector(".busqueda").classList.toggle("active")
   }
   step(valor) {
     console.log("cambió");

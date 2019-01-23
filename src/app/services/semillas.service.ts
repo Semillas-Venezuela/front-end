@@ -30,7 +30,10 @@ export class SemillasService {
     }
 
 
-
+    public generateSemillaID():string{
+        let idBefore = this.afs.createId();
+        return idBefore;
+    }
     /**
      * Anade una semilla a la base de datos
      * @param semilla semilla a anadir
