@@ -198,4 +198,8 @@ export class Step2 implements OnInit {
     }
 
   }
+
+  instructions(){
+    document.querySelector(".instructions").classList.add("display-block")
+  }
 }
