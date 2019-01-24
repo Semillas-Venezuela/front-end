@@ -18,19 +18,19 @@ export class MenuComponent implements OnInit {
     }
     llamado() {
         
-        if (this.deviceDetector.device == "Android" || this.deviceDetector.device == "iPhone" || this.deviceDetector.device == "iPod" || this.deviceDetector.device == "iPad"|| this.deviceDetector.device == "Windows-Phone") {
-            var elem: any = document.documentElement;
-            if (elem.requestFullscreen) {
-                elem.requestFullscreen();
-            } else if (elem.mozRequestFullScreen) { /* Firefox */
-                elem.mozRequestFullScreen();
-            } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
-                elem.webkitRequestFullscreen();
-            } else if (elem.msRequestFullscreen) { /* IE/Edge */
-                elem.msRequestFullscreen();
-            }
+        // if (this.deviceDetector.device == "Android" || this.deviceDetector.device == "iPhone" || this.deviceDetector.device == "iPod" || this.deviceDetector.device == "iPad"|| this.deviceDetector.device == "Windows-Phone") {
+        //     var elem: any = document.documentElement;
+        //     if (elem.requestFullscreen) {
+        //         elem.requestFullscreen();
+        //     } else if (elem.mozRequestFullScreen) { /* Firefox */
+        //         elem.mozRequestFullScreen();
+        //     } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+        //         elem.webkitRequestFullscreen();
+        //     } else if (elem.msRequestFullscreen) { /* IE/Edge */
+        //         elem.msRequestFullscreen();
+        //     }
 
-        }
+        // }
         this.router.navigate(["/new"]);
     }
 }
