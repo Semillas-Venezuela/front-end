@@ -1,6 +1,6 @@
 <form (ngSubmit)="step(2)" #semillasForm="ngForm">
 
-    <p>Tus datos personales ayudan a entender las dinámicas de la migración venezolana. Solo tu nombre (o seudónimo),
+    <p class="introduction-text">Tus datos personales ayudan a entender las dinámicas de la migración venezolana. Solo tu nombre (o seudónimo),
         género y edad aparecerán al lado de tu testimonio. Otros datos serán guardados en una base de datos protegida y
         servirán únicamente fines investigativos. </p>
     <!-- Nombre -->
@@ -20,7 +20,7 @@
             <li class="list__item">
                 <label class="label--radio">
                     <input type="radio" class="radio" required [(ngModel)]="semilla.gender" #gender="ngModel" name="genero"
-                        value="hombre" checked="checked">
+                        value="hombre" checked="checked" [checked]="true">
                     Hombre
                 </label>
             </li>
@@ -122,6 +122,42 @@
                    
                    
               </div> -->
+              <div class="form-group radio-group">
+                    <span>Estado Civil</span>
+            
+            
+                    <ul class="list">
+                        <li class="list__item">
+                            <label class="label--radio">
+                                <input type="radio" class="radio" required [(ngModel)]="semilla.martialStatus" #martial="ngModel" name="martial" id="r1" value="soltero/a" checked="checked"  >
+                                   
+                                    Soltero/a
+                            </label>
+                        </li>
+                        <li class="list__item">
+                            <label class="label--radio">
+                                <input type="radio" class="radio" required [(ngModel)]="semilla.martialStatus" #martial="ngModel" name="martial" id="r2" value="casado/a"  >
+                                    
+                                    Casado/a
+                            </label>
+                        </li>
+                        <li class="list__item">
+                            <label class="label--radio">
+                                <input type="radio" class="radio" required [(ngModel)]="semilla.martialStatus" #martial="ngModel" name="martial" id="r3" value="divorciado/a"  >
+                                Divorciado/a
+                            </label>
+                        </li>
+                        <li class="list__item">
+                            <label class="label--radio">
+                                <input type="radio" class="radio" required [(ngModel)]="semilla.martialStatus" #martial="ngModel" name="martial" id="r3" value="viudo/a">
+                                Viudo/a
+                            </label>
+                        </li>
+            
+                    </ul>
+            
+            
+                </div>
     <!-- Nivel Educativo -->
     <!-- <div class="form-group radio-group"  >
                     <span>Nivel Educativo</span>
@@ -150,7 +186,60 @@
                    
                    
               </div> -->
-
+              <div class="form-group radio-group">
+                    <span>Nivel Educativo</span>
+            
+            
+                    <ul class="list">
+                        <li class="list__item">
+                            <label class="label--radio">
+                                <input type="radio" class="radio" required [(ngModel)]="semilla.educationLevel" #education="ngModel" name="education" id="r1" value="primaria incompleta" checked="checked"  >
+                                Primaria incompleta
+                            </label>
+                        </li>
+                        <li class="list__item">
+                            <label class="label--radio">
+                                <input type="radio" class="radio" required [(ngModel)]="semilla.educationLevel" #education="ngModel" name="education" id="r2" value="primaria completa"  >
+                                    
+                                    Primaria completa
+                            </label>
+                        </li>
+                        <li class="list__item">
+                            <label class="label--radio">
+                                <input type="radio" class="radio" required [(ngModel)]="semilla.educationLevel" #education="ngModel" name="education" id="r3" value="secundaria completa"  >
+                                Secundaria incompleta
+                            </label>
+                        </li>
+                        <li class="list__item">
+                            <label class="label--radio">
+                                <input type="radio" class="radio" required [(ngModel)]="semilla.educationLevel" #education="ngModel" name="education" id="r3" value="secundaria completa"  >
+                                Secundaria completa
+                            </label>
+                        </li>
+                        <li class="list__item">
+                            <label class="label--radio">
+                                <input type="radio" class="radio" required [(ngModel)]="semilla.educationLevel" #education="ngModel" name="education" id="r3" value="universitario incompleto"  >
+                                Universitario incompleto
+                            </label>
+                        </li>
+                        <li class="list__item">
+                            <label class="label--radio">
+                                <input type="radio" class="radio" required [(ngModel)]="semilla.educationLevel" #education="ngModel" name="education" id="r3" value="universitario completo"  >
+                                Universitario completo
+                            </label>
+                        </li>
+                        <li class="list__item">
+                            <label class="label--radio">
+                                <input type="radio" class="radio" required [(ngModel)]="semilla.educationLevel" #education="ngModel" name="education" id="r3" value="sin formación"  >
+                                Sin formación
+                            </label>
+                        </li>
+                      
+            
+                    </ul>
+            
+            
+                </div>
 
 
 

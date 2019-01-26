@@ -13,6 +13,9 @@ form{
     background: var(--color-amarillo);
     overflow-y: scroll;
 }
+.introduction-text{
+    
+}
 .form-group{
     display: flex;
     align-items: center;
