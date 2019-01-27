@@ -3,6 +3,7 @@ import { environment } from '../../../../environments/environment';
 import * as mapboxgl from 'mapbox-gl';
 import * as MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import { semillaInfo } from '../../../models/semillaInfo';
+import { SemillasService } from '../../../services/semillas.service';
 
 @Component({
   selector: 'step2',
@@ -20,7 +21,7 @@ export class Step2 implements OnInit {
   chev: boolean = false;
   users: any = [];
   lineString = []
-  constructor() {
+  constructor(public serviceSemillas:SemillasService) {
     mapboxgl.accessToken = environment['mapbox'].accessToken;
     this.map = mapboxgl.Map;
 
@@ -183,6 +184,30 @@ export class Step2 implements OnInit {
   }
   step(valor) {
     console.log("cambió");
+    let geoPoints = this.serviceSemillas.arrayToGeopoints(this.lineString)
+    this.semilla.geoInfo= {
+      "id": "geopoints",
+      "type": "line",
+      "source": {
+          "type": "geojson",
+          "data": {
+              "type": "Feature",
+              "properties": {},
+              "geometry": {
+                  "type": "LineString",
+                  "coordinates":geoPoints ,
+              }
+          }
+      },
+      "layout": {
+          "line-join": "round",
+          "line-cap": "round"
+      },
+      "paint": {
+          "line-color": "red",
+          "line-width": 3
+      }
+  };
     this.semilla.step = valor;
   }
   chevron() {
