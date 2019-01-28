@@ -24,6 +24,7 @@ export class Step3 implements OnInit {
   public isRecording: boolean;
   public interval: any;
   public timers = []
+  public advance=[false,false,false,false]
   constructor(private semillasService: SemillasService, private storage: AngularFireStorage) {
 
   }
@@ -31,7 +32,21 @@ export class Step3 implements OnInit {
     this.semilla.testimonialType = "audio"
     this.semilla.audios = {}
   }
-
+  decider(){
+    if(document.getElementById("icon").classList.contains("fa-spinner")
+    ){
+      return;
+    }
+    else if(!this.isRecording){
+      document.getElementById("icon").classList.remove("fa-microphone")
+      document.getElementById("icon").classList.add("fa-stop")
+      document.getElementById("decider").classList.remove("record")
+      document.getElementById("decider").classList.add("stop")
+      this.record()
+    }else if(this.isRecording){
+      this.stop()
+    }
+  }
   public record() {
     this.isRecording = true;
     let mediaConstraints = {
@@ -45,58 +60,71 @@ export class Step3 implements OnInit {
   }
 
   public stop() {
-    document.getElementById("audio1").className = "";
-    document.getElementById("audio1").classList.add("c100")
-    clearInterval(this.interval);
+    document.getElementById("decider").classList.remove("stop")
+    document.getElementById("decider").classList.add("record")
+    document.getElementById("icon").classList.remove("fa-stop")
+    document.getElementById("icon").classList.add("fa-spinner","fa-spin")
     this.isRecording = false;
     let recordRTC = this.recordRTC;
     recordRTC.stopRecording(this.processVideo.bind(this));
     let stream = this.stream;
     stream.getAudioTracks().forEach(track => track.stop());
     stream.getVideoTracks().forEach(track => track.stop());
+    document.getElementById("audio1").className = "";
+    document.getElementById("audio1").classList.add("c100")
+    clearInterval(this.interval);
+    
   }
 
 
   successCallback(stream: MediaStream) {
+
     var StereoAudioRecorder = RecordRTC.StereoAudioRecorder;
     var options = {
       recorderType: StereoAudioRecorder
     };
     this.stream = stream;
     this.recordRTC = RecordRTC(stream, options);
+    
     this.recordRTC.startRecording();
     let timer = 0;
-    var time_in_minutes = 5;
-    var current_time = new Date();
-    var deadline = new Date(current_time.getTime() + time_in_minutes * 60 * 1000);
+    let time_in_minutes = 5;
+    let current_time = new Date();
+    let deadline = new Date(current_time.getTime() + time_in_minutes * 60 * 1000);
 
     this.interval = setInterval(() => {
       timer++;
-      if (timer > 300) {
-        this.stop()
+      if (timer >= 300) {
         clearInterval(this.interval);
+        this.stop()
+        
       }
-      var bar = document.getElementById("audio1")
-      // document.querySelector("#audio1").classList.replace("","")
-      var t = new Date(deadline.getTime() - new Date().getTime());
-      console.log()
-      bar.classList.remove(`p${99 - (Math.floor((t.getTime() / 1000) / 3))}`)
-      bar.classList.add(`p${100 - (Math.floor((t.getTime() / 1000) / 3))}`)
-
-      var seconds = (Math.floor((t.getTime() / 1000) % 60)) < 10 ? "0" + (Math.floor((t.getTime() / 1000) % 60)) : (Math.floor((t.getTime() / 1000) % 60));
-      var minutes = Math.floor((t.getTime() / 1000 / 60) % 60);
-      console.log(minutes + ":" + seconds)
-      this.timers[0] = minutes + ":" + seconds;
+      this.timing(deadline)
       
      
     }, 1001)
 
   }
+
+  timing(deadline){
+    let bar = document.getElementById("audio1")
+      let t = new Date(deadline.getTime() - new Date().getTime());
+      console.log()
+      bar.classList.remove(`p${99 - (Math.floor((t.getTime() / 1000) / 3))}`)
+      bar.classList.add(`p${100 - (Math.floor((t.getTime() / 1000) / 3))}`)
+
+      let seconds = (Math.floor((t.getTime() / 1000) % 60)) < 10 ? "0" + (Math.floor((t.getTime() / 1000) % 60)) : 
+      (Math.floor((t.getTime() / 1000) % 60));
+
+      let minutes = Math.floor((t.getTime() / 1000 / 60) % 60);
+      console.log(minutes + ":" + seconds)
+      this.timers[0] = minutes + ":" + seconds;
+  }
   errorCallback() {
     //handle error here
   }
 
-  processVideo(audioVideoWebMURL) {
+  processVideo() {
 
     let recordRTC = this.recordRTC;
     var recordedBlob = recordRTC.getBlob();
@@ -108,15 +136,26 @@ export class Step3 implements OnInit {
 
   upload(blob) {
     let downloadURL;
-    let task = this.semillasService.uploadFile(this.semilla._id, blob)
+    let audioString = this.advance[0] ? "audio0" : this.advance[1]? "audio1": this.advance[2]? "audio2": this.advance[3]? "audio3":"nothing";
+    let task = this.semillasService.uploadFile(this.semilla._id+"/"+audioString, blob)
     let snapshot = task.snapshotChanges();
     snapshot.pipe(finalize(() => {
       downloadURL = this.storage.ref(this.semilla._id).getDownloadURL()
       downloadURL.subscribe(val => {
         this.semilla.audios['audio1'] = val;
+        document.getElementById("icon").classList.remove("fa-spinner","fa-spin"),
+        document.getElementById("icon").classList.add("fa-redo")
       });
     })).subscribe();
   }
 
-
+  crearSemilla() {
+    console.log(this.semilla)
+    this.advance[3]=true;
+    this.semillasService.anadirSemilla(this.semilla).then(
+        () => {
+            console.log("Semilla creada");
+        }
+    )
+}
 }

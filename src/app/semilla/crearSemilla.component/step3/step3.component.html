@@ -18,31 +18,79 @@
         </span>
     </div>
     {{semilla.testimonialType}}
-
-
-    <div class="c100" id="audio1">
-        <span>
-            <span class="inner record" (click)="record()" *ngIf="!isRecording && semilla.audios.audio1 === undefined">
-                    <i class="fas fa-microphone"  ></i>
-            </span>
-            <span class="inner stop" (click)="stop()" *ngIf="isRecording">
-                
-                <i class="fas fa-stop"></i>
-                <p style="font-size:0.7em">{{timers[0]}}</p>
-            </span>
-            <span class="inner record" (click)="record()" *ngIf="!isRecording && semilla.audios.audio1 !== undefined">
-                    <i class="fas fa-redo"></i>
-            </span>
-        </span>
-        <div class="slice">
-            <div class="bar"></div>
-            <div class="fill">
-            </div>
-        </div>
+    <div *ngIf="semilla.testimonialType == 'audio'">
+            <div class="audio" *ngIf="!advance[0]">
+                    <h1>1.	Salir. ¿Cuándo saliste y como tomaste la decisión? Cuenta sobre las razones de tu salida, quien y que tuviste que dejar atrás y como te preparaste para la salida.</h1>
+                    <div class="c100" id="audio">
+                        <span id="hola">
+                            <span class="inner record" (click)="decider()" id="decider">
+                                <i class="fas fa-microphone" id="icon"></i>
+                                <p style="font-size:0.7em" *ngIf="isRecording">{{timers[0]}}</p>
+                            </span>            
+                        </span>
+                        <div class="slice">
+                            <div class="bar"></div>
+                            <div class="fill">
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div (click)="advance[0]=true">siguiente</div>
+                </div>
+                <div class="audio" *ngIf="advance[0] && !advance[1]">
+            <h2>2.	En camino. ¿Cuáles fueron tus experiencias y dificultades en el camino? Cuenta sobre los desafíos prácticos y personales que tuviste que afrontar en el camino. </h2>
+                    <div class="c100" id="audio">
+                        <span id="hola">
+                            <span class="inner record" (click)="decider()" id="decider">
+                                <i class="fas fa-microphone" id="icon"></i>
+                                <p style="font-size:0.7em" *ngIf="isRecording">{{timers[0]}}</p>
+                            </span>            
+                        </span>
+                        <div class="slice">
+                            <div class="bar"></div>
+                            <div class="fill">
+                            </div>
+                        </div>
+                    </div>
+                    <div (click)="advance[1]=true">siguiente</div>
+                </div>
+                <div class="audio" *ngIf="advance[1] && !advance[2]">
+                    <h3>3.	Llegando. ¿Cómo fue tu proceso de adaptación en el país al que llegaste? Cuenta sobre el apoyo y las dificultades que viviste y cómo vas construyendo una nueva vida.</h3>
+                    <div class="c100" id="audio">
+                        <span id="hola">
+                            <span class="inner record" (click)="decider()" id="decider">
+                                <i class="fas fa-microphone" id="icon"></i>
+                                <p style="font-size:0.7em" *ngIf="isRecording">{{timers[0]}}</p>
+                            </span>            
+                        </span>
+                        <div class="slice">
+                            <div class="bar"></div>
+                            <div class="fill">
+                            </div>
+                        </div>
+                    </div>
+                    <div (click)="advance[2]=true">siguiente</div>
+                </div>
+                <div class="audio" *ngIf="advance[2] && !advance[3]">
+                    <h4>4.	El futuro. ¿Cuáles son las esperanzas para ti, tus seres queridos y para Venezuela? Cuenta sobre tus deseos, tanto para ti como para todos los venezolanos. </h4>
+                    <div class="c100" id="audio">
+                        <span id="hola">
+                            <span class="inner record" (click)="decider()" id="decider">
+                                <i class="fas fa-microphone" id="icon"></i>
+                                <p style="font-size:0.7em" *ngIf="isRecording">{{timers[0]}}</p>
+                            </span>            
+                        </span>
+                        <div class="slice">
+                            <div class="bar"></div>
+                            <div class="fill">
+                            </div>
+                        </div>
+                    </div>
+                    <div (click)="crearSemilla()">siguiente</div>
+                </div>
     </div>
+    
 </div>
 
 
 
-
-<button [disabled]="!isRecording" (click)="stop()">Stop</button>
