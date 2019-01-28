@@ -143,7 +143,7 @@
     position: fixed;
     height: 90vh;
     width: 100vw;
-    transform: translateY(80vh);
+    transform: translateY(70vh);
     transition: all 300ms ease-in-out;
     padding:0 15vw; 
     overflow-y: scroll;   
