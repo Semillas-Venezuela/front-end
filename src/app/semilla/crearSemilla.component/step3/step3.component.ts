@@ -70,8 +70,8 @@ export class Step3 implements OnInit {
     let stream = this.stream;
     stream.getAudioTracks().forEach(track => track.stop());
     stream.getVideoTracks().forEach(track => track.stop());
-    document.getElementById("audio1").className = "";
-    document.getElementById("audio1").classList.add("c100")
+    document.getElementById("audio").className = "";
+    document.getElementById("audio").classList.add("c100")
     clearInterval(this.interval);
     
   }
@@ -107,7 +107,7 @@ export class Step3 implements OnInit {
   }
 
   timing(deadline){
-    let bar = document.getElementById("audio1")
+    let bar = document.getElementById("audio")
       let t = new Date(deadline.getTime() - new Date().getTime());
       console.log()
       bar.classList.remove(`p${99 - (Math.floor((t.getTime() / 1000) / 3))}`)
@@ -128,6 +128,8 @@ export class Step3 implements OnInit {
 
     let recordRTC = this.recordRTC;
     var recordedBlob = recordRTC.getBlob();
+    let audio:any = document.getElementById("player")
+    audio.src = URL.createObjectURL(recordedBlob);
     console.log(recordedBlob);
     this.upload(recordedBlob)
     recordRTC.getDataURL(function (dataURL) { });
@@ -136,13 +138,13 @@ export class Step3 implements OnInit {
 
   upload(blob) {
     let downloadURL;
-    let audioString = this.advance[0] ? "audio0" : this.advance[1]? "audio1": this.advance[2]? "audio2": this.advance[3]? "audio3":"nothing";
+    let audioString = !this.advance[0] ? "audio0" :this.advance[0]&& !this.advance[1]? "audio1":this.advance[1]&& !this.advance[2]? "audio2": this.advance[2] && !this.advance[3]? "audio3":"nothing";
     let task = this.semillasService.uploadFile(this.semilla._id+"/"+audioString, blob)
     let snapshot = task.snapshotChanges();
     snapshot.pipe(finalize(() => {
-      downloadURL = this.storage.ref(this.semilla._id).getDownloadURL()
+      downloadURL = this.storage.ref(this.semilla._id+"/"+audioString).getDownloadURL()
       downloadURL.subscribe(val => {
-        this.semilla.audios['audio1'] = val;
+        this.semilla.audios[audioString] = val;
         document.getElementById("icon").classList.remove("fa-spinner","fa-spin"),
         document.getElementById("icon").classList.add("fa-redo")
       });
