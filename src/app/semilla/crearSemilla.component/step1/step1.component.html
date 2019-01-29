@@ -1,16 +1,18 @@
 <form (ngSubmit)="step(2)" #semillasForm="ngForm">
-
+        
     <p class="introduction-text">Tus datos personales ayudan a entender las dinámicas de la migración venezolana. Solo tu nombre (o seudónimo),
         género y edad aparecerán al lado de tu testimonio. Otros datos serán guardados en una base de datos protegida y
         servirán únicamente fines investigativos. </p>
+        <div class="line"></div>
     <!-- Nombre -->
     <div class="form-group" style="margin-bottom: 2vh;">
         <label for="username">Ingresa tu nombre</label>
-        <div class="style-input" [ngClass]="{'error': !name.valid }" >
+        <div class="style-input"  >
             <input placeholder="Nombre/Apodo" type="text" id="name" required [(ngModel)]="semilla.name" name="name"
                 #name="ngModel" />
         </div>
     </div>
+   
     <!-- Género -->
     <div class="form-group radio-group">
         <span>Género</span>

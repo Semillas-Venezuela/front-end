@@ -14,8 +14,20 @@ form{
     overflow-y: scroll;
 }
 .introduction-text{
+    font-style: italic;
+    font-size: 1.1em;
+    padding: 2vh 10vw;
     
+    color: var(--color-blanco);
 }
+.line {
+    transition: width 900ms cubic-bezier(0.165, 0.84, 0.44, 1);
+    width: 50vw;
+    height: 2px;
+    background: #fff;
+    margin: auto;
+    margin-bottom: 12px;
+  }
 .form-group{
     display: flex;
     align-items: center;

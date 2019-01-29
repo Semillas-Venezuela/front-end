@@ -153,6 +153,7 @@ export class Step3 implements OnInit {
 
   crearSemilla() {
     console.log(this.semilla)
+    this.semilla.textos = null;
     this.advance[3]=true;
     this.semillasService.anadirSemilla(this.semilla).then(
         () => {

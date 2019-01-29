@@ -27,4 +27,5 @@ export class Step1 implements OnInit {
       this.semilla.step = value;
       this.semillaChange.emit(this.semilla);
     }
+ 
 }
