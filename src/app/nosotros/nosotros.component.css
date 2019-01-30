@@ -1,0 +1,14 @@
+.nosotros{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 1.1em;
+    padding: 4vh 0;
+    overflow: scroll;
+}
+.text{
+    padding: 2vh 10vw;
+}
+h2{
+    margin-bottom: 1vh;
+}

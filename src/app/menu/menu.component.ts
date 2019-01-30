@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DeviceDetectorService } from 'ngx-device-detector';
+import { SemillasService } from '../services/semillas.service';
+
+import { observable } from 'rxjs';
 
 
 @Component({
@@ -9,12 +12,20 @@ import { DeviceDetectorService } from 'ngx-device-detector';
     styleUrls: ['menu.component.css']
 })
 export class MenuComponent implements OnInit {
-    constructor(public router: Router, private deviceDetector: DeviceDetectorService) {
+    
 
+    constructor(public router: Router, private deviceDetector: DeviceDetectorService, private serviceSemillas:SemillasService) {
+        
     }
 
     ngOnInit() {
 
+    }
+    csv(){
+        let observable=this.serviceSemillas.observableSemillas
+        observable.subscribe(x=>{
+            this.serviceSemillas.downloadFile(x);
+        })
     }
     llamado() {
         
