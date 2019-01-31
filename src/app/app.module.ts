@@ -31,6 +31,9 @@ import { CrearSemillaComponent } from './semilla/crearSemilla.component/crearSem
 import { ReversePipe } from './pipes/reverse.pipe';
 import { DeviceDetectorModule } from 'ngx-device-detector';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpModule } from '@angular/http';
+import { NosotrosComponent } from './nosotros/nosotros.component';
+
 
 
 @NgModule({
@@ -45,7 +48,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     Step2,
     Step3,
     ReversePipe,
-    
+    NosotrosComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'my-app'}),
@@ -58,7 +61,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AngularFirestoreModule,
     AngularFireAuthModule,
     DeviceDetectorModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpModule
    
   ],
   providers: [MapService, SemillasService, AngularFireStorage, AuthService],
