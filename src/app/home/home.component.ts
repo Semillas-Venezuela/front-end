@@ -20,7 +20,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
       path: 'assets/dataAnim.json',
       renderer: 'svg',
       autoplay: true,
-      loop: false
+      loop: false,
+      rendererSettings: {
+        scaleMode: 'scale',
+      }
     };
   }
 

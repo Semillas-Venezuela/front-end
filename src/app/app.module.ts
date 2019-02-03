@@ -33,6 +33,7 @@ import { DeviceDetectorModule } from 'ngx-device-detector';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
 import { NosotrosComponent } from './nosotros/nosotros.component';
+import { LottieAnimationComponent } from './directives/lottie-directive';
 
 
 
@@ -48,7 +49,8 @@ import { NosotrosComponent } from './nosotros/nosotros.component';
     Step2,
     Step3,
     ReversePipe,
-    NosotrosComponent
+    NosotrosComponent,
+    LottieAnimationComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'my-app'}),

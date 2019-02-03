@@ -5,6 +5,7 @@
     font-size: 1.1em;
     padding: 4vh 0;
     overflow: scroll;
+    min-height: 90vh;
 }
 .text{
     padding: 2vh 10vw;
