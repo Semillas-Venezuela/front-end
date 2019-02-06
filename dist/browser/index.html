@@ -9,16 +9,21 @@
   <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.css" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 
-<link rel="stylesheet" href="styles.af21348408f17086fb54.css"></head>
+<link rel="stylesheet" href="styles.69642b7f8d91d5f1c76f.css"></head>
 <body>
   <app-root></app-root>
-  <script type="text/javascript" charset="utf-8">
-    // Hides mobile browser's address bar when page is done loading.
-      window.addEventListener('load', function(e) {
-        setTimeout(function() { window.scrollTo(0, 1); }, 1);
-      }, false);
-</script>
+
 <script>
+  Array.prototype.remove = function() {
+    var what, a = arguments, L = a.length, ax;
+    while (L && this.length) {
+        what = a[--L];
+        while ((ax = this.indexOf(what)) !== -1) {
+            this.splice(ax, 1);
+        }
+    }
+    return this;
+};
     window.fbAsyncInit = function() {
       FB.init({
         appId            : '1911185565676564',
@@ -38,4 +43,4 @@
   </script>
 
 
-<script type="text/javascript" src="runtime.6afe30102d8fe7337431.js"></script><script type="text/javascript" src="polyfills.c174e4dc122f769bd68b.js"></script><script type="text/javascript" src="main.1b3f2a2a4d10d33a46a0.js"></script></body></html>
+<script type="text/javascript" src="runtime.6afe30102d8fe7337431.js"></script><script type="text/javascript" src="polyfills.c174e4dc122f769bd68b.js"></script><script type="text/javascript" src="main.795c2e57966e7699462e.js"></script></body></html>
