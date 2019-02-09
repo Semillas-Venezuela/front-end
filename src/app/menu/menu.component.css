@@ -10,8 +10,14 @@
     display: flex;
     
 }
-ul{
+ul.desktop{
+    display: none;
+}
+ul.mobile{
     display: flex;
+}
+ul{
+    
     justify-content: space-around;
     height: 100%;
     width: 100%;
@@ -31,4 +37,16 @@ ul a li{
 ul a:hover{
     color: var(--color-naranja);
     text-decoration: underline;
+}
+
+ul img{
+    max-height: 100%;
+}
+@media (min-width:768px){
+     ul.desktop{
+         display: flex;
+     }
+     ul.mobile{
+         display: none;
+     }
 }
