@@ -114,8 +114,14 @@ export class MapComponent implements OnInit, AfterViewInit {
                         });
 
                         // add marker to map
-
+                        console.log("SEMILLA COORDS OBJ:"+JSON.stringify(semilla.geoInfo.source.data.geometry.coordinates))
                         let coordenadasMapeadas = this.serviceSemillas.geoPointsToArray(semilla.geoInfo.source.data.geometry.coordinates);
+                        console.log(coordenadasMapeadas)
+                        if(coordenadasMapeadas.length ==0){
+                            console.log(JSON.stringify(semilla))
+                            return;
+                        }
+                            
                         var markeri = new mapboxgl.Marker(el)
                             .setLngLat(coordenadasMapeadas[coordenadasMapeadas.length - 1])
                             .addTo(this.map);
@@ -180,7 +186,7 @@ export class MapComponent implements OnInit, AfterViewInit {
         // document.getElementById(this.currentSemilla._id).classList.remove("marker-big")
         this.map.removeLayer(this.currentSemilla.geoInfo.id + "");
         this.map.removeSource(this.currentSemilla.geoInfo.id + "");
-
+        this.pintarMarkers();
         this.router.navigate(['/map'])
     }
 
