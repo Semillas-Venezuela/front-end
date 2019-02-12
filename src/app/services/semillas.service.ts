@@ -3,7 +3,9 @@ import { AngularFirestore, AngularFirestoreCollection } from "@angular/fire/fire
 import { semillaInfo } from "../models/semillaInfo";
 import { Observable } from "rxjs";
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
 import { AngularFireStorage } from "@angular/fire/storage";
+import { Headers, Http, Response } from '@angular/http';
 
 
 @Injectable()
@@ -13,7 +15,7 @@ export class SemillasService {
 
     public observableSemillas: Observable<semillaInfo[]>;
 
-    constructor(public afs: AngularFirestore, private storage: AngularFireStorage) {
+    constructor(public afs: AngularFirestore, private storage: AngularFireStorage,private http: Http) {
         //Obtiene la referencia a la coleccion de semillas de FireStorage
         this.semillas = this.afs.collection<semillaInfo>('semillas');
 
@@ -159,4 +161,42 @@ export class SemillasService {
         };
         this.anadirSemilla(semilla);
     };
+
+
+
+
+
+sendDownloadRequest(url) {
+    let headers = new Headers({
+        'Content-Type': 'text/csv'
+    });
+    return this.http.get(url, { headers: headers })
+        .toPromise()
+        .then(res => {
+            if(res && res["_body"]){
+                this.downloadFile(res["_body"]);
+            }
+        })
+        .catch(this.handleError);
+}
+
+handleError(error){
+    console.log("error--  "+error);
+}
+
+downloadFile(data){
+    let blob = new Blob(['\ufeff' + data], { type: 'text/csv;charset=utf-8;' });
+    let dwldLink = document.createElement("a");
+    let url = URL.createObjectURL(blob);
+    let isSafariBrowser = navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1;
+    if (isSafariBrowser) {  //if Safari open in new window to save file with random filename.
+    dwldLink.setAttribute("target", "_blank");
+}
+    dwldLink.setAttribute("href", url);
+    dwldLink.setAttribute("download", "Enterprise.csv");
+    dwldLink.style.visibility = "hidden";
+    document.body.appendChild(dwldLink);
+    dwldLink.click();
+    document.body.removeChild(dwldLink);
+}
 }
