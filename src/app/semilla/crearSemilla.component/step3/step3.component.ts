@@ -25,6 +25,7 @@ export class Step3 implements OnInit {
   public interval: any;
   public timers = []
   public advance=[false,false,false,false]
+  public blobs= []
   constructor(private semillasService: SemillasService, private storage: AngularFireStorage) {
 
   }
@@ -55,7 +56,12 @@ export class Step3 implements OnInit {
     };
     navigator.mediaDevices
       .getUserMedia(mediaConstraints)
-      .then(this.successCallback.bind(this), this.errorCallback.bind(this));
+      .then(
+        ()=>{
+        this.processVideo()
+      }, ()=>{
+        this.errorCallback()
+      })
 
   }
 
@@ -66,7 +72,9 @@ export class Step3 implements OnInit {
     document.getElementById("icon").classList.add("fa-spinner","fa-spin")
     this.isRecording = false;
     let recordRTC = this.recordRTC;
-    recordRTC.stopRecording(this.processVideo.bind(this));
+    recordRTC.stopRecording(()=>{
+      this.processVideo()
+    });
     let stream = this.stream;
     stream.getAudioTracks().forEach(track => track.stop());
     stream.getVideoTracks().forEach(track => track.stop());
@@ -143,11 +151,10 @@ export class Step3 implements OnInit {
     let snapshot = task.snapshotChanges();
     snapshot.pipe(finalize(() => {
       downloadURL = this.storage.ref(this.semilla._id+"/"+audioString).getDownloadURL()
-      downloadURL.subscribe(val => {
-        this.semilla.audios[audioString] = val;
+      this.semilla.audios[audioString] = downloadURL;
+      console.log(downloadURL)
         document.getElementById("icon").classList.remove("fa-spinner","fa-spin"),
         document.getElementById("icon").classList.add("fa-redo")
-      });
     })).subscribe();
   }
 
