@@ -56,12 +56,7 @@ export class Step3 implements OnInit {
     };
     navigator.mediaDevices
       .getUserMedia(mediaConstraints)
-      .then(
-        ()=>{
-        this.processVideo()
-      }, ()=>{
-        this.errorCallback()
-      })
+      .then(this.successCallback.bind(this), this.errorCallback.bind(this));
 
   }
 
