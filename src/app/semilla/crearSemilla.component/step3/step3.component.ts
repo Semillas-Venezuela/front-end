@@ -56,12 +56,7 @@ export class Step3 implements OnInit {
     };
     navigator.mediaDevices
       .getUserMedia(mediaConstraints)
-      .then(
-        ()=>{
-        this.processVideo()
-      }, ()=>{
-        this.errorCallback()
-      })
+      .then(this.successCallback.bind(this), this.errorCallback.bind(this));
 
   }
 
@@ -139,7 +134,8 @@ export class Step3 implements OnInit {
     let audio:any = document.getElementById("player")
     audio.src = URL.createObjectURL(recordedBlob);
     console.log(recordedBlob);
-    this.upload(recordedBlob)
+    this.blobs.push(recordedBlob);
+    //this.upload(recordedBlob)
     recordRTC.getDataURL(function (dataURL) { });
 
   }
@@ -161,6 +157,7 @@ export class Step3 implements OnInit {
   crearSemilla() {
     console.log(this.semilla)
     this.semilla.textos = null;
+    this.semilla.step= 4;
     this.advance[3]=true;
     this.semillasService.anadirSemilla(this.semilla).then(
         () => {

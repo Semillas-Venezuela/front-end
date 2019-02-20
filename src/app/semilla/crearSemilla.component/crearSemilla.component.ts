@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { SemillasService } from '../../services/semillas.service';
 import { semillaInfo } from '../../models/semillaInfo';
@@ -11,7 +11,7 @@ import { DeviceDetectorService } from 'ngx-device-detector';
     templateUrl: 'crearSemilla.component.html',
     styleUrls: ['crearSemilla.component.css']
 })
-export class CrearSemillaComponent implements OnInit {
+export class CrearSemillaComponent implements OnInit, OnDestroy {
 
     public semilla: semillaInfo = new semillaInfo();
     idUsuario:any;
@@ -28,8 +28,16 @@ export class CrearSemillaComponent implements OnInit {
 
     ngOnInit() {
         
+        // if(localStorage.getItem("semilla")){
+        //     //Ejecutar alerta infromando que se ha recuperado la sesión
+        //     // y ofrecer la posibilidad de eliminar el intento hecho
+        //     let semillatmp= JSON.parse(localStorage.getItem("semilla"));
+        //     this.semilla = semillatmp;     
+        // }
         
-        
+    }
+    ngOnDestroy(){
+        localStorage.setItem("semilla", JSON.stringify(this.semilla))
     }
 
     crearSemilla() {
@@ -43,7 +51,7 @@ export class CrearSemillaComponent implements OnInit {
     }
 
     step(valor){
-        
+
         let boilerplate={
             timesShared:0,
             CurrentOcupation:"",
