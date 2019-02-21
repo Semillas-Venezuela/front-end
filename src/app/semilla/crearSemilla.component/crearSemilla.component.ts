@@ -61,7 +61,22 @@ export class CrearSemillaComponent implements OnInit, OnDestroy {
             device:`${this.deviceService.os} ${this.deviceService.device} ${this.deviceService.browser} `,
             _id:this.semillasService.generateSemillaID()
           }
-        if(!localStorage.getItem("idUser")){
+
+          this.authService.loginAnonimo();
+            this.authService.getUser().subscribe(
+                (user)=>{
+                    if(user!=null){
+                        this.idUsuario=user.uid;
+                        localStorage.setItem("idUser", JSON.stringify(this.idUsuario));
+                        this.semilla.userId=this.idUsuario;
+                        this.semilla = {...this.semilla,...boilerplate}
+                        this.semilla.step=valor;
+
+                    }
+                    
+                }
+            );
+        /* if(!localStorage.getItem("idUser")){
             this.authService.loginAnonimo();
             this.authService.getUser().subscribe(
                 (user)=>{
@@ -81,7 +96,7 @@ export class CrearSemillaComponent implements OnInit, OnDestroy {
             this.semilla = {...this.semilla,...boilerplate}
             this.semilla.step=valor;
         }
-        
+         */
         
     }
 }
