@@ -40,7 +40,7 @@ export class Step2 implements OnInit {
 
     this.geocoder.on('result', (ev) => {
 
-      console.log(ev.result.geometry)
+      
     });
   }
 
@@ -119,7 +119,7 @@ export class Step2 implements OnInit {
         place = place.features.filter(obj => {
           return obj.id.includes("place")
         })[0].place_name
-        console.log(place)
+        
         this.users.push(place)
         this.users = this.users.slice()
       }
@@ -127,7 +127,7 @@ export class Step2 implements OnInit {
       catch (e) {
         let place = res;
         place = `Lat: ${coordinates[1]} Lon: ${coordinates[0]}`
-        console.log(place)
+
         this.users.push(place)
         this.users = this.users.slice()
       }
@@ -168,13 +168,13 @@ export class Step2 implements OnInit {
   }
   remove(user) {
     this.lineString.splice(this.users.indexOf(user), 1)
-    console.log(this.lineString)
+
     this.pintarLinea(this.lineString)
-    console.log(this.users)
+
     this.users.remove(user);
     this.users = this.users.slice();
-    console.log(this.users)
-    console.log(this.lineString)
+
+
     
   }
 
@@ -183,7 +183,7 @@ export class Step2 implements OnInit {
     document.querySelector(".busqueda").classList.toggle("active")
   }
   step(valor) {
-    console.log("cambió");
+
     let geoPoints = this.serviceSemillas.arrayToGeopoints(this.lineString)
     this.semilla.geoInfo= {
       "id": "geopoints",

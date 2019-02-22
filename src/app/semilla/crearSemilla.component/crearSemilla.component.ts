@@ -28,27 +28,19 @@ export class CrearSemillaComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         
-        // if(localStorage.getItem("semilla")){
-        //     //Ejecutar alerta infromando que se ha recuperado la sesión
-        //     // y ofrecer la posibilidad de eliminar el intento hecho
-        //     let semillatmp= JSON.parse(localStorage.getItem("semilla"));
-        //     this.semilla = semillatmp;     
-        // }
+        if(localStorage.getItem("semilla")){
+            //Ejecutar alerta infromando que se ha recuperado la sesión
+            // y ofrecer la posibilidad de eliminar el intento hecho
+            let semillatmp= JSON.parse(localStorage.getItem("semilla"));
+            this.semilla = semillatmp;     
+        }
         
     }
     ngOnDestroy(){
         localStorage.setItem("semilla", JSON.stringify(this.semilla))
     }
 
-    crearSemilla() {
-        console.log(1)
 
-        this.semillasService.anadirSemilla(this.semilla).then(
-            () => {
-                console.log("Semilla creada");
-            }
-        )
-    }
 
     step(valor){
 
