@@ -7,7 +7,8 @@ import { SemillasService } from '../../../services/semillas.service';
 import { Observable } from 'rxjs/Observable';
 import { finalize } from 'rxjs/operators';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { Element } from '@angular/compiler';
+
+
 @Component({
   selector: 'step3',
   templateUrl: './step3.component.html',
@@ -24,27 +25,32 @@ export class Step3 implements OnInit {
   public isRecording: boolean;
   public interval: any;
   public timers = []
-  public advance=[false,false,false,false]
-  public blobs= []
+  public advance = [false, false, false, false]
+  public blobs = []
   constructor(private semillasService: SemillasService, private storage: AngularFireStorage) {
 
   }
   ngOnInit() {
+    //Set default type for testimonial AUDIO
     this.semilla.testimonialType = "audio"
     this.semilla.audios = {}
   }
-  decider(){
-    if(document.getElementById("icon").classList.contains("fa-spinner")
-    ){
+  decider() {
+    if (document.getElementById("icon").classList.contains("fa-spinner")
+    ) {
       return;
     }
-    else if(!this.isRecording){
+    else if (!this.isRecording) {
       document.getElementById("icon").classList.remove("fa-microphone")
       document.getElementById("icon").classList.add("fa-stop")
       document.getElementById("decider").classList.remove("record")
       document.getElementById("decider").classList.add("stop")
       this.record()
-    }else if(this.isRecording){
+    } else if (this.isRecording) {
+      document.getElementById("icon").classList.remove("fa-stop")
+      document.getElementById("decider").classList.remove("stop")
+      document.getElementById("icon").classList.add("fa-spinner", "fa-spin")
+      document.getElementById("decider").classList.add("record")
       this.stop()
     }
   }
@@ -61,34 +67,29 @@ export class Step3 implements OnInit {
   }
 
   public stop() {
-    document.getElementById("decider").classList.remove("stop")
-    document.getElementById("decider").classList.add("record")
-    document.getElementById("icon").classList.remove("fa-stop")
-    document.getElementById("icon").classList.add("fa-spinner","fa-spin")
     this.isRecording = false;
     let recordRTC = this.recordRTC;
-    recordRTC.stopRecording(()=>{
-      this.processVideo()
+    recordRTC.stopRecording(() => {
+      this.processAudio()
     });
     let stream = this.stream;
     stream.getAudioTracks().forEach(track => track.stop());
-    stream.getVideoTracks().forEach(track => track.stop());
     document.getElementById("audio").className = "";
     document.getElementById("audio").classList.add("c100")
     clearInterval(this.interval);
-    
+
   }
 
 
   successCallback(stream: MediaStream) {
 
-    var StereoAudioRecorder = RecordRTC.StereoAudioRecorder;
-    var options = {
+    let StereoAudioRecorder = RecordRTC.StereoAudioRecorder;
+    let options = {
       recorderType: StereoAudioRecorder
     };
     this.stream = stream;
     this.recordRTC = RecordRTC(stream, options);
-    
+
     this.recordRTC.startRecording();
     let timer = 0;
     let time_in_minutes = 5;
@@ -100,69 +101,74 @@ export class Step3 implements OnInit {
       if (timer >= 300) {
         clearInterval(this.interval);
         this.stop()
-        
       }
       this.timing(deadline)
-      
-     
     }, 1001)
 
   }
 
-  timing(deadline){
+  timing(deadline) {
     let bar = document.getElementById("audio")
-      let t = new Date(deadline.getTime() - new Date().getTime());
-      console.log()
-      bar.classList.remove(`p${99 - (Math.floor((t.getTime() / 1000) / 3))}`)
-      bar.classList.add(`p${100 - (Math.floor((t.getTime() / 1000) / 3))}`)
+    let t = new Date(deadline.getTime() - new Date().getTime());
+    
+    bar.classList.remove(`p${99 - (Math.floor((t.getTime() / 1000) / 3))}`)
+    bar.classList.add(`p${100 - (Math.floor((t.getTime() / 1000) / 3))}`)
 
-      let seconds = (Math.floor((t.getTime() / 1000) % 60)) < 10 ? "0" + (Math.floor((t.getTime() / 1000) % 60)) : 
+    let seconds = (Math.floor((t.getTime() / 1000) % 60)) < 10 ? "0" + (Math.floor((t.getTime() / 1000) % 60)) :
       (Math.floor((t.getTime() / 1000) % 60));
 
-      let minutes = Math.floor((t.getTime() / 1000 / 60) % 60);
-      console.log(minutes + ":" + seconds)
-      this.timers[0] = minutes + ":" + seconds;
+    let minutes = Math.floor((t.getTime() / 1000 / 60) % 60);
+    
+    this.timers[0] = minutes + ":" + seconds;
   }
   errorCallback() {
     //handle error here
   }
 
-  processVideo() {
-
+  processAudio() {
+    document.getElementById("icon").classList.remove("fa-spinner", "fa-spin")
+    document.getElementById("icon").classList.add("fa-redo")
     let recordRTC = this.recordRTC;
     var recordedBlob = recordRTC.getBlob();
-    let audio:any = document.getElementById("player")
+    let audio: any = document.getElementById("player")
     audio.src = URL.createObjectURL(recordedBlob);
     console.log(recordedBlob);
     this.blobs.push(recordedBlob);
-    //this.upload(recordedBlob)
-    recordRTC.getDataURL(function (dataURL) { });
-
   }
 
-  upload(blob) {
-    let downloadURL;
-    let audioString = !this.advance[0] ? "audio0" :this.advance[0]&& !this.advance[1]? "audio1":this.advance[1]&& !this.advance[2]? "audio2": this.advance[2] && !this.advance[3]? "audio3":"nothing";
-    let task = this.semillasService.uploadFile(this.semilla._id+"/"+audioString, blob)
-    let snapshot = task.snapshotChanges();
-    snapshot.pipe(finalize(() => {
-      downloadURL = this.storage.ref(this.semilla._id+"/"+audioString).getDownloadURL()
-      this.semilla.audios[audioString] = downloadURL;
-      console.log(downloadURL)
-        document.getElementById("icon").classList.remove("fa-spinner","fa-spin"),
-        document.getElementById("icon").classList.add("fa-redo")
-    })).subscribe();
+  upload() {
+    this.advance[3] = true;
+    let contador = 0;
+    this.blobs.forEach((blob, index) => {
+      let fileDir = `${this.semilla._id}/audio${index}`;
+      let task = this.semillasService.uploadFile(fileDir, blob)
+      let fileRef = this.storage.ref(fileDir)
+      let snapshot = task.snapshotChanges();
+      snapshot.pipe(finalize(() => {
+        let downloadUrl = fileRef.getDownloadURL();
+        downloadUrl.subscribe(url => {
+          this.semilla.audios[index] = url
+          contador++;
+          if (contador == this.blobs.length) {
+            this.crearSemilla();
+          }
+        })
+      })).subscribe()
+
+    })
   }
 
   crearSemilla() {
     console.log(this.semilla)
-    this.semilla.textos = null;
-    this.semilla.step= 4;
-    this.advance[3]=true;
-    this.semillasService.anadirSemilla(this.semilla).then(
-        () => {
-            console.log("Semilla creada");
-        }
-    )
-}
+    this.semilla.step = 4;
+    if (this.semilla.testimonialType == "audio") {
+      this.semilla.textos = null;
+    }else{
+      this.semilla.audios = null;
+    }
+    
+    
+  }
+
+
 }
