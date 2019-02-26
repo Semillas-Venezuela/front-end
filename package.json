@@ -18,7 +18,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "semilla": "npm install @angular/cli@latest && ng build --prod",
+    "build": "npm install @angular/cli@latest && ng build --prod",
     "lint": "ng lint ng-universal-demo",
     "build:client-and-server-bundles": "ng build --prod && ng run ng-universal-demo:server:production",
     "build:prerender": "npm run build:client-and-server-bundles && npm run webpack:server && npm run generate:prerender",
