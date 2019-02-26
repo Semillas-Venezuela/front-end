@@ -17,11 +17,12 @@
 
 .audio{
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     flex-direction: column;
     width: 100vw;
-    
+    min-height: 90vh;
+    padding: 10vw;
 }
 .overlay{
     z-index: 100000;
@@ -69,4 +70,4 @@
   .button:disabled{
     background: #798188;
     border-color: #8a9299;
-}
+  }

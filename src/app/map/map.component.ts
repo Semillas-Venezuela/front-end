@@ -95,9 +95,8 @@ export class MapComponent implements OnInit, AfterViewInit {
             this.subscripcion = this.serviceSemillas.observableSemillas.subscribe(semillas => {
                 semillas.forEach(semilla => {
                     {
-
-
-                        var coloresSemillas = ['amarillo', 'blanco', 'verde', 'naranja'];
+                        if(semilla.published){
+                            var coloresSemillas = ['amarillo', 'blanco', 'verde', 'naranja'];
                         var rand = coloresSemillas[Math.floor(Math.random() * coloresSemillas.length)];
                         var el = document.createElement('div');
                         el.innerHTML =
@@ -114,9 +113,9 @@ export class MapComponent implements OnInit, AfterViewInit {
                         });
 
                         // add marker to map
-                        console.log("SEMILLA COORDS OBJ:"+JSON.stringify(semilla.geoInfo.source.data.geometry.coordinates))
+                        
                         let coordenadasMapeadas = this.serviceSemillas.geoPointsToArray(semilla.geoInfo.source.data.geometry.coordinates);
-                        console.log(coordenadasMapeadas)
+                        
                         if(coordenadasMapeadas.length ==0){
                             console.log(JSON.stringify(semilla))
                             return;
@@ -127,6 +126,9 @@ export class MapComponent implements OnInit, AfterViewInit {
                             .addTo(this.map);
 
                         this.objectsAddedToMap.push(markeri);
+                        }
+
+                        
                     }
                 })
             })

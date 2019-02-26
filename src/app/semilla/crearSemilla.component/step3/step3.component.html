@@ -8,23 +8,25 @@
             con la migración venezolana. Nos reservamos el derecho de no publicar tu testimonio si viola alguna de estas
             condiciones de respeto mutuo.
         </p>
+
+        <div class="switch switch--horizontal">
+            <input id="radio-a" type="radio" name="first-switch" checked="checked" value="audio" [(ngModel)]="semilla.testimonialType" />
+            <label for="radio-a"><i class="fas fa-microphone"></i></label>
+            <input id="radio-b" type="radio" name="first-switch" value="text" [(ngModel)]="semilla.testimonialType" />
+            <label for="radio-b"><i class="fas fa-pencil-alt"></i></label>
+            <span class="toggle-outside">
+                <span class="toggle-inside"></span>
+            </span>
+        </div>
         <button  class="button green" (click)="overlay()">Listo</button>
     </div>
     
-    <div class="switch switch--horizontal">
-        <input id="radio-a" type="radio" name="first-switch" checked="checked" value="audio" [(ngModel)]="semilla.testimonialType" />
-        <label for="radio-a"><i class="fas fa-microphone"></i></label>
-        <input id="radio-b" type="radio" name="first-switch" value="text" [(ngModel)]="semilla.testimonialType" />
-        <label for="radio-b"><i class="fas fa-pencil-alt"></i></label>
-        <span class="toggle-outside">
-            <span class="toggle-inside"></span>
-        </span>
-    </div>
-    {{semilla.testimonialType}}
+
+
     <div *ngIf="semilla.testimonialType == 'audio'">
         <div class="audio" *ngIf="!advance[0]">
-            <h1>1. Salir. ¿Cuándo saliste y como tomaste la decisión? Cuenta sobre las razones de tu salida, quien y
-                que tuviste que dejar atrás y como te preparaste para la salida.</h1>
+            <h3>1. Salir. ¿Cuándo saliste y como tomaste la decisión? Cuenta sobre las razones de tu salida, quien y
+                que tuviste que dejar atrás y como te preparaste para la salida.</h3>
             <div class="c100" id="audio">
                 <span id="hola">
                     <span class="inner record" (click)="decider()" id="decider">
@@ -42,8 +44,8 @@
             <button class="button green" [disabled]="this.blobs[0] === undefined" (click)="advance[0]=true">siguiente</button>
         </div>
         <div class="audio" *ngIf="advance[0] && !advance[1]">
-            <h2>2. En camino. ¿Cuáles fueron tus experiencias y dificultades en el camino? Cuenta sobre los desafíos
-                prácticos y personales que tuviste que afrontar en el camino. </h2>
+            <h3>2. En camino. ¿Cuáles fueron tus experiencias y dificultades en el camino? Cuenta sobre los desafíos
+                prácticos y personales que tuviste que afrontar en el camino. </h3>
             <div class="c100" id="audio">
                 <span id="hola">
                     <span class="inner record" (click)="decider()" id="decider">
@@ -80,8 +82,8 @@
             <button class="button green" [disabled]="this.blobs[2] === undefined" (click)="advance[2]=true">siguiente</button>
         </div>
         <div class="audio" *ngIf="advance[2] && !advance[3]">
-            <h4>4. El futuro. ¿Cuáles son las esperanzas para ti, tus seres queridos y para Venezuela? Cuenta sobre tus
-                deseos, tanto para ti como para todos los venezolanos. </h4>
+            <h3>4. El futuro. ¿Cuáles son las esperanzas para ti, tus seres queridos y para Venezuela? Cuenta sobre tus
+                deseos, tanto para ti como para todos los venezolanos. </h3>
             <div class="c100" id="audio">
                 <span id="hola">
                     <span class="inner record" (click)="decider()" id="decider">
@@ -99,7 +101,7 @@
             <button class="button green" [disabled]="this.blobs[3] === undefined" (click)="upload()">siguiente</button>
         </div>
         <div class="audio" *ngIf="advance[3]">
-            <i class="fas fa-spiner fa-spin"></i>
+            <i class="fas fa-spinner fa-spin" style="font-size: 3em;"></i>
         </div>
     </div>
 

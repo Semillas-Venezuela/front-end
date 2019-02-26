@@ -31,3 +31,16 @@
     justify-content: space-around;
 
 }
+@media screen and (max-width: 800px){
+    .aside{
+        height: 40vh;
+        width: 100vw;
+        bottom: -40vh;
+        position: fixed;
+        left: 0;
+
+    }
+    .aside-active{
+        bottom: 0;
+    }
+}
