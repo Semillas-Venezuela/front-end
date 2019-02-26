@@ -33,7 +33,7 @@ export class Step3 implements OnInit {
   ngOnInit() {
     //Set default type for testimonial AUDIO
     this.semilla.testimonialType = "audio"
-    
+    this.semilla.audios = ["","","",""]
   }
   
 
