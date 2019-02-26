@@ -34,6 +34,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
 import { NosotrosComponent } from './nosotros/nosotros.component';
 import { LottieAnimationComponent } from './directives/lottie-directive';
+import { DebounceClickDirective } from './directives/debounceDirective';
 
 
 
@@ -50,7 +51,8 @@ import { LottieAnimationComponent } from './directives/lottie-directive';
     Step3,
     ReversePipe,
     NosotrosComponent,
-    LottieAnimationComponent
+    LottieAnimationComponent,
+    DebounceClickDirective
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'my-app'}),
