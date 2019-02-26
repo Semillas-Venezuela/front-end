@@ -6,12 +6,7 @@ export class semillaInfo{
     _id:string;
     imagenUrl?:string;
     testimonialType?:string;
-    audios?:{
-        audio1?:string;
-        audio2?:string;
-        audio3?:string;
-        audio4?:string;
-    };
+    audios?:[string?,string?,string?,string?]
     textos?:{
         text1?:string;
         text?:string;

@@ -31,6 +31,9 @@
     justify-content: space-around;
 
 }
+audio{
+    width: 20vw;
+}
 @media screen and (max-width: 800px){
     .aside{
         height: 40vh;
