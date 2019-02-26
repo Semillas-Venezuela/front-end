@@ -44,6 +44,7 @@ export class Step3 implements OnInit {
   decider() {
     if (document.getElementById("icon").classList.contains("fa-spinner")
     ) {
+      
       return;
     }
     else if (!this.isRecording) {
@@ -52,15 +53,20 @@ export class Step3 implements OnInit {
       document.getElementById("decider").classList.remove("record")
       document.getElementById("decider").classList.add("stop")
       this.record()
+      
     } else if (this.isRecording) {
       document.getElementById("icon").classList.remove("fa-stop")
       document.getElementById("decider").classList.remove("stop")
       document.getElementById("icon").classList.add("fa-spinner", "fa-spin")
       document.getElementById("decider").classList.add("record")
       this.stop()
+     
     }
   }
   public record() {
+    if(document.getElementById("icon").classList.contains("fa-redo")){
+      this.blobs.pop()
+    }
     this.isRecording = true;
     let mediaConstraints = {
       video: false,
