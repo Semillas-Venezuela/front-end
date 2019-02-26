@@ -41,7 +41,7 @@ export class SemillasService {
      * @param semilla semilla a anadir
      */
     public anadirSemilla(semilla: semillaInfo) {
-        console.log(semilla);        
+      
         return this.semillas.doc(semilla._id).set(Object.assign({}, semilla)).catch(console.log);
     }
 

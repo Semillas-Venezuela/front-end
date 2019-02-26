@@ -35,6 +35,12 @@ export class Step3 implements OnInit {
     this.semilla.testimonialType = "audio"
     this.semilla.audios = {}
   }
+  
+
+  overlay(){
+    
+    document.querySelector(".overlay").classList.add("display-none")
+  }
   decider() {
     if (document.getElementById("icon").classList.contains("fa-spinner")
     ) {
@@ -85,7 +91,8 @@ export class Step3 implements OnInit {
 
     let StereoAudioRecorder = RecordRTC.StereoAudioRecorder;
     let options = {
-      recorderType: StereoAudioRecorder
+      recorderType: StereoAudioRecorder,
+      disableLogs: true
     };
     this.stream = stream;
     this.recordRTC = RecordRTC(stream, options);
@@ -132,7 +139,6 @@ export class Step3 implements OnInit {
     var recordedBlob = recordRTC.getBlob();
     let audio: any = document.getElementById("player")
     audio.src = URL.createObjectURL(recordedBlob);
-    console.log(recordedBlob);
     this.blobs.push(recordedBlob);
   }
 
@@ -159,15 +165,13 @@ export class Step3 implements OnInit {
   }
 
   crearSemilla() {
-    console.log(this.semilla)
     this.semilla.step = 4;
     if (this.semilla.testimonialType == "audio") {
       this.semilla.textos = null;
     }else{
       this.semilla.audios = null;
     }
-    
-    
+    this.semillasService.anadirSemilla(this.semilla);
   }
 
 
