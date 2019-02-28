@@ -35,6 +35,8 @@ import { HttpModule } from '@angular/http';
 import { NosotrosComponent } from './nosotros/nosotros.component';
 import { LottieAnimationComponent } from './directives/lottie-directive';
 import { DebounceClickDirective } from './directives/debounceDirective';
+import { AdminComponent } from './admin/admin.component';
+import { MapAdminComponent } from './admin/map-admin/map-admin.component';
 
 
 
@@ -52,7 +54,9 @@ import { DebounceClickDirective } from './directives/debounceDirective';
     ReversePipe,
     NosotrosComponent,
     LottieAnimationComponent,
-    DebounceClickDirective
+    DebounceClickDirective,
+    AdminComponent,
+    MapAdminComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'my-app'}),

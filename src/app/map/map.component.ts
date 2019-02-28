@@ -155,7 +155,7 @@ export class MapComponent implements OnInit, AfterViewInit {
             { property: 'og:title', content: 'http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html' },
             { property: 'og:description', content: 'http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html' },
             { property: 'og:image', content: 'http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html' }
-        ])
+        ], true)
 
         this.serviceSemillas.obtenerSemilla(idSemilla).subscribe((data) => {
             this.currentSemilla = data;

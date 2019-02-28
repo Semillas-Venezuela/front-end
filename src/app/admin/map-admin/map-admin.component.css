@@ -1,0 +1,10 @@
+#map{
+    width: 100vw;
+    height: 50vh;
+}
+
+@media screen and (min-width: 800px){
+    #map{
+        width: 50vw;
+    }
+}

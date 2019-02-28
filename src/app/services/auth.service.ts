@@ -31,20 +31,6 @@ export class AuthService{
         return this.afAuth.user;
     }
 
-    test(){
-        this.loginAnonimo().then(
-            (usuario)=>{
-                console.log("Inicio Sesion")
-                console.log(usuario.user.uid)
-                this.getUser().subscribe(
-                    (usr)=>{
-                        console.log("Obtener usuario")
-                        console.log(usr.uid)
-                        
-                    }
-                )
-            }
-        )
-    }
+   
 
 }
