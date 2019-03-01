@@ -1,6 +1,9 @@
 
 <div style="position: relative;">
-    <div id="map" class="map"></div>
+    <div id="map" class="map">
+       
+       
+    </div>
     <aside class="aside" id="aside">
         <div style="width: 100%; display: flex; justify-content: space-between">
             <div class="close" (click)="closeAside()">
@@ -21,6 +24,10 @@
         </div>
         
     </aside>
+    <div id="i12345" style="position:fixed; height: 90vh; top:10vh; width: 100vw; background: var(--color-amarillo);display: flex; flex-direction: column; justify-content:center; align-items: center;" >
+            <i class="fas fa-spinner fa-spin" style="font-size: 3em;"></i>
+            <p style="font-size: 1.5em;">Cargando...</p>
+    </div>
 </div>
 
 

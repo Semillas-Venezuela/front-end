@@ -48,10 +48,11 @@ export class MapComponent implements OnInit, AfterViewInit {
             this.map.on("load", () => {
                 this.displayContent(this.route.snapshot.params.id)
             })
-
         }
 
-
+        this.map.on("load", () => {
+           document.getElementById("i12345").parentNode.removeChild(document.getElementById("i12345"));
+        })
 
     }
 

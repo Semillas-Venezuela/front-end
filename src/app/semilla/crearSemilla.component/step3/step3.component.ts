@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 declare const navigator: any;
 declare const MediaRecorder: any;
 import * as RecordRTC from 'recordrtc';
@@ -14,7 +14,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
   templateUrl: './step3.component.html',
   styleUrls: ['./step3.component.css', './percentage.css']
 })
-export class Step3 implements OnInit {
+export class Step3 implements OnInit, OnDestroy {
 
 
 
@@ -35,7 +35,9 @@ export class Step3 implements OnInit {
     this.semilla.testimonialType = "audio"
     this.semilla.audios = ["","","",""]
   }
-  
+  ngOnDestroy(){
+    this.stop()
+  }
 
   overlay(){
     

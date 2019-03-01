@@ -190,11 +190,11 @@ form{
     right: 0;
 }
 /* Adaptando a Escritorio */
-@media screen and (min-width: 800px){
+@media screen and (max-width: 800px){
   .form-group label{
-    font-size: 0.6em;
+    font-size: 1.2em;
   }
   .label--radio{
-    font-size: 0.6em;
+    font-size: 1.2em;
   }
 }

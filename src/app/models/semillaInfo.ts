@@ -21,8 +21,8 @@ export class semillaInfo{
     age?:string;
     martialStatus?:string;
     educativeLevel?:string;
-    VenezuelaOcupation?:string;
-    CurrentOcupation?:string;
+    venezuelaOcupation?:string;
+    currentOcupation?:string;
     device?:string;
     dateCreated?:Date;
     place?:string;
