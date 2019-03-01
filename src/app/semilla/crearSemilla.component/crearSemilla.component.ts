@@ -46,8 +46,6 @@ export class CrearSemillaComponent implements OnInit, OnDestroy {
 
         let boilerplate={
             timesShared:0,
-            CurrentOcupation:"",
-            VenezuelaOcupation:"",
             dateCreated:new Date(),
             age:"",
             device:`${this.deviceService.os} ${this.deviceService.device} ${this.deviceService.browser} `,
