@@ -8,6 +8,13 @@
     </ul>
     <ul class="mobile">
         <img src="../../assets/logo-neg.png" alt="">
-        <div>Holaaaaaaaaaaaaaaaaaaa</div>
+        <div (click)="toggleMenu()"  style="font-size: 1.3em; min-width: 5vw;"><i id="menu-bars" class="fas fa-bars"></i></div>
     </ul>
+</div>
+<div class="responsive-navbar">
+    <div routerLink="/"  (click)="toggleMenu()">Inicio</div>
+    <div routerLink="/new" (click)="toggleMenu()">Deja tu testimonio</div>
+    <div routerLink="/map" (click)="toggleMenu()">Descubre</div>
+    <div routerLink="/nosotros" (click)="toggleMenu()">Nosotros</div>
+    <div routerLink="" (click)="toggleMenu()">Contacto</div>
 </div>

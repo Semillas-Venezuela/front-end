@@ -12,36 +12,32 @@ import { observable } from 'rxjs';
     styleUrls: ['menu.component.css']
 })
 export class MenuComponent implements OnInit {
-    
+    abierto: boolean = false;
 
-    constructor(public router: Router, private deviceDetector: DeviceDetectorService, private serviceSemillas:SemillasService) {
-        
+    constructor(public router: Router, private deviceDetector: DeviceDetectorService, private serviceSemillas: SemillasService) {
+
     }
 
     ngOnInit() {
 
     }
-    csv(){
-        let observable=this.serviceSemillas.observableSemillas
-        observable.subscribe(x=>{
+    csv() {
+        let observable = this.serviceSemillas.observableSemillas
+        observable.subscribe(x => {
             this.serviceSemillas.downloadFile(x);
         })
     }
-    llamado() {
-        
-        // if (this.deviceDetector.device == "Android" || this.deviceDetector.device == "iPhone" || this.deviceDetector.device == "iPod" || this.deviceDetector.device == "iPad"|| this.deviceDetector.device == "Windows-Phone") {
-        //     var elem: any = document.documentElement;
-        //     if (elem.requestFullscreen) {
-        //         elem.requestFullscreen();
-        //     } else if (elem.mozRequestFullScreen) { /* Firefox */
-        //         elem.mozRequestFullScreen();
-        //     } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
-        //         elem.webkitRequestFullscreen();
-        //     } else if (elem.msRequestFullscreen) { /* IE/Edge */
-        //         elem.msRequestFullscreen();
-        //     }
-
-        // }
-        this.router.navigate(["/new"]);
+    toggleMenu() {
+        let menuBars = document.getElementById("menu-bars");
+        if(this.abierto){
+            menuBars.classList.remove("fa-times");
+            menuBars.classList.add("fa-bars");
+            this.abierto= false;
+        }else{
+            menuBars.classList.remove("fa-bars");
+            menuBars.classList.add("fa-times");
+            this.abierto = true;
+        }
+        document.querySelector(".responsive-navbar").classList.toggle("active")
     }
 }

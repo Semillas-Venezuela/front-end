@@ -51,7 +51,8 @@ export class CrearSemillaComponent implements OnInit, OnDestroy {
             dateCreated:new Date(),
             age:"",
             device:`${this.deviceService.os} ${this.deviceService.device} ${this.deviceService.browser} `,
-            _id:this.semillasService.generateSemillaID()
+            _id:this.semillasService.generateSemillaID(),
+            published: false
           }
 
           this.authService.loginAnonimo();

@@ -113,7 +113,7 @@ form{
     font-family: Arial, sans-serif;
     line-height: 135%;
     cursor: pointer;
-    color: #798188;
+    color: var(--color-blanco);
     font-size: 1.4rem;
   }
   
@@ -189,20 +189,12 @@ form{
 .btn.right{
     right: 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* Adaptando a Escritorio */
 @media screen and (min-width: 800px){
-
+  .form-group label{
+    font-size: 0.6em;
+  }
+  .label--radio{
+    font-size: 0.6em;
+  }
 }
