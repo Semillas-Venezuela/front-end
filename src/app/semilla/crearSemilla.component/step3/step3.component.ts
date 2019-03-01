@@ -36,7 +36,8 @@ export class Step3 implements OnInit, OnDestroy {
     this.semilla.audios = ["","","",""]
   }
   ngOnDestroy(){
-    this.stop()
+    if(this.isRecording)
+      this.stop()
   }
 
   overlay(){
