@@ -10,6 +10,12 @@ export class AppComponent implements OnInit {
 
     }
     ngOnInit(){
-      
+      var fixed = document.getElementById('fixed');
+
+        fixed.addEventListener('touchmove', function(e) {
+
+        e.preventDefault();
+
+      }, false);
     }
 }

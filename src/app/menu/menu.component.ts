@@ -19,7 +19,13 @@ export class MenuComponent implements OnInit {
     }
 
     ngOnInit() {
+        var fixed = document.getElementById('touch-bar');
 
+        fixed.addEventListener('touchmove', function(e) {
+
+                    e.preventDefault();
+
+        }, false);
     }
     csv() {
         let observable = this.serviceSemillas.observableSemillas
