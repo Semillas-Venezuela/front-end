@@ -105,7 +105,7 @@
             <p>Tus testimonios se están subiendo, espera unos segundos.</p>
         </div>
     </div>
-    <div *ngIf="semilla.testimonialType == 'text'"> 
+    <div *ngIf="semilla.testimonialType == 'text'" class="textos"> 
         <p>1.	Salir. ¿Cuándo saliste y como tomaste la decisión? Cuenta sobre las razones de tu salida, quien y que tuviste que dejar atrás y como te preparaste para la salida.</p>
         <textarea class="textarea" 
         name="text1"
@@ -138,6 +138,6 @@
         #message='ngModel'
         placeholder="Tu respuesta"
         ></textarea>
-        <button  class="button green" (click)="crearSemilla()">Listo</button>
+        <button class="button green" (click)="crearSemilla()">Listo</button>
     </div>
 </div>
