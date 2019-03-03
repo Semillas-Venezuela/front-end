@@ -197,7 +197,7 @@ export class MapComponent implements OnInit, AfterViewInit {
         this.map.removeLayer(this.currentSemilla.geoInfo.id + "");
         this.map.removeSource(this.currentSemilla.geoInfo.id + "");
         this.pintarMarkers();
-        this.router.navigate(['/map'])
+        
     }
 
     shareFacebook() {

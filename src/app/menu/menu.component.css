@@ -75,3 +75,6 @@ ul img{
          display: none;
      }
 }
+*{
+    outline: none;
+}
