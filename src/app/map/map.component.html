@@ -4,22 +4,37 @@
        
        
     </div>
-    <aside class="aside" id="aside">
-        <div style="width: 100%; display: flex; justify-content: space-between">
-            <div class="close" (click)="closeAside()">
-                <i class="fas fa-times"></i>
-            </div>
-            <div class="social">
+    <aside class="aside" id="aside" >
+        <div style="width: 100%; display: flex; justify-content: space-between;">
+            
+            <div class="social" style="width: 5vmin; display:flex; justify-content: space-between">
                 <i class="fab fa-twitter" (click)="shareTwitter()"></i>
                 <i class="fab fa-facebook-f" (click)="shareFacebook()"></i>
             </div>
-
+            <div class="close" (click)="closeAside()">
+                    <i class="fas fa-times"></i>
+                </div>
             
         </div>
-        <div>
-            <audio id="audio1" controls="controls"></audio>
+        <div class="content">
+                
+                
+            <p>1.	Salir. ¿Cuándo saliste y como tomaste la decisión? Cuenta sobre las razones de tu salida, quien y que tuviste que dejar atrás y como te preparaste para la salida.</p>
+        <audio id="audio1" controls="controls"></audio>
+<p>
+        2.	En camino. ¿Cuáles fueron tus experiencias y dificultades en el camino? Cuenta sobre los desafíos prácticos y personales que tuviste que afrontar en el camino. 
+
+</p>
         <audio id="audio2" controls="controls"></audio>
+<p>
+        3.	Llegando. ¿Cómo fue tu proceso de adaptación en el país al que llegaste? Cuenta sobre el apoyo y las dificultades que viviste y cómo vas construyendo una nueva vida. 
+
+</p>
         <audio id="audio3" controls="controls"></audio>
+<p>
+        4.	El futuro. ¿Cuáles son las esperanzas para ti, tus seres queridos y para Venezuela? Cuenta sobre tus deseos, tanto para ti como para todos los venezolanos. 
+
+</p>
         <audio id="audio4" controls="controls"></audio>
         </div>
         
@@ -27,6 +42,14 @@
     <div id="i12345" style="position:fixed; height: 90vh; top:10vh; width: 100vw; background: var(--color-amarillo);display: flex; flex-direction: column; justify-content:center; align-items: center;" >
             <i class="fas fa-spinner fa-spin" style="font-size: 3em;"></i>
             <p style="font-size: 1.5em;">Cargando...</p>
+    </div>
+    <div id="start-info" style="position:fixed; height: 90vh; top:10vh; width: 100vw; background: var(--color-amarillo);display: none; flex-direction: column; justify-content:center; align-items: center; opacity: 0.85; padding: 0 10vw; text-align: center;" >
+            <i class="fas fa-info" style="font-size: 2em;"></i>
+            <p style="font-size: 1.3em; font-weight: bolder">Bienvenido al mapa</p><br>
+            <p style="font-size: 1em;">En este observaras las semillas que venezolanos han dejado en su diaspora.</p><br>
+            <p style="font-size: 1em;">Estas semillas contienen testimonios, para verlos tocalos, estos testimonios podran estar en audio o en texto, adicionalmente pudieron ser dejados de manera anonima.</p><br>
+            <p style="font-size: 1em;">Apoyemos a los venezolanos dignificando sus historias, por esto te invitamos a compartir en Facebook o Twitter los testimonios que mas te agraden.</p>
+            <button class="button green" (click)="toggleOverlay()"> Listo </button>
     </div>
 </div>
 

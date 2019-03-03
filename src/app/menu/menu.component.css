@@ -21,7 +21,7 @@
     color: var(--color-blanco);
     transition: all 0.5s ease-out;
     will-change: transform;
-    z-index: 1000;
+    z-index: 999999;
     opacity: 0.9;
     display: flex;
     flex-direction: column;
