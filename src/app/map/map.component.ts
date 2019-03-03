@@ -46,16 +46,18 @@ export class MapComponent implements OnInit, AfterViewInit {
         this.initializeMap();
         if (!(typeof this.route.snapshot.params.id === "undefined")) {
             this.map.on("load", () => {
+                document.getElementById("i12345").parentNode.removeChild(document.getElementById("i12345"));
                 this.displayContent(this.route.snapshot.params.id)
             })
+        }else{
+            this.map.on("load", () => {
+                document.getElementById("i12345").parentNode.removeChild(document.getElementById("i12345"));
+                if (sessionStorage.getItem("mapInstructions") !== "check")
+                    document.getElementById("start-info").classList.toggle("active")
+            })    
         }
 
-        this.map.on("load", () => {
-            document.getElementById("i12345").parentNode.removeChild(document.getElementById("i12345"));
-            if (sessionStorage.getItem("mapInstructions") !== "check")
-                document.getElementById("start-info").classList.toggle("active")
-        })
-
+        
        
 
     }
@@ -189,7 +191,8 @@ export class MapComponent implements OnInit, AfterViewInit {
     }
 
     public closeAside() {
-        
+        if (sessionStorage.getItem("mapInstructions") !== "check")
+                    document.getElementById("start-info").classList.toggle("active")
         this.subscripcion.unsubscribe()
         this.location.replaceState(`/map`);
         document.getElementById("aside").classList.remove("aside-active");
