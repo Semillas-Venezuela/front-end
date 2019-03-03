@@ -71,3 +71,53 @@
     background: #798188;
     border-color: #8a9299;
   }
+
+  .textarea {
+    position: relative;
+    width: 100%;
+    max-width: 80vw;
+    border-radius: 2px;
+    border: none;
+    color: var(--color-blanco);
+    padding: 1vh;
+    background: #C7AF61;
+  
+  }
+  textarea {
+    border-style: none;
+    background: transparent;
+    outline: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover, 
+  textarea:-webkit-autofill:focus, 
+  textarea:-webkit-autofill:active  {
+      -webkit-box-shadow: 0 0 0 30px var(--color-amarillo-quem) inset !important;
+      
+      -webkit-text-fill-color: #fff !important;
+  }
+  textarea::-webkit-input-placeholder {
+    color: var(--color-blanco);
+  }
+  
+  textarea:-moz-placeholder { /* Firefox 18- */
+    color: var(--color-blanco);  
+  }
+  
+  textarea::-moz-placeholder {  /* Firefox 19+ */
+    color: var(--color-blanco);  
+  }
+  
+  textarea:-ms-input-placeholder {
+    color: var(--color-blanco);  
+  }
+  
+  textarea::placeholder {
+    color: var(--color-blanco);  
+  }

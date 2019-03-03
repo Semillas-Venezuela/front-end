@@ -57,3 +57,6 @@ p.centrado{
     justify-content: center;
     align-items: center;
   }
+  .step4 p{
+    margin: 0 10vw;
+  }

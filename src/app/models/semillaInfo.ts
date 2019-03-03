@@ -6,13 +6,8 @@ export class semillaInfo{
     _id:string;
     imagenUrl?:string;
     testimonialType?:string;
-    audios?:string[]
-    textos?:{
-        text1?:string;
-        text?:string;
-        text3?:string;
-        text4?:string;
-    };;
+    audios?:string[];
+    textos?:string[];
     desc?:string;
     geoInfo?:GeoInfo;
     published?:boolean;

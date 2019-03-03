@@ -1,13 +1,4 @@
 <div class="contenedor">
-    <div *ngFor="let semilla of semillasSinAprobar" class="level1" style="color: red" 
-            (click)="ele.class = ele.class == 'showChildren' ? '' :  'showChildren'; selectSemilla(semilla)"
-            [ngClass]="{ hideChildren : ele.class !== 'showChildren' }" #ele>
-            <a>Hola</a>
-           <div>
-            {{semilla._id}}
-           </div> 
-        
-    </div>
     <div *ngFor="let semilla of semillasSinAprobar" (click)="selectSemilla(semilla)">
         adios
     </div>

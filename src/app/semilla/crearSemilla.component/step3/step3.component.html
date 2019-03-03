@@ -105,5 +105,39 @@
             <p>Tus testimonios se están subiendo, espera unos segundos.</p>
         </div>
     </div>
-
+    <div *ngIf="semilla.testimonialType == 'text'"> 
+        <p>1.	Salir. ¿Cuándo saliste y como tomaste la decisión? Cuenta sobre las razones de tu salida, quien y que tuviste que dejar atrás y como te preparaste para la salida.</p>
+        <textarea class="textarea" 
+        name="text1"
+        rows="20"
+        [(ngModel)]="semilla.textos[0]"
+        #message='ngModel'
+        placeholder="Tu respuesta"
+        ></textarea>
+        <p>2.	En camino. ¿Cuáles fueron tus experiencias y dificultades en el camino? Cuenta sobre los desafíos prácticos y personales que tuviste que afrontar en el camino. </p>
+        <textarea class="textarea" 
+        name="text2"
+        rows="8"
+        [(ngModel)]="semilla.textos[1]"
+        #message='ngModel'
+        placeholder="Tu respuesta"
+        ></textarea>
+        <p>3.	Llegando. ¿Cómo fue tu proceso de adaptación en el país al que llegaste? Cuenta sobre el apoyo y las dificultades que viviste y cómo vas construyendo una nueva vida. </p>
+        <textarea class="textarea" 
+        name="text3"
+        rows="8"
+        [(ngModel)]="semilla.textos[2]"
+        #message='ngModel'
+        placeholder="Tu respuesta"
+        ></textarea>
+        <p>4.	El futuro. ¿Cuáles son las esperanzas para ti, tus seres queridos y para Venezuela? Cuenta sobre tus deseos, tanto para ti como para todos los venezolanos.</p>
+        <textarea class="textarea" 
+        name="text4"
+        rows="8"
+        [(ngModel)]="semilla.textos[3]"
+        #message='ngModel'
+        placeholder="Tu respuesta"
+        ></textarea>
+        <button  class="button green" (click)="crearSemilla()">Listo</button>
+    </div>
 </div>
