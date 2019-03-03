@@ -1,5 +1,5 @@
 
-<div style="position: relative;">
+<div id="contenedor-all" style="position: relative;">
     <div id="map" class="map">
        
        
@@ -18,9 +18,25 @@
         </div>
         <div class="content">
             <div *ngIf="currentSemilla?.testimonialType == 'text'">
-                Hola
+                    <p style="font-weight: bold; font-size: 1.1em">1.	Salir. ¿Cuándo saliste y como tomaste la decisión? Cuenta sobre las razones de tu salida, quien y que tuviste que dejar atrás y como te preparaste para la salida.</p>
+                    <p>{{currentSemilla?.textos[0]}}</p>
+            <p style="font-weight: bold; font-size: 1.1em">
+                    2.	En camino. ¿Cuáles fueron tus experiencias y dificultades en el camino? Cuenta sobre los desafíos prácticos y personales que tuviste que afrontar en el camino. 
+            
+            </p>
+                    <p>{{currentSemilla?.textos[1]}}</p>
+            <p style="font-weight: bold; font-size: 1.1em">
+                    3.	Llegando. ¿Cómo fue tu proceso de adaptación en el país al que llegaste? Cuenta sobre el apoyo y las dificultades que viviste y cómo vas construyendo una nueva vida. 
+            
+            </p>
+                    <p>{{currentSemilla?.textos[2]}}</p>
+            <p style="font-weight: bold; font-size: 1.1em">
+                    4.	El futuro. ¿Cuáles son las esperanzas para ti, tus seres queridos y para Venezuela? Cuenta sobre tus deseos, tanto para ti como para todos los venezolanos. 
+            
+            </p>
+                    <p>{{currentSemilla?.textos[3]}}</p>
             </div>
-            <div *ngIf="currentSemilla?.testimonialType == 'audio'">
+            <div  [ngClass]="{'display-none': currentSemilla?.testimonialType == 'text'}" >
                       
             <p>1.	Salir. ¿Cuándo saliste y como tomaste la decisión? Cuenta sobre las razones de tu salida, quien y que tuviste que dejar atrás y como te preparaste para la salida.</p>
             <audio id="audio1" controls="controls"></audio>

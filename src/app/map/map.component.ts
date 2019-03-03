@@ -56,6 +56,8 @@ export class MapComponent implements OnInit, AfterViewInit {
                 document.getElementById("start-info").classList.toggle("active")
         })
 
+       
+
     }
     toggleOverlay() {
         document.getElementById("start-info").classList.toggle("active")
@@ -156,12 +158,13 @@ export class MapComponent implements OnInit, AfterViewInit {
             data.geoInfo.source.data.geometry.coordinates = this.serviceSemillas.geoPointsToArray(data.geoInfo.source.data.geometry.coordinates);
             this.objetosAnteriores = this.objectsAddedToMap;
             let contador = 0;
-            
+            if(this.currentSemilla.testimonialType == "audio"){
                 while (contador < 4) {
                     let audioElement = <HTMLAudioElement>document.getElementById("audio" + (contador + 1))
                     audioElement.src = this.currentSemilla.audios[contador];
                     audioElement.load()
                     contador++;
+                }
             }
             
 
