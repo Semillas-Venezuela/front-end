@@ -8,7 +8,7 @@ import { element } from '@angular/core/src/render3/instructions';
 import { semillaInfo } from '../models/semillaInfo';
 import { MapService } from '../services/map.service';
 import { SemillasService } from '../services/semillas.service';
-import { Meta } from '@angular/platform-browser';
+import { Meta, MetaDefinition } from '@angular/platform-browser';
 declare const FB: any;
 @Component({
     selector: 'app-map',
@@ -149,19 +149,10 @@ export class MapComponent implements OnInit, AfterViewInit {
     public displayContent(idSemilla) {
 
 
-
-        this.meta.addTags([
-            { name: 'twitter:card', content: 'summary_large_image' },
-            { name: 'twitter:site', content: '@SemillasVenezue' },
-            { name: 'twitter:title', content: 'Semillas Venezuela | Testimonio' },
-            { name: 'twitter:description', content: 'Conoce el testimonio de esta semilla venezolana que está creciendo por el mundo' },
-            { name: 'twitter:image', content: 'https://pbs.twimg.com/profile_images/1033471960095715328/upP48B_I_400x400.jpg' },
-            { property: 'og:url', content: 'http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html' },
-            { property: 'og:type', content: 'http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html' },
-            { property: 'og:title', content: 'http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html' },
-            { property: 'og:description', content: 'http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html' },
-            { property: 'og:image', content: 'http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html' }
-        ], true)
+        // let meta:MetaDefinition={name:""}
+        // this.meta.addTag(
+           
+        // , true)
 
         this.serviceSemillas.obtenerSemilla(idSemilla).subscribe((data) => {
             this.currentSemilla = data;
@@ -197,7 +188,7 @@ export class MapComponent implements OnInit, AfterViewInit {
     }
 
     public closeAside() {
-
+        
         this.subscripcion.unsubscribe()
         this.location.replaceState(`/map`);
         document.getElementById("aside").classList.remove("aside-active");
@@ -216,6 +207,6 @@ export class MapComponent implements OnInit, AfterViewInit {
         }, function (response) { });
     }
     shareTwitter() {
-        window.open('https://twitter.com/share?url=' + document.URL, 'twitter-popup', 'height=350,width=600');
+        window.open('https://twitter.com/share?text=Mira este testimonio de un venezolano en el mundo &hashtags=SomoSemillas&url=' + document.URL, 'twitter-popup', 'height=350,width=600');
     }
 }
