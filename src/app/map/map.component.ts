@@ -149,23 +149,21 @@ export class MapComponent implements OnInit, AfterViewInit {
     public displayContent(idSemilla) {
 
 
-        // let meta:MetaDefinition={name:""}
-        // this.meta.addTag(
-           
-        // , true)
+  
 
         this.serviceSemillas.obtenerSemilla(idSemilla).subscribe((data) => {
             this.currentSemilla = data;
             data.geoInfo.source.data.geometry.coordinates = this.serviceSemillas.geoPointsToArray(data.geoInfo.source.data.geometry.coordinates);
             this.objetosAnteriores = this.objectsAddedToMap;
             let contador = 0;
-            while (contador < 4) {
-                let audioElement = <HTMLAudioElement>document.getElementById("audio" + (contador + 1))
-                audioElement.src = this.currentSemilla.audios[contador];
-                audioElement.load()
-                contador++;
+            
+                while (contador < 4) {
+                    let audioElement = <HTMLAudioElement>document.getElementById("audio" + (contador + 1))
+                    audioElement.src = this.currentSemilla.audios[contador];
+                    audioElement.load()
+                    contador++;
             }
-
+            
 
             this.objectsAddedToMap.forEach(element => {
                 if (!(element.getElement().id == idSemilla)) { element.remove() }

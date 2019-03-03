@@ -17,25 +17,30 @@
             
         </div>
         <div class="content">
-                
-                
+            <div *ngIf="currentSemilla?.testimonialType == 'text'">
+                Hola
+            </div>
+            <div *ngIf="currentSemilla?.testimonialType == 'audio'">
+                      
             <p>1.	Salir. ¿Cuándo saliste y como tomaste la decisión? Cuenta sobre las razones de tu salida, quien y que tuviste que dejar atrás y como te preparaste para la salida.</p>
-        <audio id="audio1" controls="controls"></audio>
-<p>
-        2.	En camino. ¿Cuáles fueron tus experiencias y dificultades en el camino? Cuenta sobre los desafíos prácticos y personales que tuviste que afrontar en el camino. 
-
-</p>
-        <audio id="audio2" controls="controls"></audio>
-<p>
-        3.	Llegando. ¿Cómo fue tu proceso de adaptación en el país al que llegaste? Cuenta sobre el apoyo y las dificultades que viviste y cómo vas construyendo una nueva vida. 
-
-</p>
-        <audio id="audio3" controls="controls"></audio>
-<p>
-        4.	El futuro. ¿Cuáles son las esperanzas para ti, tus seres queridos y para Venezuela? Cuenta sobre tus deseos, tanto para ti como para todos los venezolanos. 
-
-</p>
-        <audio id="audio4" controls="controls"></audio>
+            <audio id="audio1" controls="controls"></audio>
+    <p>
+            2.	En camino. ¿Cuáles fueron tus experiencias y dificultades en el camino? Cuenta sobre los desafíos prácticos y personales que tuviste que afrontar en el camino. 
+    
+    </p>
+            <audio id="audio2" controls="controls"></audio>
+    <p>
+            3.	Llegando. ¿Cómo fue tu proceso de adaptación en el país al que llegaste? Cuenta sobre el apoyo y las dificultades que viviste y cómo vas construyendo una nueva vida. 
+    
+    </p>
+            <audio id="audio3" controls="controls"></audio>
+    <p>
+            4.	El futuro. ¿Cuáles son las esperanzas para ti, tus seres queridos y para Venezuela? Cuenta sobre tus deseos, tanto para ti como para todos los venezolanos. 
+    
+    </p>
+            <audio id="audio4" controls="controls"></audio>
+            </div>
+          
         </div>
         
     </aside>
