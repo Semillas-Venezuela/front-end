@@ -51,7 +51,8 @@ export class MapComponent implements OnInit, AfterViewInit {
             })
         }else{
             this.map.on("load", () => {
-                document.getElementById("i12345").parentNode.removeChild(document.getElementById("i12345"));
+                if(document.getElementById("i12345"))
+                    document.getElementById("i12345").parentNode.removeChild(document.getElementById("i12345"));
                 if (sessionStorage.getItem("mapInstructions") !== "check")
                     document.getElementById("start-info").classList.toggle("active")
             })    
