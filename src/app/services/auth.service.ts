@@ -1,13 +1,15 @@
 import { Injectable } from "@angular/core";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { Observable } from "rxjs";
+import { ConstantPool } from "@angular/compiler";
 
 @Injectable()
 export class AuthService{
-   
+   isAdminVar :boolean
     constructor(
         private afAuth:AngularFireAuth
     ){
+        this.isAdminVar = false;
     }
 
     /**
@@ -31,6 +33,11 @@ export class AuthService{
         return this.afAuth.user;
     }
 
-   
-
+    loginCorreo(email,password):Promise<any>{
+        return this.afAuth.auth.signInWithEmailAndPassword(email,password)   
+    }
+    isAdmin():boolean{
+        
+        return this.isAdminVar;
+    }
 }

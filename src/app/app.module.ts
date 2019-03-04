@@ -37,6 +37,8 @@ import { LottieAnimationComponent } from './directives/lottie-directive';
 import { DebounceClickDirective } from './directives/debounceDirective';
 import { AdminComponent } from './admin/admin.component';
 import { MapAdminComponent } from './admin/map-admin/map-admin.component';
+import { LoginAdminComponent } from './admin/loginAdmin/login.component';
+import { AuthGuard } from './guards/admin.guard';
 
 
 
@@ -56,7 +58,8 @@ import { MapAdminComponent } from './admin/map-admin/map-admin.component';
     LottieAnimationComponent,
     DebounceClickDirective,
     AdminComponent,
-    MapAdminComponent
+    MapAdminComponent,
+    LoginAdminComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'my-app'}),
@@ -73,7 +76,7 @@ import { MapAdminComponent } from './admin/map-admin/map-admin.component';
     HttpModule
    
   ],
-  providers: [MapService, SemillasService, AngularFireStorage, AuthService],
+  providers: [MapService, SemillasService, AngularFireStorage, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

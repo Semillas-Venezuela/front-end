@@ -1,0 +1,24 @@
+<div class="contenedor">
+
+        <div class="login">
+            <form (ngSubmit)="loginCorreo()" #semillasForm="ngForm">
+                <div class="form-group" style="margin-bottom: 2vh;">
+                        <label for="username">Ingresa tu correo</label>
+                        <div class="style-input"  >
+                            <input placeholder="Correo" type="text" id="name" required [(ngModel)]="user.email" name="name"
+                                #name="ngModel" />
+                        </div>
+                    </div> 
+                    <div class="form-group" style="margin-bottom: 2vh;">
+                            <label for="username">Ingresa la contraseña</label>
+                            <div class="style-input"  >
+                                <input placeholder="Contraseña" type="text" id="name" required [(ngModel)]="user.password" name="name"
+                                    #name="ngModel" />
+                            </div>
+                        </div> 
+                        <button type="submit" class="btn right" [disabled]="!semillasForm.form.valid"><i class="fas fa-arrow-right"></i></button>
+            </form>
+        </div>
+    </div>
+    
+    

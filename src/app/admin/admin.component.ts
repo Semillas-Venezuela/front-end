@@ -1,6 +1,7 @@
 import { Component,OnInit } from "@angular/core";
 import { SemillasService } from "../services/semillas.service";
 import { semillaInfo } from "../models/semillaInfo";
+import { AuthService } from "../services/auth.service";
 
 
 @Component({
@@ -29,5 +30,5 @@ export class AdminComponent implements OnInit{
         this.semillaActual = semilla;
         
     }
-
+    
 }

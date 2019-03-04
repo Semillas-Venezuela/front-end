@@ -4,6 +4,8 @@ import { TipoUser } from './registro/tipoUser.component/tipoUser.component';
 import { CrearSemillaComponent } from './semilla/crearSemilla.component/crearSemilla.component';
 import { NosotrosComponent } from './nosotros/nosotros.component';
 import { AdminComponent } from './admin/admin.component';
+import { LoginAdminComponent } from './admin/loginAdmin/login.component';
+import { AuthGuard } from './guards/admin.guard';
 
 
 
@@ -14,5 +16,6 @@ export const routes = [
     { path: 'new', component: CrearSemillaComponent, pathMatch:'full'},
     { path: 'new/data', component:CrearSemillaComponent, pathMatch:'full'},
     { path: 'nosotros', component: NosotrosComponent, pathMatch:'full'},
-    { path: 'aproval', component: AdminComponent, pathMatch:'full'}
+    { path: 'aproval', component: AdminComponent, pathMatch:'full', canActivate: [AuthGuard]},
+    { path: 'adminLogin', component:LoginAdminComponent,pathMatch:'full'}
   ]
