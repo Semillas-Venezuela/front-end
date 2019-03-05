@@ -6,7 +6,6 @@ import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Location } from '@angular/common';
 import { element } from '@angular/core/src/render3/instructions';
 import { semillaInfo } from '../models/semillaInfo';
-import { MapService } from '../services/map.service';
 import { SemillasService } from '../services/semillas.service';
 import { Meta, MetaDefinition } from '@angular/platform-browser';
 declare const FB: any;

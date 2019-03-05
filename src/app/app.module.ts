@@ -11,7 +11,6 @@ import { routes } from './routes';
 import { MapComponent } from './map/map.component';
 import { MenuComponent } from './menu/menu.component';
 import { JwtModule } from '@auth0/angular-jwt';
-import { MapService } from './services/map.service';
 
 import { TipoUser } from './registro/tipoUser.component/tipoUser.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -76,7 +75,7 @@ import { AuthGuard } from './guards/admin.guard';
     HttpModule
    
   ],
-  providers: [MapService, SemillasService, AngularFireStorage, AuthService, AuthGuard],
+  providers: [SemillasService, AngularFireStorage, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {

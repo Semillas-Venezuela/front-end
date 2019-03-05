@@ -28,7 +28,7 @@
     will-change: transform;
  }
  .active{
-     left:0;
+     left:0 !important;
 
  }
 .semillasList{
@@ -48,8 +48,8 @@
 }
 .button-round{
     background: var(--color-verde);
-    
-    position: absolute;
+    z-index: 1000;
+    position: fixed;
     top: 10vh;
     right: 0;
     width: 10vmin;
@@ -115,3 +115,14 @@
       display: flex;
       justify-content: space-between;
   }
+  @media (max-width:800px){
+    .barraLateral{
+        width: 100vw;
+        left:-100vw;
+    }
+    .contenido{
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+}

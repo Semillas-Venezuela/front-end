@@ -55,7 +55,9 @@ export class SemillasService {
             return data
         });
     }
-
+    public actualizarSemilla(semilla:semillaInfo){
+        return this.semillas.doc(semilla._id+ "").update(semilla);
+    }
     /**
      * Eliminar semilla
      * @param semilla Semilla a eliminar
@@ -63,7 +65,9 @@ export class SemillasService {
     public eliminarSemilla(semilla: semillaInfo): Promise<void> {
         return this.semillas.doc(semilla._id + '').delete();
     }
-
+    public eliminarContenidosSemilla(id:string){
+        this.storage.ref(id).delete()
+    }
     
     uploadFile(path, file){
         let a=this.storage.ref(path)

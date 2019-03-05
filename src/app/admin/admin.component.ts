@@ -14,13 +14,14 @@ export class AdminComponent implements OnInit {
     semillasSinAprobar: semillaInfo[] = new Array();
     semillaActual: semillaInfo;
     todasSemillas: semillaInfo[];
+    subscripcion;
     constructor(private serviceSemillas: SemillasService, private authService: AuthService, private router: Router) {
 
     }
 
     ngOnInit() {
 
-        this.serviceSemillas.observableSemillas.subscribe(semillas => {
+        this.subscripcion = this.serviceSemillas.observableSemillas.subscribe(semillas => {
             this.todasSemillas = semillas;
             semillas.forEach(semillaIndividual => {
                 if (!semillaIndividual.published)
@@ -31,6 +32,7 @@ export class AdminComponent implements OnInit {
     }
 
     selectSemilla(semilla) {
+        this.toggleSidebar()
         this.semillaActual = semilla;
 
     }
@@ -119,8 +121,24 @@ export class AdminComponent implements OnInit {
     }
     aprobar() {
 
+        let semillaAprobada = this.semillaActual
+        semillaAprobada.published = true;   
+        this.serviceSemillas.actualizarSemilla(semillaAprobada)
+        this.subscripcion.unsusbscribe();
+        this.serviceSemillas.observableSemillas.subscribe(semillas => {
+            this.todasSemillas = semillas;
+            semillas.forEach(semillaIndividual => {
+                if (!semillaIndividual.published)
+                    this.semillasSinAprobar.push(semillaIndividual);
+            })
+        })
     }
     rechazar() {
-
+        if(this.semillaActual.testimonialType == 'audio'){
+            this.serviceSemillas.eliminarContenidosSemilla(this.semillaActual._id)
+            this.serviceSemillas.eliminarSemilla(this.semillaActual)
+        }else{
+            this.serviceSemillas.eliminarSemilla(this.semillaActual)
+        }
     }
 }
