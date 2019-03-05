@@ -1,13 +1,20 @@
 .contenedor{
     width: 100vw;
     min-height:90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.login{
+    width: 80vw;
 }
 .hideChildren>div{
     display: none;
  }
  .form-group{
     display: flex;
-    align-items: center;
+    
     flex-direction: column;
 }
 .form-group label{
@@ -58,4 +65,40 @@
       -webkit-box-shadow: 0 0 0 30px var(--color-amarillo-quem) inset !important;
       
       -webkit-text-fill-color: #fff !important;
+  }
+  .button {
+    border: none;
+    color: white;
+    display: inline-block;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 20px 50px;
+    border-radius: 3px;
+    
+    border-bottom-style: solid;
+    border-bottom-width: 3px;
+    transition: text-shadow 0.3s ease;
+    font-style: normal;
+    width: 100%;
+  }
+  
+  .button:active {
+    position: relative;
+    top: 1px;
+    border-bottom-width: 2px;
+  }
+  
+  .button:hover {
+    text-shadow: 2px 2px 0px rgba(0,0,0,.3)
+  }
+  .green {
+    background-color: var(--color-verde-quem);
+    border-color: var(--color-verde);
+  }
+  .display-none{
+      display: none;
+  }
+  .button:disabled{
+    background: #798188;
+    border-color: #8a9299;
   }

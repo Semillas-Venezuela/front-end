@@ -29,10 +29,12 @@ export class LoginAdminComponent implements OnInit {
         
             this.authService.loginCorreo(this.user.email, this.user.password);
             this.authService.getUser().subscribe(response => {
+                if(response!=null){
                 this.authService.isAdminVar = (response.uid === 'SobHG3gmLXZs63CDrqCxPZP7eQT2' || response.email === 'semillasvenezuela@gmail.com');
                 if (this.authService.isAdmin) {
                     this.router.navigate(["/aproval"])
                 }
+            }
             })
        
 

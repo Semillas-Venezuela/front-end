@@ -5,4 +5,93 @@
 .hideChildren>div{
     display: none;
  }
- 
+ .barraLateral{
+    width: 40vw;
+    height: 90vh;
+    position: fixed;
+    background: var(--color-negro);
+    color: var(--color-blanco);
+    z-index: 100;
+    opacity: 0.9;
+    padding: 2vh 3vw;
+    left:-40vw;
+    transition: all 0.5s ease-out;
+    will-change: transform;
+ }
+ .active{
+     left:0;
+
+ }
+.semillasList{
+    overflow: scroll;
+    max-height: 60vh;
+   
+}
+.semillasList:not(.title){
+    margin-left: 2vw;
+}
+
+.logOut{
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.button-round{
+    background: var(--color-verde);
+    
+    position: absolute;
+    top: 10vh;
+    right: 0;
+    width: 10vmin;
+    height: 10vmin;
+    border-radius: 50%;
+    color: white;
+    margin: 2vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3vmin;
+    transition: 0.5s all ease-in-out;
+}
+
+ .button {
+    border: none;
+    color: white;
+    display: inline-block;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 20px 50px;
+    border-radius: 3px;
+    
+    border-bottom-style: solid;
+    border-bottom-width: 3px;
+    transition: text-shadow 0.3s ease;
+    font-style: normal;
+    width: 100%;
+  }
+  
+  .button:active {
+    position: relative;
+    top: 1px;
+    border-bottom-width: 2px;
+  }
+  
+  .button:hover {
+    text-shadow: 2px 2px 0px rgba(0,0,0,.3)
+  }
+  .yellow {
+    background-color: var(--color-amarillo-quem);
+    border-color: var(--color-amarillo);
+  }
+  .red {
+    background-color: #d21919;
+    border-color: #cd0000;
+  }
+  .display-none{
+      display: none;
+  }
+  .button:disabled{
+    background: #798188;
+    border-color: #8a9299;
+  }

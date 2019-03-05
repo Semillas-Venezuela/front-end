@@ -1,6 +1,49 @@
 <div class="contenedor">
-    <div *ngFor="let semilla of semillasSinAprobar" (click)="selectSemilla(semilla)">
-        adios
+    <button class="button-round" (click)="toggleSidebar()" ><i class="fas fa-times"  style="cursor: pointer;"></i> </button>
+    <div class="barraLateral" id="sidebar" >
+        <div style="position: relative;display: flex;
+        flex-direction: column;
+        justify-content: space-between; height: 100%;">
+                <div class="semillasList">
+                    <div style="display:flex;justify-content: space-between;"><p style="font-size: 1.5em; font-weight: bold; text-transform: uppercase;" class="title">Semillas</p></div><br>
+                    <ol>
+                            <li style="font-weight: bold; text-transform: uppercase; font-size:0.8em; cursor: pointer;" *ngFor="let semilla of semillasSinAprobar; let i = index" (click)="selectSemilla(semilla)">{{semilla.name}}</li>
+                          
+                    </ol>
+                    
+                </div>
+                
+                <div class="logOut">
+                        <button class="button yellow" ><i class="fas fa-file-download"></i> Descarga todos los testimonios en CSV</button>
+                        <button class="button red" (click)="logout()" >Cerrar Sesión</button>
+                </div>
+        </div>
+           
+        
+    </div>
+    
+    <div class="contenido">
+    {{semillaActual?._id}} <br>  
+    {{semillaActual?.imagenUrl}} <br>
+    {{semillaActual?.testimonialType}} <br>
+    {{semillaActual?.audios}} <br>
+    {{semillaActual?.textos}} <br>
+    {{semillaActual?.desc}} <br>
+    {{semillaActual?.geoInfo}} <br>
+    {{semillaActual?.published}} <br>
+    {{semillaActual?.name}} <br>
+    {{semillaActual?.gender}} <br>
+    {{semillaActual?.age}} <br>
+    {{semillaActual?.martialStatus}} <br>
+    {{semillaActual?.educativeLevel}} <br>
+    {{semillaActual?.venezuelaOcupation}} <br>
+    {{semillaActual?.currentOcupation}} <br>
+    {{semillaActual?.device}} <br>
+    {{semillaActual?.dateCreated}} <br>
+    {{semillaActual?.place}} <br>
+    {{semillaActual?.timesShared}} <br>
+    {{semillaActual?.step}} <br>
+    {{semillaActual?.userId}} <br>
     </div>
     <app-admin-map [semillaAPintar]="semillaActual"></app-admin-map>
 </div>
