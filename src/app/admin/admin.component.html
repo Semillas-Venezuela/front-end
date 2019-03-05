@@ -23,27 +23,41 @@
     </div>
     
     <div class="contenido">
-    {{semillaActual?._id}} <br>  
-    {{semillaActual?.imagenUrl}} <br>
-    {{semillaActual?.testimonialType}} <br>
-    {{semillaActual?.audios}} <br>
-    {{semillaActual?.textos}} <br>
-    {{semillaActual?.desc}} <br>
-    {{semillaActual?.geoInfo}} <br>
-    {{semillaActual?.published}} <br>
-    {{semillaActual?.name}} <br>
-    {{semillaActual?.gender}} <br>
-    {{semillaActual?.age}} <br>
-    {{semillaActual?.martialStatus}} <br>
-    {{semillaActual?.educativeLevel}} <br>
-    {{semillaActual?.venezuelaOcupation}} <br>
-    {{semillaActual?.currentOcupation}} <br>
-    {{semillaActual?.device}} <br>
-    {{semillaActual?.dateCreated}} <br>
-    {{semillaActual?.place}} <br>
-    {{semillaActual?.timesShared}} <br>
-    {{semillaActual?.step}} <br>
-    {{semillaActual?.userId}} <br>
+        <p>ID: {{semillaActual?._id}}</p>
+        <p>Tipo: {{semillaActual?.testimonialType}}</p>
+        <div *ngIf="semillaActual?.testimonialType == 'audio'">
+            <p>Respuesta 1</p>
+            <audio [src]="semillaActual?.audios[0]" controls></audio>
+            <p>Respuesta 2</p>
+            <audio [src]="semillaActual?.audios[1]" controls></audio>
+            <p>Respuesta 3</p>
+            <audio [src]="semillaActual?.audios[2]" controls></audio>
+            <p>Respuesta 4</p>
+            <audio [src]="semillaActual?.audios[3]" controls></audio>
+        </div>
+        <div *ngIf="semillaActual?.testimonialType == 'text'">
+                <p>Respuesta 1</p>
+                <p>{{semillaActual?.textos[0]}}</p>
+                <p>Respuesta 2</p>
+                <p>{{semillaActual?.textos[1]}}</p>                
+                <p>Respuesta 3</p>
+                <p>{{semillaActual?.textos[2]}}</p>
+                <p>Respuesta 4</p>
+                <p>{{semillaActual?.textos[3]}}</p>
+            </div>
+        <p>Nombre/Apodo: {{semillaActual?.name}}  </p>
+        <p>Genero: {{semillaActual?.gender}} </p>
+        <p>Edad: {{semillaActual?.age}}</p>
+        <p>Estado Civil: {{semillaActual?.martialStatus}}</p>
+        <p>Nivel Educativo: {{semillaActual?.educativeLevel}}</p>
+        <p>Ocupación en Venezuela: {{semillaActual?.venezuelaOcupation}}</p>
+        <p>Ocupación en Venezuela: {{semillaActual?.currentOcupation}}</p>
+        <p>Dispositivo:{{semillaActual?.device}} </p>
+        <p>Dia de creación: {{semillaActual?.dateCreated | date}}</p>
+        <p>Lugar de creación: {{semillaActual?.place}}</p>
+        <p>Veces compartido: {{semillaActual?.timesShared}}</p>
+
+        {{semillaActual?.published}} <br>
     </div>
     <app-admin-map [semillaAPintar]="semillaActual"></app-admin-map>
 </div>
