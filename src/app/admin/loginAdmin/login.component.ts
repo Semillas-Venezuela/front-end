@@ -32,7 +32,7 @@ export class LoginAdminComponent implements OnInit {
                 if(response!=null){
                 this.authService.isAdminVar = (response.uid === 'SobHG3gmLXZs63CDrqCxPZP7eQT2' || response.email === 'semillasvenezuela@gmail.com');
                 if (this.authService.isAdmin) {
-                    this.router.navigate(["/aproval"])
+                    this.router.navigate(["/approval"])
                 }
             }
             })

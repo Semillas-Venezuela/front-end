@@ -40,4 +40,11 @@ export class AdminComponent implements OnInit{
     toggleSidebar(){
         document.getElementById("sidebar").classList.toggle("active")
     }
+    aprobar(){
+
+    }
+    rechazar()
+{
+
+}
 }

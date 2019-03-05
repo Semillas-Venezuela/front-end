@@ -16,6 +16,6 @@ export const routes = [
     { path: 'new', component: CrearSemillaComponent, pathMatch:'full'},
     { path: 'new/data', component:CrearSemillaComponent, pathMatch:'full'},
     { path: 'nosotros', component: NosotrosComponent, pathMatch:'full'},
-    { path: 'aproval', component: AdminComponent, pathMatch:'full', canActivate: [AuthGuard]},
+    { path: 'approval', component: AdminComponent, pathMatch:'full', canActivate: [AuthGuard]},
     { path: 'adminLogin', component:LoginAdminComponent,pathMatch:'full'}
   ]
