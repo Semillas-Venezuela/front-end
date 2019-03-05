@@ -6,6 +6,7 @@ import { ConstantPool } from "@angular/compiler";
 @Injectable()
 export class AuthService{
    isAdminVar :boolean
+   llamadoDesdeStep:boolean=false;
     constructor(
         private afAuth:AngularFireAuth
     ){
@@ -37,7 +38,6 @@ export class AuthService{
         return this.afAuth.auth.signInWithEmailAndPassword(email,password)   
     }
     isAdmin():boolean{
-        
         return this.isAdminVar;
     }
 }

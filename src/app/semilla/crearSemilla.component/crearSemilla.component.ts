@@ -43,7 +43,7 @@ export class CrearSemillaComponent implements OnInit, OnDestroy {
 
 
     step(valor){
-
+        this.authService.llamadoDesdeStep =true;
         let boilerplate={
             timesShared:0,
             dateCreated:new Date(),
