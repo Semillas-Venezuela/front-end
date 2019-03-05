@@ -17,7 +17,7 @@ import { TipoUser } from './registro/tipoUser.component/tipoUser.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SemillasService } from './services/semillas.service';
 import { AngularFireStorage } from "@angular/fire/storage";
-import { AngularFirestoreModule } from "@angular/fire/firestore";
+import { AngularFirestoreModule, AngularFirestore } from "@angular/fire/firestore";
 import { environment } from "../environments/environment";
 import { AngularFireModule } from "@angular/fire";
 
@@ -79,4 +79,9 @@ import { AuthGuard } from './guards/admin.guard';
   providers: [MapService, SemillasService, AngularFireStorage, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private afs: AngularFirestore){
+    const settings = {timestampsInSnapshots: true};
+        afs.firestore.settings(settings);
+  }
+ }

@@ -20,7 +20,7 @@
             </div>
 
             <div class="logOut">
-                <button class="button yellow"><i class="fas fa-file-download"></i> Descarga todos los testimonios en
+                <button class="button yellow" (click)="descargarCSV()"><i class="fas fa-file-download"></i> Descarga todos los testimonios en
                     CSV</button>
                 <button class="button red" (click)="logout()">Cerrar Sesión</button>
             </div>
@@ -63,7 +63,7 @@
             <p>Ocupación en Venezuela: {{semillaActual?.venezuelaOcupation}}</p>
             <p>Ocupación en Venezuela: {{semillaActual?.currentOcupation}}</p>
             <p>Dispositivo:{{semillaActual?.device}} </p>
-            <p>Dia de creación: {{semillaActual?.dateCreated | date}}</p>
+            <p>Dia de creación: {{semillaActual?.dateCreated.seconds *1000 | date}}</p>
             <p>Lugar de creación: {{semillaActual?.place}}</p>
             <p>Veces compartido: {{semillaActual?.timesShared}}</p>
         </div>
