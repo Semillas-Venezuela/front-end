@@ -124,21 +124,16 @@ export class AdminComponent implements OnInit {
         let semillaAprobada = this.semillaActual
         semillaAprobada.published = true;   
         this.serviceSemillas.actualizarSemilla(semillaAprobada)
-        this.subscripcion.unsusbscribe();
-        this.serviceSemillas.observableSemillas.subscribe(semillas => {
-            this.todasSemillas = semillas;
-            semillas.forEach(semillaIndividual => {
-                if (!semillaIndividual.published)
-                    this.semillasSinAprobar.push(semillaIndividual);
-            })
-        })
+        this.ngOnInit()
     }
     rechazar() {
         if(this.semillaActual.testimonialType == 'audio'){
             this.serviceSemillas.eliminarContenidosSemilla(this.semillaActual._id)
             this.serviceSemillas.eliminarSemilla(this.semillaActual)
+            this.ngOnInit()
         }else{
             this.serviceSemillas.eliminarSemilla(this.semillaActual)
+            this.ngOnInit()
         }
     }
 }

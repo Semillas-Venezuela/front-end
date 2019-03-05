@@ -27,12 +27,7 @@ export class MenuComponent implements OnInit {
 
         }, false);
     }
-    csv() {
-        let observable = this.serviceSemillas.observableSemillas
-        observable.subscribe(x => {
-            this.serviceSemillas.downloadFile(x);
-        })
-    }
+ 
     toggleMenu() {
         let menuBars = document.getElementById("menu-bars");
         if(this.abierto){

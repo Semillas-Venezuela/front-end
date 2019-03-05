@@ -1,6 +1,5 @@
 import {HomeComponent} from './home/home.component';
 import { MapComponent } from './map/map.component';
-import { TipoUser } from './registro/tipoUser.component/tipoUser.component';
 import { CrearSemillaComponent } from './semilla/crearSemilla.component/crearSemilla.component';
 import { NosotrosComponent } from './nosotros/nosotros.component';
 import { AdminComponent } from './admin/admin.component';

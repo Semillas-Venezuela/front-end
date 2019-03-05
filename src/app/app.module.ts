@@ -12,7 +12,6 @@ import { MapComponent } from './map/map.component';
 import { MenuComponent } from './menu/menu.component';
 import { JwtModule } from '@auth0/angular-jwt';
 
-import { TipoUser } from './registro/tipoUser.component/tipoUser.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SemillasService } from './services/semillas.service';
 import { AngularFireStorage } from "@angular/fire/storage";
@@ -47,7 +46,6 @@ import { AuthGuard } from './guards/admin.guard';
     HomeComponent,
     MapComponent,
     MenuComponent,
-    TipoUser,
     CrearSemillaComponent,
     Step1,
     Step2,
