@@ -10,12 +10,8 @@ lottie-animation-view div {
     height: 50vh;
     transition: 5ms all ease-in-out;
 }
-
-
 .home{
-    min-height: 80vh;
     width: 100vw;
-    
     font-size: 2em;
     background-image: url('../../assets/background.png');
     background-size: cover;
@@ -25,30 +21,24 @@ lottie-animation-view div {
     flex-direction: column;
     justify-content: center;
 }
-.home2{
-    
+.home2{ 
     width: 100vw;
-    
-    font-size: 2em;
-    
-    
     color: var(--color-negro);
     padding: 3vh 0 0 0;
 }
 h1{
-    margin-bottom: 1.5vh;
     text-align: center;
     font-size: 1em;
 }
 a{
     cursor: pointer;
+    color: inherit;
 }
 p.centrado{
     font-size: 0.56em;
     text-align: center;
-    padding: 10vw;
+    padding: 5vh 10vw;
     font-weight: 0;
-    
 }
 .texto{
     display: flex;
@@ -56,21 +46,27 @@ p.centrado{
     justify-content: flex-end;
     align-items: center;
     word-wrap: break-word;
-   
-
 }
-
-
 .display-true{
     display: block;
 }
 .flor{
     position: relative;
-    
     transition: 5ms all ease-in-out;
 }
-
-
-
+.social{
+    display: flex;
+    padding: 0 20vw;
+    justify-content: space-between;
+}
+.fab,
+.fas{
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+.fab:hover,
+.fas:hover{
+    color: var(--color-blanco)
+}
 
 

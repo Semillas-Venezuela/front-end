@@ -19,8 +19,7 @@ p.centrado{
     flex-wrap: wrap;
     text-align: center;
     padding: 5vw;
-    font-style: italic;
-    color: var(--color-blanco);
+    color: var(--color-negro);
 }
 .button {
     border: none;
