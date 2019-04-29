@@ -37,6 +37,8 @@ export class CrearSemillaComponent implements OnInit, OnDestroy {
         
     }
     ngOnDestroy(){
+        if(this.semilla.step)
+            confirm("¿Seguro que quieres abandonar tu testimonio?, Todos tus cambios se perderán si aceptas.")
         localStorage.setItem("semilla", JSON.stringify(this.semilla))
     }
 

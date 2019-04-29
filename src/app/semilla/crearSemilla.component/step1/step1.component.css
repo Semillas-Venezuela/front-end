@@ -42,6 +42,10 @@ form{
 .error{
     border: 1px solid #F25F5C;
 }
+.asterisco{
+  color: var(--color-naranja);
+
+}
   .style-input input {
     flex-grow: 1;
     color: #000;
