@@ -127,7 +127,7 @@
     flex-direction: column;
     justify-content:space-between;
     justify-content: center;
-    padding: 0 10vw;
+    padding: 5vh 10vw;
   }
   .textos p{
       margin: 2vh 0;

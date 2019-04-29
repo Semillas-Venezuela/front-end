@@ -62,6 +62,7 @@ export class CrearSemillaComponent implements OnInit, OnDestroy {
                     if(user!=null){
                         this.idUsuario=user.uid;
                         localStorage.setItem("idUser", JSON.stringify(this.idUsuario));
+                        localStorage.setItem("semilla", JSON.stringify(this.semilla));
                         this.semilla.userId=this.idUsuario;
                         this.semilla = {...this.semilla,...boilerplate}
                         this.semilla.step=valor;
