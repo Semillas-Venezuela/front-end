@@ -211,6 +211,6 @@ export class MapComponent implements OnInit, AfterViewInit {
         }, function (response) { });
     }
     shareTwitter() {
-        window.open('https://twitter.com/share?text=Mira este testimonio de un venezolano en el mundo &hashtags=SomoSemillas&url=' + document.URL, 'twitter-popup', 'height=350,width=600');
+        window.open('https://twitter.com/share?text=¡Descubre el testimonio de un venezolano por el mundo! &hashtags=SomoSemillas,Venezuela&url=' + document.URL, 'twitter-popup', 'height=350,width=600');
     }
 }

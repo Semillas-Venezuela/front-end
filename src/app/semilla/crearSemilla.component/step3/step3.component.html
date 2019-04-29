@@ -1,16 +1,18 @@
 <div class="recording">
     <div class="overlay">
         <p>
-            Tu historia es única en el mundo. 
-            Aquí tendrás la oportunidad de dejar tu testimonio oral o escrito. 
-            A través de cuatro etapas cronológicas de tu migración, desde salir de Venezuela hasta llegar a tu país actual de residencia, te invitamos a contar tu historia en tus propias palabras.
+            Tu historia es única en el mundo.
+            Aquí tendrás la oportunidad de dejar tu testimonio oral o escrito.
+            A través de cuatro etapas cronológicas de tu migración, desde salir de Venezuela hasta llegar a tu país
+            actual de residencia, te invitamos a contar tu historia en tus propias palabras.
             <br>
-            Semillas de la Diáspora es un proyecto inclusivo y constructivo. 
+            Semillas de la Diáspora es un proyecto inclusivo y constructivo.
             Si tu testimonio promueve la violencia, será eliminado.
         </p>
 
         <div class="switch switch--horizontal">
-            <input id="radio-a" type="radio" name="first-switch" checked="checked" value="audio" [(ngModel)]="semilla.testimonialType" />
+            <input id="radio-a" type="radio" name="first-switch" checked="checked" value="audio"
+                [(ngModel)]="semilla.testimonialType" />
             <label for="radio-a"><i class="fas fa-microphone"></i></label>
             <input id="radio-b" type="radio" name="first-switch" value="text" [(ngModel)]="semilla.testimonialType" />
             <label for="radio-b"><i class="fas fa-pencil-alt"></i></label>
@@ -18,15 +20,17 @@
                 <span class="toggle-inside"></span>
             </span>
         </div>
-        <p *ngIf="semilla.testimonialType == 'audio'">Te recomendamos la opción de nota de voz si tienes una buena conexión a internet.</p>
-        <button  class="button green" (click)="overlay()">Listo</button>
+        <p *ngIf="semilla.testimonialType == 'audio'">Te recomendamos la opción de nota de voz si tienes una buena
+            conexión a internet.</p>
+        <button class="button green" (click)="overlay()">Listo</button>
     </div>
-    
+
 
 
     <div *ngIf="semilla.testimonialType == 'audio'">
         <div class="audio" *ngIf="!advance[0]">
-            <h3>1. Salir. ¿Cuándo saliste y como tomaste la decisión? Cuenta sobre las razones de tu salida, quien y
+            <h2></h2>
+            <h3>¿Cuándo saliste y como tomaste la decisión? Cuenta sobre las razones de tu salida, quien y
                 que tuviste que dejar atrás y como te preparaste para la salida.</h3>
             <div class="c100" id="audio">
                 <span id="hola">
@@ -42,10 +46,12 @@
                 </div>
             </div>
             <audio id="player" controls="controls">TAG</audio>
-            <button class="button green" [disabled]="this.blobs[0] === undefined" (click)="advance[0]=true">siguiente</button>
+            <button class="button green" [disabled]="this.blobs[0] === undefined"
+                (click)="advance[0]=true">siguiente</button>
         </div>
         <div class="audio" *ngIf="advance[0] && !advance[1]">
-            <h3>2. En camino. ¿Cuáles fueron tus experiencias y dificultades en el camino? Cuenta sobre los desafíos
+            <h2>Salir:</h2>
+            <h3>¿Cuáles fueron tus experiencias y dificultades en el camino? Cuenta sobre los desafíos
                 prácticos y personales que tuviste que afrontar en el camino. </h3>
             <div class="c100" id="audio">
                 <span id="hola">
@@ -61,10 +67,12 @@
                 </div>
             </div>
             <audio id="player" controls="controls">TAG</audio>
-            <button class="button green" [disabled]="this.blobs[1] === undefined" (click)="advance[1]=true">siguiente</button>
+            <button class="button green" [disabled]="this.blobs[1] === undefined"
+                (click)="advance[1]=true">siguiente</button>
         </div>
         <div class="audio" *ngIf="advance[1] && !advance[2]">
-            <h3>3. Llegando. ¿Cómo fue tu proceso de adaptación en el país al que llegaste? Cuenta sobre el apoyo y las
+            <h2>Llegando:</h2>
+            <h3>¿Cómo fue tu proceso de adaptación en el país al que llegaste? Cuenta sobre el apoyo y las
                 dificultades que viviste y cómo vas construyendo una nueva vida.</h3>
             <div class="c100" id="audio">
                 <span id="hola">
@@ -80,10 +88,12 @@
                 </div>
             </div>
             <audio id="player" controls="controls">TAG</audio>
-            <button class="button green" [disabled]="this.blobs[2] === undefined" (click)="advance[2]=true">siguiente</button>
+            <button class="button green" [disabled]="this.blobs[2] === undefined"
+                (click)="advance[2]=true">siguiente</button>
         </div>
         <div class="audio" *ngIf="advance[2] && !advance[3]">
-            <h3>4. El futuro. ¿Cuáles son las esperanzas para ti, tus seres queridos y para Venezuela? Cuenta sobre tus
+            <h2>El futuro: </h2>
+            <h3>¿Cuáles son las esperanzas para ti, tus seres queridos y para Venezuela? Cuenta sobre tus
                 deseos, tanto para ti como para todos los venezolanos. </h3>
             <div class="c100" id="audio">
                 <span id="hola">
@@ -106,43 +116,27 @@
             <p>Tus testimonios se están subiendo, espera unos segundos.</p>
         </div>
     </div>
-    <div *ngIf="semilla.testimonialType == 'text'" class="textos"> 
+    <div *ngIf="semilla.testimonialType == 'text'" class="textos">
         <h2>Salir:</h2>
-        <p>¿Cuándo saliste y como tomaste la decisión? Cuenta sobre las razones de tu salida, quien y que tuviste que dejar atrás y como te preparaste para la salida.</p>
-        <textarea class="textarea" 
-        name="text1"
-        rows="20"
-        [(ngModel)]="semilla.textos[0]"
-        #message='ngModel'
-        placeholder="Tu respuesta"
-        ></textarea>
+        <p>¿Cuándo saliste y como tomaste la decisión? Cuenta sobre las razones de tu salida, quien y que tuviste que
+            dejar atrás y como te preparaste para la salida.</p>
+        <textarea class="textarea" name="text1" rows="20" [(ngModel)]="semilla.textos[0]" #message='ngModel'
+            placeholder="Tu respuesta"></textarea>
         <h2>En camino:</h2>
-        <p>¿Cuáles fueron tus experiencias y dificultades en el camino? Cuenta sobre los desafíos prácticos y personales que tuviste que afrontar en el camino. </p>
-        <textarea class="textarea" 
-        name="text2"
-        rows="8"
-        [(ngModel)]="semilla.textos[1]"
-        #message='ngModel'
-        placeholder="Tu respuesta"
-        ></textarea>
+        <p>¿Cuáles fueron tus experiencias y dificultades en el camino? Cuenta sobre los desafíos prácticos y personales
+            que tuviste que afrontar en el camino. </p>
+        <textarea class="textarea" name="text2" rows="8" [(ngModel)]="semilla.textos[1]" #message='ngModel'
+            placeholder="Tu respuesta"></textarea>
         <h2>Llegando:</h2>
-        <p>¿Cómo fue tu proceso de adaptación en el país al que llegaste? Cuenta sobre el apoyo y las dificultades que viviste y cómo vas construyendo una nueva vida. </p>
-        <textarea class="textarea" 
-        name="text3"
-        rows="8"
-        [(ngModel)]="semilla.textos[2]"
-        #message='ngModel'
-        placeholder="Tu respuesta"
-        ></textarea>
+        <p>¿Cómo fue tu proceso de adaptación en el país al que llegaste? Cuenta sobre el apoyo y las dificultades que
+            viviste y cómo vas construyendo una nueva vida. </p>
+        <textarea class="textarea" name="text3" rows="8" [(ngModel)]="semilla.textos[2]" #message='ngModel'
+            placeholder="Tu respuesta"></textarea>
         <h2>El futuro: </h2>
-        <p>¿Cuáles son las esperanzas para ti, tus seres queridos y para Venezuela? Cuenta sobre tus deseos, tanto para ti como para todos los venezolanos.</p>
-        <textarea class="textarea" 
-        name="text4"
-        rows="8"
-        [(ngModel)]="semilla.textos[3]"
-        #message='ngModel'
-        placeholder="Tu respuesta"
-        ></textarea>
+        <p>¿Cuáles son las esperanzas para ti, tus seres queridos y para Venezuela? Cuenta sobre tus deseos, tanto para
+            ti como para todos los venezolanos.</p>
+        <textarea class="textarea" name="text4" rows="8" [(ngModel)]="semilla.textos[3]" #message='ngModel'
+            placeholder="Tu respuesta"></textarea>
         <button class="button green" (click)="crearSemilla()">Listo</button>
     </div>
 </div>
