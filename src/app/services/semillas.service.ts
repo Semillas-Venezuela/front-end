@@ -12,17 +12,29 @@ import { Headers, Http, Response } from '@angular/http';
 export class SemillasService {
 
     public semillas: AngularFirestoreCollection<semillaInfo>;
+    public mensajes: AngularFirestoreCollection<any>;
 
     public observableSemillas: Observable<semillaInfo[]>;
+    public observableMensajes:Observable<any[]>;
 
     constructor(public afs: AngularFirestore, private storage: AngularFireStorage,private http: Http) {
         //Obtiene la referencia a la coleccion de semillas de FireStorage
         this.semillas = this.afs.collection<semillaInfo>('semillas');
+        this.mensajes = this.afs.collection<any>('mensajes');
 
         //Obtiene las semillas respectivas
         this.observableSemillas = this.semillas.snapshotChanges().map(actions => {
             return actions.map(item => {
                 const data = item.payload.doc.data() as semillaInfo;
+                const id = item.payload.doc.id;
+
+                //Une al data y al id
+                return { ...data, id };
+            });
+        })
+        this.observableMensajes = this.mensajes.snapshotChanges().map(actions => {
+            return actions.map(item => {
+                const data = item.payload.doc.data();
                 const id = item.payload.doc.id;
 
                 //Une al data y al id
@@ -36,12 +48,22 @@ export class SemillasService {
         let idBefore = this.afs.createId();
         return idBefore;
     }
+
+    /**
+     * Anade un mensaje a la base de datos
+     * @param mensaje mensaje a anadir
+     */
+    public anadirMensaje(mensaje) {
+
+        return this.mensajes.doc(Date.now()+'').set(Object.assign({}, mensaje)).catch(console.log);
+    }
+    
     /**
      * Anade una semilla a la base de datos
      * @param semilla semilla a anadir
      */
     public anadirSemilla(semilla: semillaInfo) {
-        console.log(semilla)
+
         return this.semillas.doc(semilla._id).set(Object.assign({}, semilla)).catch(console.log);
     }
 
