@@ -48,7 +48,7 @@ export class CrearSemillaComponent implements OnInit, OnDestroy {
         this.authService.llamadoDesdeStep =true;
         let boilerplate={
             timesShared:0,
-            dateCreated:new Date(),
+            dateCreated:new Date().toString(),
             age:"",
             device:`${this.deviceService.os} ${this.deviceService.device} ${this.deviceService.browser} `,
             _id:this.semillasService.generateSemillaID(),
