@@ -19,7 +19,7 @@ export class semillaInfo{
     venezuelaOcupation?:string;
     currentOcupation?:string;
     device?:string;
-    dateCreated?:Date;
+    dateCreated?:string;
     place?:string;
     timesShared?:number;
     step?:number;
