@@ -1,0 +1,28 @@
+<form class="container" (ngSubmit)="send()" #contactoForm="ngForm">
+
+
+    <div>
+        <h3 style="width: 90vw;">Nombre<span style="color:var(--color-naranja);">*</span></h3>
+        <input type="text" id="name" required [(ngModel)]="formInfo.name" name="name" #name="ngModel">
+    </div>
+    <div>
+        <h3 style="width: 90vw;">Email<span style="color:var(--color-naranja);">*</span></h3>
+        <input type="email" id="name" required [(ngModel)]="formInfo.email" name="email" #email="ngModel">
+    </div>
+    <div>
+        <h3 style="width: 90vw;">País</h3>
+        <input type="text" id="pais" [(ngModel)]="formInfo.pais" name="pais" #pais="ngModel">
+    </div>
+
+    <div>
+        <h3 style="width: 90vw;">Mensaje<span style="color:var(--color-naranja);">*</span></h3>
+        <textarea name="mensaje" id="mensaje" required [(ngModel)]="formInfo.mensaje" #mensaje="ngModel" cols="30"
+            rows="10"></textarea>
+    </div>
+    <div style="width: 90vw;">
+        Al presionar enviar aceptas la <a style="color:var(--color-naranja);" href="/privacy"
+            target="_blank">política</a> de privacidad y tratamiento de datos.
+    </div>
+    <button style="margin-top: 5vh;" type="submit" class="button green"
+        [disabled]="!contactoForm.form.valid">Enviar</button>
+</form>

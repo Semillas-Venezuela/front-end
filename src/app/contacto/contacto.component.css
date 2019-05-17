@@ -1,0 +1,73 @@
+.container{
+    min-height: 90vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+input, textarea {
+    border-style: none;
+    background: transparent;
+    outline: none;
+    border-radius: 2px;
+    padding: 1vh;
+    margin: 1vh 0;
+    background: #C7AF61;
+    width: 90vw;
+    resize: none;
+  }
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover, 
+  input:-webkit-autofill:focus, 
+  input:-webkit-autofill:active  {
+      -webkit-box-shadow: 0 0 0 30px var(--color-amarillo-quem) inset !important;
+      
+      -webkit-text-fill-color: #fff !important;
+  }
+
+
+button{
+    margin: 5vh;
+    display: block;
+    height: 5vh;
+    width: 40vw;
+    transition: all 0.3s ease-out;
+}
+button:disabled{
+    background: #798188;
+    border-color: #aaa;
+    transition: all 0.3s ease-out;
+}
+.button {
+    border: none;
+    color: white;
+    display: inline-block;
+    text-transform: uppercase;
+    text-decoration: none;
+    line-height: 0;
+    padding: 20px 50px;
+    border-radius: 3px;
+    margin:5px;
+    border-bottom-style: solid;
+    border-bottom-width: 3px;
+    transition: all 0.3s ease-out;
+    font-style: normal;
+  }
+ .button:active {
+    position: relative;
+    top: 1px;
+    border-bottom-width: 2px;
+  }
+  
+  .button:hover {
+    text-shadow: 2px 2px 0px rgba(0,0,0,.3)
+  }
+  .green {
+    background-color: var(--color-verde-quem);
+    border-color: var(--color-verde);
+  }
+  .button:disabled{
+    background: #798188;
+    border-color: #aaa;
+  }
