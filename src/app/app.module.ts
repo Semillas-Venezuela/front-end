@@ -37,6 +37,7 @@ import { AdminComponent } from './admin/admin.component';
 import { MapAdminComponent } from './admin/map-admin/map-admin.component';
 import { LoginAdminComponent } from './admin/loginAdmin/login.component';
 import { AuthGuard } from './guards/admin.guard';
+import { ContactoComponent } from './contacto/contacto.component';
 
 
 
@@ -56,7 +57,8 @@ import { AuthGuard } from './guards/admin.guard';
     DebounceClickDirective,
     AdminComponent,
     MapAdminComponent,
-    LoginAdminComponent
+    LoginAdminComponent,
+    ContactoComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'my-app'}),
