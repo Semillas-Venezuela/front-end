@@ -15,6 +15,7 @@ export class AdminComponent implements OnInit {
     semillaActual: semillaInfo;
     todasSemillas: semillaInfo[];
     subscripcion;
+
     constructor(private serviceSemillas: SemillasService, private authService: AuthService, private router: Router) {
 
     }
@@ -22,11 +23,7 @@ export class AdminComponent implements OnInit {
     ngOnInit() {
 
         this.subscripcion = this.serviceSemillas.observableSemillas.subscribe(semillas => {
-            this.todasSemillas = semillas;
-            semillas.forEach(semillaIndividual => {
-                if (!semillaIndividual.published)
-                    this.semillasSinAprobar.push(semillaIndividual);
-            })
+            this.semillasSinAprobar = semillas;
         })
 
     }
@@ -72,7 +69,7 @@ export class AdminComponent implements OnInit {
                         venezuelaOcupation:x.venezuelaOcupation,
                         currentOcupation:x.currentOcupation,
                         device:x.device,
-                        dateCreated:x.dateCreated,
+                        dateCreated:new Date(x.dateCreated),
                         timesShared:x.timesShared
                     }
                     
@@ -97,7 +94,7 @@ export class AdminComponent implements OnInit {
                         venezuelaOcupation:x.venezuelaOcupation,
                         currentOcupation:x.currentOcupation,
                         device:x.device,
-                        dateCreated:x.dateCreated,
+                        dateCreated:new Date(x.dateCreated),
                         timesShared:x.timesShared
                     }
                 }
@@ -124,7 +121,9 @@ export class AdminComponent implements OnInit {
         let semillaAprobada = this.semillaActual
         semillaAprobada.published = true;   
         this.serviceSemillas.actualizarSemilla(semillaAprobada)
-        this.ngOnInit()
+        this.semillaActual = null;
+        this.ngOnInit();
+        
     }
     rechazar() {
         if(this.semillaActual.testimonialType == 'audio'){
@@ -135,5 +134,6 @@ export class AdminComponent implements OnInit {
             this.serviceSemillas.eliminarSemilla(this.semillaActual)
             this.ngOnInit()
         }
+        this.semillaActual = null;
     }
 }

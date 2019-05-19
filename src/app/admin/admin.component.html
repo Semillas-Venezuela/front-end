@@ -28,8 +28,8 @@
 
 
     </div>
-
-    <div class="contenido">
+    <app-admin-map *ngIf="semillaActual" [semillaAPintar]="semillaActual"></app-admin-map>
+    <div class="contenido" *ngIf="semillaActual">
         <div>
             <p>ID: {{semillaActual?._id}}</p>
             <p>Tipo: {{semillaActual?.testimonialType}}</p>
@@ -64,14 +64,13 @@
             <p>Ocupación en Venezuela: {{semillaActual?.currentOcupation}}</p>
             <p>Dispositivo:{{semillaActual?.device}} </p>
             <p>Dia de creación: {{semillaActual?.dateCreated| date}}</p>
-            <p>Lugar de creación: {{semillaActual?.place}}</p>
             <p>Veces compartido: {{semillaActual?.timesShared}}</p>
         </div>
     </div>
-    <div style="display:flex; justify-content: space-between">
+    <div *ngIf="semillaActual" style="display:flex; justify-content: space-between">
             <button class="button green" (click)="aprobar()">Aprovar</button>
             <button class="button red" (click)="rechazar()">Rechazar</button>
     </div>
 
-    <app-admin-map [semillaAPintar]="semillaActual"></app-admin-map>
+   
 </div>
