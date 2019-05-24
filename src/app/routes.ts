@@ -6,6 +6,7 @@ import { AdminComponent } from './admin/admin.component';
 import { LoginAdminComponent } from './admin/loginAdmin/login.component';
 import { AuthGuard } from './guards/admin.guard';
 import { ContactoComponent } from './contacto/contacto.component';
+import { PrivacyComponent } from './privacy/privacy.component';
 
 
 
@@ -18,5 +19,6 @@ export const routes = [
     { path: 'nosotros', component: NosotrosComponent, pathMatch:'full'},
     { path: 'approval', component: AdminComponent, pathMatch:'full', canActivate: [AuthGuard]},
     { path: 'adminLogin', component:LoginAdminComponent,pathMatch:'full'},
-    { path: 'contacto', component: ContactoComponent, pathMatch:'full'}
+    { path: 'contacto', component: ContactoComponent, pathMatch:'full'},
+    { path: 'privacy', component: PrivacyComponent, pathMatch:'full'}
   ]

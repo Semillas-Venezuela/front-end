@@ -38,6 +38,7 @@ import { MapAdminComponent } from './admin/map-admin/map-admin.component';
 import { LoginAdminComponent } from './admin/loginAdmin/login.component';
 import { AuthGuard } from './guards/admin.guard';
 import { ContactoComponent } from './contacto/contacto.component';
+import { PrivacyComponent } from './privacy/privacy.component';
 
 
 
@@ -58,7 +59,8 @@ import { ContactoComponent } from './contacto/contacto.component';
     AdminComponent,
     MapAdminComponent,
     LoginAdminComponent,
-    ContactoComponent
+    ContactoComponent,
+    PrivacyComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'my-app'}),
