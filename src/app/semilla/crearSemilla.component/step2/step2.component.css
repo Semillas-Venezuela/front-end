@@ -5,15 +5,14 @@
 }
 
 .busqueda{
-    width: 10vmin;
-    position: absolute;
-    min-height: 10vmin;
-    top: 0;
-    transition: width 400ms ease-in-out;
-}
-.busqueda.active{
     width: 100vw;
+    position: absolute;
+    height: 90vw;
+    top: 0;
+    background: rgba(255,0,0,0.3);
+    overflow: scroll;
 }
+
 .instructions{
     z-index: 100000;
     height: 90vh;
@@ -71,16 +70,15 @@
 }
 .search-bar{
     position: absolute;
-    left: 10vmin;
-    width: 0;
-    height: 10vmin;
-    background: #3e3e3e;
-    transition: width 300ms ease-in-out;
-}
-.search-bar.active{
     width: 100%;
     max-width: calc(100% - 10vmin);
+    height: 8vh;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    background: #3e3e3e;
+    
 }
+
 .mapboxgl-ctrl-geocoder input[type='text'] {
     background: transparent;
     outline: 0;
