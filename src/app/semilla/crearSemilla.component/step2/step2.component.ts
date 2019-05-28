@@ -32,15 +32,15 @@ export class Step2 implements OnInit {
     this.initializeMap();
     this.geocoder = new MapboxGeocoder({
       accessToken: environment['mapbox'].accessToken,
-      placeholder: "Buscar",
+      placeholder: "Buscar2",
       zoom: 16,
       flyTo: true
     });
     document.getElementById('geocoder').appendChild(this.geocoder.onAdd(this.map));
 
     this.geocoder.on('result', (ev) => {
-
-      
+      console.log(ev)
+          this.geocoding(ev.result.geometry.coordinates)
     });
   }
 
@@ -68,7 +68,7 @@ export class Step2 implements OnInit {
     });
     this.map.on('click', (event) => {
       const coordinates = [event.lngLat.lng, event.lngLat.lat]
-      this.geocoding(coordinates);
+      console.log("touchEvent:"+coordinates)
     })
     this.map.on("load", x=>{
      
@@ -178,10 +178,7 @@ export class Step2 implements OnInit {
     
   }
 
-  search() {
-    document.querySelector(".search-bar").classList.toggle("active")
-    document.querySelector(".busqueda").classList.toggle("active")
-  }
+
   step(valor) {
 
     let geoPoints = this.serviceSemillas.arrayToGeopoints(this.lineString)
