@@ -32,7 +32,7 @@ export class Step2 implements OnInit {
     this.initializeMap();
     this.geocoder = new MapboxGeocoder({
       accessToken: environment['mapbox'].accessToken,
-      placeholder: "Buscar2",
+      placeholder: "Buscar",
       zoom: 16,
       flyTo: true
     });
