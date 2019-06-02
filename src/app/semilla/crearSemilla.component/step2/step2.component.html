@@ -10,35 +10,18 @@
             
           </div>
 
-          <ul class="timeline" style="margin-top: 10vh; background: #fff;" >
-                <li class="timeline-item" *ngFor="let place of users | reverse">
-                   
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h3 class="timeline-title">{{place}}</h3>
-                        <p><i (click)="remove(place)" class="fas fa-times" style="color:red; font-size: 1.4em;"></i></p>
-                    </div>
-                </li>
-
-            </ul>
+         
     </div>
-    <div class="listed">
-        <div class="chevron " (click)="chevron()">
-                <i class="fas fa-chevron-up bounce" id="chevron"></i>
+    <div class="scroll-container">
+
+
+        <div class="inner-card" *ngFor="let place of users | reverse; let i = index">
+                {{place}}
+                {{i}}
         </div>
-        <ul class="timeline"  >
-                <li class="timeline-item" *ngFor="let place of users | reverse">
-                   
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h3 class="timeline-title">{{place}}</h3>
-                        <p><i (click)="remove(place)" class="fas fa-times" style="color:red; font-size: 1.4em;"></i></p>
-                    </div>
-                </li>
-
-            </ul>
-        
+        <div style="width: 5vw; background: transparent;"></div>
     </div>
+
 
     <div class="btn left" (click)="step(1)"> <i class="fas fa-arrow-left"></i></div>
     <div class="btn right" (click)="step(3)"> <i class="fas fa-arrow-right"></i></div>
