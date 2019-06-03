@@ -3,16 +3,6 @@
     height: 90vh;
 
 }
-
-.busqueda{
-    width: 100vw;
-    position: absolute;
-    height: 90vw;
-    top: 0;
-    background: rgba(255,0,0,0.3);
-    overflow: scroll;
-}
-
 .instructions{
     z-index: 100000;
     height: 90vh;
@@ -56,24 +46,23 @@
     background-color: var(--color-verde-quem);
     border-color: var(--color-verde);
   }
-.search{
-    width: 10vmin;
-    height: 10vmin;
-    background: var(--color-naranja);
+
+
+
+.busqueda{
+    width: 100vw;
     position: absolute;
+    height: 10vh;
+    top: 0;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.search:hover{
-    opacity: 0.9;
-}
 .search-bar{
     position: absolute;
-    width: 100%;
-    max-width: calc(100% - 10vmin);
-    height: 8vh;
-    border-radius: 10px;
+    width: 90%;
+    height: 48px;
+    border-radius: 5px;
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     background: #3e3e3e;
     
@@ -84,7 +73,7 @@
     outline: 0;
     border: 0;
     width: 100%;
-    height: 100%;
+    height: 8vh;
     font: 25px/25px helvetica;
     color: white;
     box-sizing: border-box;
@@ -103,6 +92,50 @@
     height: 90vh;
     z-index: 0;
 }
+
+.scroll-container{
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    z-index: 1000;
+    padding:0 10vw;
+    width: 100vw;
+    position: fixed; 
+    height: 40vh; 
+    bottom: -1vh;
+
+}
+.inner-card{
+  flex: 0 0 auto;
+  background: #3e3e3e;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  height: 30vh;
+  width:70vw;
+  margin-right: 10vw;
+  position: relative;
+  border-radius: 3px;
+  transition: all 0.3s ease-out;
+}
+.inner-card::after{
+  content: ' ';
+  -webkit-transform-origin: right;
+  width: 10vw;
+  border-color: #3e3e3e;
+  border-top: #3e3e3e dotted 8px;
+  position: absolute;
+  height: 0;
+  right: -10vw;
+  top: 50%;
+}
+.scroll-container > .inner-card:last-child {
+  margin-right: 10vw;
+}
+.scroll-container > div.inner-card :last-child {
+  display: none;
+}
+
 /* Basics */
 
 
@@ -176,6 +209,9 @@
     .btn{
         height: 6vmin;
         width: 6vmin;
+    }
+    .inner-card{
+      width: 30vw;
     }
 }
 
