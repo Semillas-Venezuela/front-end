@@ -1,4 +1,4 @@
-import {BrowserModule} from '@angular/platform-browser';
+import {BrowserModule, Meta} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
 import { LottieAnimationViewModule } from 'ng-lottie';
@@ -84,5 +84,12 @@ export class AppModule {
   constructor(private afs: AngularFirestore){
     const settings = {timestampsInSnapshots: true};
         afs.firestore.settings(settings);
+
+        setTimeout(function () {
+          let viewheight = window.innerHeight;
+          let viewwidth = window.innerWidth;
+          let viewport = document.querySelector("meta[name=viewport]");
+          viewport.setAttribute("content", "height=" + viewheight + "px, width=" + viewwidth + "px, initial-scale=1.0, minimal-ui, initial-scale=1, maximum-scale=1, user-scalable=no");
+      }, 300);
   }
  }
