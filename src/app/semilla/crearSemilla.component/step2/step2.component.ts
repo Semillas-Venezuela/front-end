@@ -97,9 +97,9 @@ export class Step2 implements OnInit {
         "id": "linea",
         "type": "line",
         "paint": {
-          "line-color": "yellow",
-          "line-opacity": 0.75,
-          "line-width": 5
+          "line-color": "#C7AF61",
+          "line-opacity": 1,
+          "line-width": 4
         },
         "source": "linea-pintada",
         "filter": ["==", "$type", "LineString"]
@@ -111,7 +111,7 @@ export class Step2 implements OnInit {
         "source": "linea-pintada",
         "paint": {
           "circle-radius": 6,
-          "circle-color": "#B42222"
+          "circle-color": "#e87554"
         },
         "filter": ["==", "$type", "Point"],
       });

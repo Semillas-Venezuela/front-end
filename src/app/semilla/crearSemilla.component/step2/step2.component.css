@@ -126,9 +126,15 @@
   color: #eee;
   display: flex;
   flex-direction: row;
+
 }
 .inner-card .text{
   width: 100%;
+  padding: 1vh 3vw;
+
+}
+.inner-card .text i{
+  color: #FF6B6B;
 }
 .inner-card .country{
   position: absolute;
@@ -138,6 +144,8 @@
   padding: 1vh 3vw;
   width: 35%;
   background: #3e3e3e;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
 }
 .inner-card:after{
   content: ' ';

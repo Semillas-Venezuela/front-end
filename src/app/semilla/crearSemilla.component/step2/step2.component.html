@@ -23,8 +23,8 @@
                             
                         </div>
                         <div class="country" >
-                            <img *ngIf="(place[place.length - 1 ].properties.short_code)" style="width: 100%" [src]=" '../../../../assets/images/flags/'+place[place.length - 1 ].properties.short_code+'.svg'">
-                            <img *ngIf="!(place[place.length - 1 ].properties.short_code)" style="width: 100%" [src]="'../../../../assets/images/questionmark.svg '">
+                            <img *ngIf="(place[place.length - 1 ].properties.short_code)" style="width: 100%;height: auto;" [src]=" '../../../../assets/images/flags/'+place[place.length - 1 ].properties.short_code+'.svg'">
+                            <img *ngIf="!(place[place.length - 1 ].properties.short_code)" style="width: 100%;height: auto;" [src]="'../../../../assets/images/questionmark.svg '">
                         </div>
                 </ng-container>
                 <ng-container *ngIf="!place[place.length - 1].place_name">
@@ -32,7 +32,7 @@
                             <p>{{i+1}}{{place}}</p>
                             <i class="fas fa-cross" (click)="remove(place)"></i></div>
                         <div class="country" >
-                            <img  style="width: 100%" [src]="'../../../../assets/images/questionmark.svg '">
+                            <img  style="width: 100%;height: auto;" [src]="'../../../../assets/images/questionmark.svg '">
                         </div>
                 </ng-container>
         </div>
