@@ -3,6 +3,9 @@
     height: 90vh;
 
 }
+.map{
+  filter: grayscale(35%)
+}
 .instructions{
     z-index: 100000;
     height: 90vh;
@@ -97,28 +100,46 @@
     display: flex;
     flex-wrap: nowrap;
     overflow-x: scroll;
+    overflow-y:hidden;
     -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x proximity;
+    scroll-snap-type: x mandatory;
+
     z-index: 1000;
     padding:0 10vw;
     width: 100vw;
     position: fixed; 
-    height: 40vh; 
+    height: 20vh; 
     bottom: -1vh;
 
 }
 .inner-card{
+  scroll-snap-align: center;
   flex: 0 0 auto;
   background: #3e3e3e;
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-  height: 30vh;
-  width:70vw;
+  height: 10vh;
+  width:55vw;
   margin-right: 10vw;
   position: relative;
   border-radius: 3px;
   transition: all 0.3s ease-out;
+  color: #eee;
+  display: flex;
+  flex-direction: row;
 }
-.inner-card::after{
+.inner-card .text{
+  width: 100%;
+}
+.inner-card .country{
+  position: absolute;
+  right: 0;
+  height: 100%;
+  display: flex;
+  padding: 1vh 3vw;
+  width: 35%;
+  background: #3e3e3e;
+}
+.inner-card:after{
   content: ' ';
   -webkit-transform-origin: right;
   width: 10vw;
@@ -129,11 +150,24 @@
   right: -10vw;
   top: 50%;
 }
-.scroll-container > .inner-card:last-child {
+.scroll-container > .inner-card:last-child{
   margin-right: 10vw;
+
 }
-.scroll-container > div.inner-card :last-child {
-  display: none;
+.scroll-container > .inner-card:only-child{
+  margin-right: 0;
+}
+.scroll-container > .inner-card:last-child:last-child:after {
+  content: ' ';
+  -webkit-transform-origin: right;
+  width: 10vw;
+  border-color: transparent;
+  border-top: transparent dotted 8px;
+  position: absolute;
+  height: 0;
+  right: -10vw;
+  top: 50%;
+  
 }
 
 /* Basics */

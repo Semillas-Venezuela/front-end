@@ -5,8 +5,8 @@
             <button  class="button green" (click)="instructions()">Llévame al mapa</button>
     </div>
     <div id="map" class="map"></div>
-    <div class="busqueda">
-        <div class="search-bar" id="geocoder">
+    <div class="busqueda" @fadeIn >
+        <div class="search-bar"  id="geocoder">
             
           </div>
 
@@ -15,11 +15,28 @@
     <div class="scroll-container">
 
 
-        <div class="inner-card" *ngFor="let place of users | reverse; let i = index">
-                {{place}}
-                {{i}}
+        <div class="inner-card" *ngFor="let place of users | reverse; let i = index" @fadeIn>
+                <ng-container *ngIf="place[place.length - 1].place_name">
+                        <div class="text">
+                            <p>{{i+1}}{{place[place.length - 1].place_name}}</p>
+                            <i class="fas fa-times" (click)="remove(place)"></i>
+                            
+                        </div>
+                        <div class="country" >
+                            <img *ngIf="(place[place.length - 1 ].properties.short_code)" style="width: 100%" [src]=" '../../../../assets/images/flags/'+place[place.length - 1 ].properties.short_code+'.svg'">
+                            <img *ngIf="!(place[place.length - 1 ].properties.short_code)" style="width: 100%" [src]="'../../../../assets/images/questionmark.svg '">
+                        </div>
+                </ng-container>
+                <ng-container *ngIf="!place[place.length - 1].place_name">
+                        <div class="text">
+                            <p>{{i+1}}{{place}}</p>
+                            <i class="fas fa-cross" (click)="remove(place)"></i></div>
+                        <div class="country" >
+                            <img  style="width: 100%" [src]="'../../../../assets/images/questionmark.svg '">
+                        </div>
+                </ng-container>
         </div>
-        <div style="width: 5vw; background: transparent;"></div>
+
     </div>
 
 

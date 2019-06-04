@@ -4,11 +4,24 @@ import * as mapboxgl from 'mapbox-gl';
 import * as MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import { semillaInfo } from '../../../models/semillaInfo';
 import { SemillasService } from '../../../services/semillas.service';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'step2',
   templateUrl: './step2.component.html',
-  styleUrls: ['./step2.component.css']
+  styleUrls: ['./step2.component.css'],
+  animations: [
+    trigger('fadeIn', [
+      transition(':enter', [
+        style({ opacity: '0' }),
+        animate('.5s ease-out', style({ opacity: '1' })),
+      ]),
+      transition(':leave', [
+        style({ opacity: '100' }),
+        animate('.5s ease-out', style({ opacity: '0' })),
+      ]),
+    ]),
+  ]
 })
 export class Step2 implements OnInit {
   @Input() semilla: semillaInfo;
@@ -21,6 +34,7 @@ export class Step2 implements OnInit {
   chev: boolean = false;
   users: any = [];
   lineString = []
+  loaded: boolean;
   constructor(public serviceSemillas:SemillasService) {
     mapboxgl.accessToken = environment['mapbox'].accessToken;
     this.map = mapboxgl.Map;
@@ -34,12 +48,12 @@ export class Step2 implements OnInit {
       accessToken: environment['mapbox'].accessToken,
       placeholder: "Buscar",
       zoom: 16,
-      flyTo: true
+      flyTo: false
     });
-    document.getElementById('geocoder').appendChild(this.geocoder.onAdd(this.map));
+    
 
     this.geocoder.on('result', (ev) => {
-      console.log(ev)
+
           this.geocoding(ev.result.geometry.coordinates)
     });
   }
@@ -71,7 +85,7 @@ export class Step2 implements OnInit {
       console.log("touchEvent:"+coordinates)
     })
     this.map.on("load", x=>{
-     
+      document.getElementById('geocoder').appendChild(this.geocoder.onAdd(this.map));
       this.map.addSource("linea-pintada", {
         "type": "geojson",
         "data": {
@@ -113,28 +127,41 @@ export class Step2 implements OnInit {
       latitude: coordinates[1],
       longitude: coordinates[0]
     }, (err, res) => {
-
+      console.log(res);
+      console.log(err);
       try {
         let place = res;
-        place = place.features.filter(obj => {
-          return obj.id.includes("place")
-        })[0].place_name
-        
-        this.users.push(place)
-        this.users = this.users.slice()
+        place = place.features
+        console.log(place[0])
+        if(this.users.length != 0 && place[0].place_name != this.users[this.users.length - 1][0].place_name){
+          console.log("diferent:"+place[0].place_name+"-"+this.users[this.users.length - 1][0].place_name)
+          this.users.push(place)
+          this.users = this.users.slice()
+        }else{
+          this.users.push(place)
+          this.users = this.users.slice()
+        }
       }
 
       catch (e) {
+        console.log(e)
         let place = res;
         place = `Lat: ${coordinates[1]} Lon: ${coordinates[0]}`
-
-        this.users.push(place)
-        this.users = this.users.slice()
+        if(place != this.users[this.users.length - 1]){
+          console.log("diferent:"+place+"-"+this.users[this.users.length - 1])
+          this.users.push(place)
+          this.users = this.users.slice()
+        }
       }
     })
+    if(coordinates != this.lineString[this.lineString.length - 1]){
+      console.log("diferent:"+JSON.stringify(coordinates)+"-"+JSON.stringify(this.lineString[this.lineString.length - 1]))
+      this.lineString.push(coordinates)
+      this.pintarLinea(this.lineString)
+    }
 
-    this.lineString.push(coordinates)
-    this.pintarLinea(this.lineString)
+    console.log(this.users)
+    console.log(this.lineString)
   }
   pintarLinea(coordinates) {
 

@@ -54,10 +54,21 @@ lottie-animation-view div svg g{
     box-sizing: border-box;
     padding: 0 20px;
 }
-.geocoder-pin-right,.geocoder-pin-right * {
-    display: none;
-    background: transparent;
-    border: none;
+.geocoder-pin-right,.geocoder-pin-right  {
+  position: absolute;
+  left: calc(100% - 10.2%);
+  background: #3e3e3e;
+  width: 10%;
+  height: 48px;
+  top: 0;
+  border-radius: 3px;
+  color: white;
+  }
+  .geocoder-pin-right,.geocoder-pin-right * {
+    width: 10%;
+    height: 100%;
+    color: crimson;
+
   }
 /* Suggestions */
 .mapboxgl-ctrl-geocoder ul {
