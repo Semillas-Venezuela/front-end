@@ -160,7 +160,7 @@ form{
 .btn{
     background: var(--color-verde);
     z-index: 1000;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     
     width: 10vmin;

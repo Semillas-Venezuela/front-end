@@ -54,9 +54,9 @@
 
 .busqueda{
     width: 100vw;
-    position: absolute;
+    position: fixed;
     height: 10vh;
-    top: 0;
+    top: 12vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -191,7 +191,7 @@
 .btn{
     background: var(--color-verde);
     z-index: 1000;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     
     width: 10vmin;
