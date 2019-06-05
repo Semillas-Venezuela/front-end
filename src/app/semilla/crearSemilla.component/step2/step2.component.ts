@@ -6,6 +6,13 @@ import { semillaInfo } from '../../../models/semillaInfo';
 import { SemillasService } from '../../../services/semillas.service';
 import { trigger, transition, style, animate } from '@angular/animations';
 
+export class place  {
+  coordinates: [number, number];
+  country: string;
+  place_name: string;
+  short_code: string;
+}
+
 @Component({
   selector: 'step2',
   templateUrl: './step2.component.html',
@@ -53,7 +60,6 @@ export class Step2 implements OnInit {
     
 
     this.geocoder.on('result', (ev) => {
-
           this.geocoding(ev.result.geometry.coordinates)
     });
   }
@@ -132,14 +138,17 @@ export class Step2 implements OnInit {
       try {
         let place = res;
         place = place.features
-        console.log(place[0])
-        if(this.users.length != 0 && place[0].place_name != this.users[this.users.length - 1][0].place_name){
-          console.log("diferent:"+place[0].place_name+"-"+this.users[this.users.length - 1][0].place_name)
+        place = this.createPlace(place);
+        console.log(place);
+        if(this.users.length != 0 && place.place_name != this.users[this.users.length - 1].place_name){
+          console.log("diferent:"+place.place_name+"-"+this.users[this.users.length - 1].place_name)
+          this.users.push(place)
+          this.users = this.users.slice()
+        }else if(this.users.length == 0) {
           this.users.push(place)
           this.users = this.users.slice()
         }else{
-          this.users.push(place)
-          this.users = this.users.slice()
+          console.log("repetidoooo|bouncing results")
         }
       }
 
@@ -204,7 +213,34 @@ export class Step2 implements OnInit {
 
     
   }
+  createPlace(features:any[]) : any{
+    // Crea objeto con las respuestas obtenidas de la Query
+      let retObj= {};
+    // Pro cada respuesta (separada por zonas, asigna unos respectivos valores)
+      features.forEach(obj=>{
 
+        if(obj.id.includes('place')){
+          // Valores del lugar elejido
+          retObj['place_name'] = obj.text;
+          retObj['coordinates'] = obj.center;
+        }else if(obj.id.includes('country')){
+          // Valores del Pais del lugar elejido
+          retObj['country'] = obj.text
+          if(!retObj['coordinates']){
+            retObj['coordinates'] = obj.center;
+          }
+          retObj['short_code'] = obj.properties.short_code;
+        }
+        if(obj.id.includes('region')){
+          // Valores de region
+          if(!retObj['coordinates']){
+            retObj['coordinates'] = obj.center;
+          }
+          retObj['place_name'] += retObj['place_name'] ? ", "+obj.text : obj.text;
+        }
+      })
+      return retObj;
+  }
 
   step(valor) {
 
@@ -251,4 +287,7 @@ export class Step2 implements OnInit {
   instructions(){
     document.querySelector(".instructions").classList.add("display-block")
   }
+
+
+
 }

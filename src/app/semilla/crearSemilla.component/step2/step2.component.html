@@ -12,22 +12,35 @@
 
          
     </div>
+    <h3 class="scroll-container-title" *ngIf="users.length > 0" @fadeIn> 
+        Tu ruta de migración
+    </h3>
     <div class="scroll-container">
 
 
-        <div class="inner-card" *ngFor="let place of users | reverse; let i = index" @fadeIn>
-                <ng-container *ngIf="place[place.length - 1].place_name">
+        <div class="inner-card" *ngFor="let place of users | reverse; let i = index" @fadeIn [id]="'card'+i">
+                <ng-container *ngIf="place.place_name">
+                        <ng-container [ngSwitch]="this.users.length - (i+1)">
+                                <span class="badage" *ngSwitchCase="this.users.length -1">Final</span>
+                                <span class="badage" *ngSwitchCase="0">Inicio</span>
+                                <span class="badage" *ngSwitchDefault>En Camino</span>
+                        </ng-container>
                         <div class="text">
-                            <p>{{i+1}}{{place[place.length - 1].place_name}}</p>
+                            <p>{{i+1}}{{place.place_name}}</p>
+                            <p>{{place.country}}</p>
                             <i class="fas fa-times" (click)="remove(place)"></i>
-                            
                         </div>
                         <div class="country" >
-                            <img *ngIf="(place[place.length - 1 ].properties.short_code)" style="width: 100%;height: auto;" [src]=" '../../../../assets/images/flags/'+place[place.length - 1 ].properties.short_code+'.svg'">
-                            <img *ngIf="!(place[place.length - 1 ].properties.short_code)" style="width: 100%;height: auto;" [src]="'../../../../assets/images/questionmark.svg '">
+                            <img *ngIf="(place.short_code)" style="width: 100%;height: auto;" [src]=" '../../../../assets/images/flags/'+place.short_code+'.svg' || '../../../../assets/images/questionmark.svg '">
+                            
                         </div>
                 </ng-container>
-                <ng-container *ngIf="!place[place.length - 1].place_name">
+                <ng-container *ngIf="!place.place_name">
+                        <ng-container [ngSwitch]="this.users.length - (i+1)">
+                                <span class="badage" *ngSwitchCase="this.users.length -1">Final</span>
+                                <span class="badage" *ngSwitchCase="0">Inicio</span>
+                                <span class="badage" *ngSwitchDefault>En Camino</span>
+                        </ng-container>
                         <div class="text">
                             <p>{{i+1}}{{place}}</p>
                             <i class="fas fa-cross" (click)="remove(place)"></i></div>
