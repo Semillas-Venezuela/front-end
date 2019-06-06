@@ -39,6 +39,8 @@ import { LoginAdminComponent } from './admin/loginAdmin/login.component';
 import { AuthGuard } from './guards/admin.guard';
 import { ContactoComponent } from './contacto/contacto.component';
 import { PrivacyComponent } from './privacy/privacy.component';
+import { MinValueValidator } from './directives/min-value-validator';
+import { MaxValueValidator } from './directives/max-value-validator';
 
 
 
@@ -56,6 +58,8 @@ import { PrivacyComponent } from './privacy/privacy.component';
     NosotrosComponent,
     LottieAnimationComponent,
     DebounceClickDirective,
+    MinValueValidator,
+    MaxValueValidator,
     AdminComponent,
     MapAdminComponent,
     LoginAdminComponent,
