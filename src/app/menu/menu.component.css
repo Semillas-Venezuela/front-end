@@ -28,7 +28,7 @@
     justify-content: space-evenly;
     align-items: center;
     font-size: 1.7em;
-    font-weight: bolder;
+    font-weight: normal;
 }
 .responsive-navbar.active{
     transform: translateX(100vw);

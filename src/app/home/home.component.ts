@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   public lottieConfig: Object;
   private anim: any;
   private animationSpeed: number = 1;
+
   constructor(public router: Router) {
  
     this.lottieConfig = {
