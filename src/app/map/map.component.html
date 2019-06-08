@@ -1,81 +1,208 @@
-
 <div id="contenedor-all" style="position: relative;">
-    <div id="map" class="map">
-       
-       
-    </div>
-    <aside class="aside" id="aside" >
-        <div style="width: 100%; display: flex; justify-content: space-between;">
-            
-            <div class="social" style="width: 5vmin; display:flex; justify-content: space-between">
-                <i class="fab fa-twitter" (click)="shareTwitter()"></i>
-                <i class="fab fa-facebook-f" (click)="shareFacebook()"></i>
-            </div>
-            <div class="close" (click)="closeAside()">
-                    <i class="fas fa-times"></i>
+        <div id="map" class="map"></div>
+
+        <aside *ngIf="currentSemilla && !desktop" class="aside" id="aside" @pullUp>
+                <div class="close" (click)="closeAside()">
+                        <i class="fas fa-times"></i>
                 </div>
-            
-        </div>
-        <div class="content">
-            <div *ngIf="currentSemilla?.testimonialType == 'text'">
-                    <p style="font-weight: bold; font-size: 1.1em">1.	Salir. ¿Cuándo saliste y como tomaste la decisión? Cuenta sobre las razones de tu salida, quien y que tuviste que dejar atrás y como te preparaste para la salida.</p>
-                    <p>{{currentSemilla?.textos[0]}}</p>
-            <p style="font-weight: bold; font-size: 1.1em">
-                    2.	En camino. ¿Cuáles fueron tus experiencias y dificultades en el camino? Cuenta sobre los desafíos prácticos y personales que tuviste que afrontar en el camino. 
-            
-            </p>
-                    <p>{{currentSemilla?.textos[1]}}</p>
-            <p style="font-weight: bold; font-size: 1.1em">
-                    3.	Llegando. ¿Cómo fue tu proceso de adaptación en el país al que llegaste? Cuenta sobre el apoyo y las dificultades que viviste y cómo vas construyendo una nueva vida. 
-            
-            </p>
-                    <p>{{currentSemilla?.textos[2]}}</p>
-            <p style="font-weight: bold; font-size: 1.1em">
-                    4.	El futuro. ¿Cuáles son las esperanzas para ti, tus seres queridos y para Venezuela? Cuenta sobre tus deseos, tanto para ti como para todos los venezolanos. 
-            
-            </p>
-                    <p>{{currentSemilla?.textos[3]}}</p>
-            </div>
-            <div  [ngClass]="{'display-none': currentSemilla?.testimonialType == 'text'}" >
-                      
-            <p>1.	Salir. ¿Cuándo saliste y como tomaste la decisión? Cuenta sobre las razones de tu salida, quien y que tuviste que dejar atrás y como te preparaste para la salida.</p>
-            <audio id="audio1" controls="controls"></audio>
-    <p>
-            2.	En camino. ¿Cuáles fueron tus experiencias y dificultades en el camino? Cuenta sobre los desafíos prácticos y personales que tuviste que afrontar en el camino. 
-    
-    </p>
-            <audio id="audio2" controls="controls"></audio>
-    <p>
-            3.	Llegando. ¿Cómo fue tu proceso de adaptación en el país al que llegaste? Cuenta sobre el apoyo y las dificultades que viviste y cómo vas construyendo una nueva vida. 
-    
-    </p>
-            <audio id="audio3" controls="controls"></audio>
-    <p>
-            4.	El futuro. ¿Cuáles son las esperanzas para ti, tus seres queridos y para Venezuela? Cuenta sobre tus deseos, tanto para ti como para todos los venezolanos. 
-    
-    </p>
-            <audio id="audio4" controls="controls"></audio>
-            </div>
-          
-        </div>
+                <span class="flecha">
+                        <i class="fas" (click)="abierto ? pushDownSemilla() : pushUpSemilla()"
+                                [class.fa-chevron-down]="abierto" [class.fa-chevron-up]="!abierto"></i>
+                </span>
+                <div class="map-detail">
+                        <div class="svg">
+                                        <i class="fas fa-volume-down" *ngIf="currentSemilla?.testimonialType == 'audio'"></i>
+                                        <i class="fas fa-language" *ngIf="currentSemilla?.testimonialType == 'text'"></i>
+                        </div>
+                        <div class="title">
+                                <h2>Testimonio de: {{ currentSemilla?.name }}</h2>
+                                <div class="icons">
+                                        <div>
+                                                <p> <i class="fas fa-map-marker-alt"></i> {{ currentSemilla?.place }}</p>
+                                                <p> <i class="fas fa-certificate"
+                                                                [class.revised]="currentSemilla?.published"></i>
+                                                        {{ currentSemilla?.published ? 'Verificado':'No Verificado'}}</p>
+                                        </div>
+                                        <div>
+                                                <p (click)="shareTwitter()"><i class="fab fa-twitter" ></i> Compartir en Twitter.</p>
+                                                <p (click)="shareFacebook()"><i class="fab fa-facebook-f" ></i> Compartir en Facebook.</p>
+                                        </div>
+
+                                </div>
+                        </div>
+
+                </div>
+
+                <div class="content">
+                        <div>
+                                <div *ngIf="currentSemilla?.testimonialType == 'text'">
+                                        <p style="font-weight: 600; font-size: 1.1em">
+                                                1. Salir. ¿Cuándo saliste y como tomaste la decisión? Cuenta sobre las
+                                                razones de tu salida, quien y que tuviste que dejar atrás y como te
+                                                preparaste para la salida.
+                                        </p>
+                                        <p style="font-weight: 300;">{{ (currentSemilla?.textos)[0] }}</p>
+                                        <p style="font-weight: 600; font-size: 1.1em">
+                                                2. En camino. ¿Cuáles fueron tus experiencias y dificultades en el
+                                                camino? Cuenta sobre los desafíos prácticos y personales que tuviste
+                                                que afrontar en el camino.
+                                        </p>
+                                        <p style="font-weight: 300;">{{ (currentSemilla?.textos)[1] }}</p>
+                                        <p style="font-weight: 600; font-size: 1.1em">
+                                                3. Llegando. ¿Cómo fue tu proceso de adaptación en el país al que
+                                                llegaste? Cuenta sobre el apoyo y las dificultades que viviste y cómo
+                                                vas construyendo una nueva vida.
+                                        </p>
+                                        <p style="font-weight: 300;">{{ (currentSemilla?.textos)[2] }}</p>
+                                        <p style="font-weight: 600; font-size: 1.1em">
+                                                4. El futuro. ¿Cuáles son las esperanzas para ti, tus seres queridos y
+                                                para Venezuela? Cuenta sobre tus deseos, tanto para ti como para todos
+                                                los venezolanos.
+                                        </p>
+                                        <p style="font-weight: 300;">{{ (currentSemilla?.textos)[3] }}</p>
+                                </div>
+                                <div [ngClass]="{
+                                  'display-none': currentSemilla?.testimonialType == 'text'
+                                }">
+                                        <p style="font-weight: 600; font-size: 1.1em">
+                                                1. Salir. ¿Cuándo saliste y como tomaste la decisión? Cuenta sobre las
+                                                razones de tu salida, quien y que tuviste que dejar atrás y como te
+                                                preparaste para la salida.
+                                        </p>
+                                        <audio [id]="'audio1'" controls="controls"></audio>
+                                        <p style="font-weight: 600; font-size: 1.1em">
+                                                2. En camino. ¿Cuáles fueron tus experiencias y dificultades en el
+                                                camino? Cuenta sobre los desafíos prácticos y personales que tuviste
+                                                que afrontar en el camino.
+                                        </p>
+                                        <audio [id]="'audio2'" controls="controls"></audio>
+                                        <p style="font-weight: 600; font-size: 1.1em">
+                                                3. Llegando. ¿Cómo fue tu proceso de adaptación en el país al que
+                                                llegaste? Cuenta sobre el apoyo y las dificultades que viviste y cómo
+                                                vas construyendo una nueva vida.
+                                        </p>
+                                        <audio [id]="'audio3'" controls="controls"></audio>
+                                        <p style="font-weight: 600; font-size: 1.1em">
+                                                4. El futuro. ¿Cuáles son las esperanzas para ti, tus seres queridos y
+                                                para Venezuela? Cuenta sobre tus deseos, tanto para ti como para todos
+                                                los venezolanos.
+                                        </p>
+                                        <audio [id]="'audio4'" controls="controls"></audio>
+                                </div>
+                        </div>
+
+                </div>
+        </aside>
+        <aside *ngIf="desktop" class="aside-desktop" id="aside-desktop" >
+                        <div class="close" (click)="closeAside()">
+                                <i class="fas fa-times"></i>
+                        </div>
+                        <div class="map-detail">
+                                <div class="svg">
+                                                <i class="fas fa-volume-down" *ngIf="currentSemilla?.testimonialType == 'audio'"></i>
+                                                <i class="fas fa-language" *ngIf="currentSemilla?.testimonialType == 'text'"></i>
+                                </div>
+                                <div class="title">
+                                        <h2>Testimonio de: {{ currentSemilla?.name }}</h2>
+                                        <div class="icons">
+                                                <div>
+                                                        <p> <i class="fas fa-map-marker-alt"></i> {{ currentSemilla?.place }}</p>
+                                                        <p> <i class="fas fa-certificate"
+                                                                        [class.revised]="currentSemilla?.published"></i>
+                                                                {{ currentSemilla?.published ? 'Verificado':'No Verificado'}}</p>
+                                                </div>
+                                                <div>
+                                                        <p (click)="shareTwitter()"><i class="fab fa-twitter" ></i> Compartir en Twitter.</p>
+                                                        <p (click)="shareFacebook()"><i class="fab fa-facebook-f" ></i> Compartir en Facebook.</p>
+                                                </div>
         
-    </aside>
-    <div id="i12345" style="position:fixed; height: 90vh; top:10vh; width: 100vw; background: var(--color-amarillo);display: flex; flex-direction: column; justify-content:center; align-items: center;" >
-            <i class="fas fa-spinner fa-spin" style="font-size: 3em;"></i>
-            <p style="font-size: 1.5em;">Cargando...</p>
-    </div>
-    <div id="start-info" style="position:fixed; height: 90vh; top:10vh; width: 100vw; background: var(--color-amarillo);display: none; flex-direction: column; justify-content:center; align-items: center; opacity: 0.85; padding: 0 10vw; text-align: center;" >
-            <i class="fas fa-info" style="font-size: 2em;"></i>
-            <p style="font-size: 1.3em; font-weight: bolder">Bienvenido al mapa</p><br>
-            <p style="font-size: 1em;">En el mapa encontrarás los testimonios representados
-                        como semillas. </p><br>
-            <p style="font-size: 1em;">Para descubrirlos solo tienes que elegir
-                        una! Te invitamos a compartir en Facebook o Twitter
-                        los testimonios que más te cautiven, para así dignificar
-                        estas historias.</p><br>
-            
-            <button class="button green" (click)="toggleOverlay()"> Listo </button>
-    </div>
+                                        </div>
+                                </div>
+        
+                        </div>
+        
+                        <div class="content">
+                                <div>
+                                        <div *ngIf="currentSemilla?.testimonialType == 'text'">
+                                                <p style="font-weight: 600; font-size: 1.1em">
+                                                        1. Salir. ¿Cuándo saliste y como tomaste la decisión? Cuenta sobre las
+                                                        razones de tu salida, quien y que tuviste que dejar atrás y como te
+                                                        preparaste para la salida.
+                                                </p>
+                                                <p style="font-weight: 300;">{{ (currentSemilla?.textos)[0] }}</p>
+                                                <p style="font-weight: 600; font-size: 1.1em">
+                                                        2. En camino. ¿Cuáles fueron tus experiencias y dificultades en el
+                                                        camino? Cuenta sobre los desafíos prácticos y personales que tuviste
+                                                        que afrontar en el camino.
+                                                </p>
+                                                <p style="font-weight: 300;">{{ (currentSemilla?.textos)[1] }}</p>
+                                                <p style="font-weight: 600; font-size: 1.1em">
+                                                        3. Llegando. ¿Cómo fue tu proceso de adaptación en el país al que
+                                                        llegaste? Cuenta sobre el apoyo y las dificultades que viviste y cómo
+                                                        vas construyendo una nueva vida.
+                                                </p>
+                                                <p style="font-weight: 300;">{{ (currentSemilla?.textos)[2] }}</p>
+                                                <p style="font-weight: 600; font-size: 1.1em">
+                                                        4. El futuro. ¿Cuáles son las esperanzas para ti, tus seres queridos y
+                                                        para Venezuela? Cuenta sobre tus deseos, tanto para ti como para todos
+                                                        los venezolanos.
+                                                </p>
+                                                <p style="font-weight: 300;">{{ (currentSemilla?.textos)[3] }}</p>
+                                        </div>
+                                        <div [ngClass]="{
+                                          'display-none': currentSemilla?.testimonialType == 'text'
+                                        }">
+                                                <p style="font-weight: 600; font-size: 1.1em">
+                                                        1. Salir. ¿Cuándo saliste y como tomaste la decisión? Cuenta sobre las
+                                                        razones de tu salida, quien y que tuviste que dejar atrás y como te
+                                                        preparaste para la salida.
+                                                </p>
+                                                <audio [id]="'audio1'" controls="controls"></audio>
+                                                <p style="font-weight: 600; font-size: 1.1em">
+                                                        2. En camino. ¿Cuáles fueron tus experiencias y dificultades en el
+                                                        camino? Cuenta sobre los desafíos prácticos y personales que tuviste
+                                                        que afrontar en el camino.
+                                                </p>
+                                                <audio [id]="'audio2'" controls="controls"></audio>
+                                                <p style="font-weight: 600; font-size: 1.1em">
+                                                        3. Llegando. ¿Cómo fue tu proceso de adaptación en el país al que
+                                                        llegaste? Cuenta sobre el apoyo y las dificultades que viviste y cómo
+                                                        vas construyendo una nueva vida.
+                                                </p>
+                                                <audio [id]="'audio3'" controls="controls"></audio>
+                                                <p style="font-weight: 600; font-size: 1.1em">
+                                                        4. El futuro. ¿Cuáles son las esperanzas para ti, tus seres queridos y
+                                                        para Venezuela? Cuenta sobre tus deseos, tanto para ti como para todos
+                                                        los venezolanos.
+                                                </p>
+                                                <audio [id]="'audio4'" controls="controls"></audio>
+                                        </div>
+                                </div>
+        
+                        </div>
+                </aside>
+
+        <div id="i12345"
+                style="position:fixed; height: 90vh; top:10vh; width: 100vw; background: var(--color-amarillo);display: flex; flex-direction: column; justify-content:center; align-items: center;">
+                <i class="fas fa-spinner fa-spin" style="font-size: 3em;"></i>
+                <p style="font-size: 1.5em;">Cargando...</p>
+        </div>
+        <div id="start-info"
+                style="position:fixed; height: 90vh; top:10vh; width: 100vw; background: var(--color-amarillo);display: none; flex-direction: column; justify-content:center; align-items: center; opacity: 0.85; padding: 0 10vw; text-align: center;">
+                <i class="fas fa-info" style="font-size: 2em;"></i>
+                <p style="font-size: 1.3em; font-weight: 600er">Bienvenido al mapa</p>
+                <br />
+                <p style="font-size: 1em;">
+                        En el mapa encontrarás los testimonios representados como semillas.
+                </p>
+                <br />
+                <p style="font-size: 1em;">
+                        Para descubrirlos solo tienes que elegir una! Te invitamos a compartir en
+                        Facebook o Twitter los testimonios que más te cautiven, para así
+                        dignificar estas historias.
+                </p>
+                <br />
+
+                <button class="button green" (click)="toggleOverlay()">Listo</button>
+        </div>
 </div>
-
-
