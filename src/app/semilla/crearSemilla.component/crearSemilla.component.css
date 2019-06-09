@@ -55,6 +55,7 @@ p.centrado{
     display: flex;
     justify-content: center;
     align-items: center;
+    word-break: break-all;
   }
   .step4 p{
     margin: 0 10vw;
