@@ -11,12 +11,12 @@ export class AuthGuard implements CanActivate {
     canActivate(
         next: ActivatedRouteSnapshot,
         state: RouterStateSnapshot): Observable<boolean> | boolean {
-        if (this.auth.isAdmin()) { console.log("Eres Admin"); return true; }
+        if (this.auth.isAdmin()) {  return true; }
         else if (!this.auth.isAdmin() && this.auth.llamadoDesdeStep) {
             this.auth.llamadoDesdeStep = false;
             return false
         } else {
-            console.log('access denied!')
+
             this.router.navigate(['/adminLogin']);
             return false;
         }

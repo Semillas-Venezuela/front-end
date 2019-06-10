@@ -88,7 +88,7 @@ export class Step2 implements OnInit {
     });
     this.map.on('click', (event) => {
       const coordinates = [event.lngLat.lng, event.lngLat.lat]
-      console.log("touchEvent:"+coordinates)
+
     })
     this.map.on("load", x=>{
       document.getElementById('geocoder').appendChild(this.geocoder.onAdd(this.map));
@@ -133,44 +133,43 @@ export class Step2 implements OnInit {
       latitude: coordinates[1],
       longitude: coordinates[0]
     }, (err, res) => {
-      console.log(res);
-      console.log(err);
+
+
       try {
         let place = res;
         place = place.features
         place = this.createPlace(place);
-        console.log(place);
+
         if(this.users.length != 0 && place.place_name != this.users[this.users.length - 1].place_name){
-          console.log("diferent:"+place.place_name+"-"+this.users[this.users.length - 1].place_name)
+
           this.users.push(place)
           this.users = this.users.slice()
         }else if(this.users.length == 0) {
           this.users.push(place)
           this.users = this.users.slice()
         }else{
-          console.log("repetidoooo|bouncing results")
+
         }
       }
 
       catch (e) {
-        console.log(e)
+
         let place = res;
         place = `Lat: ${coordinates[1]} Lon: ${coordinates[0]}`
         if(place != this.users[this.users.length - 1]){
-          console.log("diferent:"+place+"-"+this.users[this.users.length - 1])
+
           this.users.push(place)
           this.users = this.users.slice()
         }
       }
     })
     if(coordinates != this.lineString[this.lineString.length - 1]){
-      console.log("diferent:"+JSON.stringify(coordinates)+"-"+JSON.stringify(this.lineString[this.lineString.length - 1]))
+      
       this.lineString.push(coordinates)
       this.pintarLinea(this.lineString)
     }
 
-    console.log(this.users)
-    console.log(this.lineString)
+
   }
   pintarLinea(coordinates) {
 
@@ -245,7 +244,7 @@ export class Step2 implements OnInit {
   step(valor) {
     if(!(valor == 1))
       this.semilla.place = this.users[this.users.length -1].place_name;
-    console.log(this.semilla.place);
+
     let geoPoints = this.serviceSemillas.arrayToGeopoints(this.lineString)
     this.semilla.geoInfo= {
       "id": "geopoints",

@@ -35,9 +35,9 @@ export class Step1 implements OnInit {
         date = new Date(`${this.day}/0${this.month}/${this.year}`).toString()
       }
       
-      console.log(date);
+
       this.semilla.birthDate = date;
-      console.log(this.semilla);
+
       
       this.semilla.step = value;
       this.semillaChange.emit(this.semilla);

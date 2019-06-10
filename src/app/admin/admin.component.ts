@@ -35,7 +35,7 @@ export class AdminComponent implements OnInit {
     }
     logout() {
         this.router.navigate(["/adminLogin"])
-        console.log("cerrando sesión")
+
         this.authService.logout();
         this.authService.isAdminVar = false;
     }

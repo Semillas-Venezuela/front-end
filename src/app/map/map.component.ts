@@ -151,7 +151,7 @@ export class MapComponent implements OnInit, AfterViewInit {
                 );
 
                 if (coordenadasMapeadas.length == 0) {
-                  console.log(JSON.stringify(semilla));
+
                   return;
                 }
 
@@ -174,7 +174,7 @@ export class MapComponent implements OnInit, AfterViewInit {
     this.serviceSemillas.obtenerSemilla(idSemilla).subscribe(data => {
       this.currentSemilla = data;
       this.cdRef.detectChanges();
-      console.log(this.currentSemilla);
+
       data.geoInfo.source.data.geometry.coordinates = this.serviceSemillas.geoPointsToArray(
         data.geoInfo.source.data.geometry.coordinates
       );
@@ -200,7 +200,7 @@ export class MapComponent implements OnInit, AfterViewInit {
       this.location.replaceState(`/map/${idSemilla}`);
       
       if(this.desktop){
-        console.log(this.desktop);
+
         
         document.getElementById("aside-desktop").classList.add("aside-desktop-active")
       }
@@ -258,6 +258,7 @@ export class MapComponent implements OnInit, AfterViewInit {
       },
       function(response) {}
     );
+ 
   }
   shareTwitter() {
     window.open(
@@ -266,5 +267,5 @@ export class MapComponent implements OnInit, AfterViewInit {
       "twitter-popup",
       "height=350,width=600"
     );
-  }
+    }
 }

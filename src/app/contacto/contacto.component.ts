@@ -16,9 +16,9 @@ export class ContactoComponent implements OnInit{
     }
     send(){
         
-        console.log("Enviado")
-        console.log(this.formInfo)
-        this.semillaService.anadirMensaje(this.formInfo).then(x=>console.log(x))
+
+
+        this.semillaService.anadirMensaje(this.formInfo).then(x=>{})
         
     }
 
