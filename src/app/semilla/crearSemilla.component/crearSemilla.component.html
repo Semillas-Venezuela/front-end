@@ -21,6 +21,6 @@
 <step3 class="content" *ngIf="semilla.step == 3" [(semilla)]="semilla"></step3>
 <div class="content step4" *ngIf="semilla.step ==4">
         <p>
-                Acabaste, puedes ver tu testimonio en <a href="https://semillasvenezuela.org/map/{{semilla.userId}}" style="color: var(--color-naranja)">{{'semillasvenezuela.org/map/'+semilla.userId}}</a>.
+                Acabaste, puedes ver tu testimonio en <a routerLink="../map/{{semilla._id}}" style="color: var(--color-naranja)">{{'semillasvenezuela.org/map/'+semilla._id}}</a>.
         </p> 
 </div>
