@@ -1,5 +1,7 @@
 <div class="contenedor">
-    <button class="button-round" (click)="toggleSidebar()"><i class="fas fa-times" style="cursor: pointer;"></i>
+    <button class="button-round" (click)="toggleSidebar()">
+        <i class="fas fa-times" style="cursor: pointer;" *ngIf="abierto"></i>
+        <i class="fas fa-bars" style="cursor: pointer;" *ngIf="!abierto"></i>
     </button>
     <div class="barraLateral" id="sidebar">
         <div style="position: relative;display: flex;
@@ -13,12 +15,24 @@
                 <ol>
                     <li style="font-weight: bold; text-transform: uppercase; font-size:0.8em; cursor: pointer;"
                         *ngFor="let semilla of semillasSinAprobar; let i = index" (click)="selectSemilla(semilla)">
-                        {{semilla.name}}</li>
+                        {{semilla.name}} <i *ngIf="semilla.published" class="fas fa-certificate"></i></li>
 
                 </ol>
 
             </div>
-
+            <div class="semillasList">
+                    <div style="display:flex;justify-content: space-between;">
+                        <p style="font-size: 1.5em; font-weight: bold; text-transform: uppercase;" class="title">Mensajes
+                        </p>
+                    </div><br>
+                    <ol>
+                        <li style="font-weight: bold; text-transform: uppercase; font-size:0.8em; cursor: pointer;"
+                            *ngFor="let mensaje of mensajes; let i = index" (click)="selectMensaje(mensaje)">
+                            {{mensaje.email}} </li>
+    
+                    </ol>
+    
+                </div>
             <div class="logOut">
                 <button class="button yellow" (click)="descargarCSV()"><i class="fas fa-file-download"></i> Descarga todos los testimonios en
                     CSV</button>
@@ -71,6 +85,18 @@
             <button class="button green" (click)="aprobar()">Aprovar</button>
             <button class="button red" (click)="rechazar()">Rechazar</button>
     </div>
-
+    <div class="contenido" style="width:100vw;display: flex; justify-content: center; flex-direction: column;" *ngIf="mensajeActual">
+        <h2>Nombre</h2>
+            <p>{{mensajeActual.name}}</p>
+        <h2>Email</h2>
+        <a href="mailto:{{mensajeActual.email}}?Subject=Semillas%20Venezuela" style="color:var(--color-naranja);">{{mensajeActual.email}}</a>
+        <h2>Pais</h2>
+        <p>{{mensajeActual.pais}}</p>
+        <h2>Mensaje</h2>
+        <p>{{mensajeActual.mensaje}}</p>
+    </div>
+    <div class="contenido" *ngIf="!semillaActual && !mensajeActual">
+        Abre el menu y elije un testimonio o mensaje a evaluar.
+    </div>
    
 </div>

@@ -14,8 +14,11 @@ export class AdminComponent implements OnInit {
     semillasSinAprobar: semillaInfo[] = new Array();
     semillaActual: semillaInfo;
     todasSemillas: semillaInfo[];
+    mensajes;
+    mensajesSubs
     subscripcion;
-
+    abierto = false;
+    mensajeActual;
     constructor(private serviceSemillas: SemillasService, private authService: AuthService, private router: Router) {
 
     }
@@ -23,15 +26,27 @@ export class AdminComponent implements OnInit {
     ngOnInit() {
 
         this.subscripcion = this.serviceSemillas.observableSemillas.subscribe(semillas => {
-            this.semillasSinAprobar = semillas;
+            
+            this.semillasSinAprobar = semillas.sort((a,b)=>{
+                return (a.published === b.published)? 0 : a.published? -1 : 1;
+            });
+        })
+        this.mensajesSubs = this.serviceSemillas.observableMensajes.subscribe(mensajes=>{
+            this.mensajes = mensajes;
         })
 
     }
 
     selectSemilla(semilla) {
         this.toggleSidebar()
+        this.mensajeActual = null;
         this.semillaActual = semilla;
 
+    }
+    selectMensaje(mensaje){
+        this.toggleSidebar()
+        this.semillaActual = null;
+        this.mensajeActual = mensaje;
     }
     logout() {
         this.router.navigate(["/adminLogin"])
@@ -41,12 +56,13 @@ export class AdminComponent implements OnInit {
     }
     toggleSidebar() {
         document.getElementById("sidebar").classList.toggle("active")
+        this.abierto = !this.abierto;
     }
 
 
     descargarCSV() {
         
-       let data = this.todasSemillas.map(x=>{
+       let data = this.semillasSinAprobar.map(x=>{
             {  
                 if(x.testimonialType == 'audio'){
                     return {
@@ -64,13 +80,14 @@ export class AdminComponent implements OnInit {
                         name:x.name,
                         gender: x.gender,
                         age:x.age,
-                        martialStatus:x.martialStatus,
                         educativeLevel:x.educativeLevel,
                         venezuelaOcupation:x.venezuelaOcupation,
                         currentOcupation:x.currentOcupation,
                         device:x.device,
                         dateCreated:new Date(x.dateCreated),
-                        timesShared:x.timesShared
+                        birthDate: x.birthDate,
+                        isVenezuelan: x.isVenezuelan,
+
                     }
                     
                 }else{
@@ -89,13 +106,14 @@ export class AdminComponent implements OnInit {
                         name:x.name,
                         gender: x.gender,
                         age:x.age,
-                        martialStatus:x.martialStatus,
                         educativeLevel:x.educativeLevel,
                         venezuelaOcupation:x.venezuelaOcupation,
                         currentOcupation:x.currentOcupation,
                         device:x.device,
                         dateCreated:new Date(x.dateCreated),
-                        timesShared:x.timesShared
+                        birthDate: x.birthDate,
+                        isVenezuelan: x.isVenezuelan,
+
                     }
                 }
                 
