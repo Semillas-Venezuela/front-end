@@ -29,7 +29,7 @@
 
     <div *ngIf="semilla.testimonialType == 'audio'">
         <div class="audio" *ngIf="!advance[0]">
-            <h2></h2>
+            <h2>Salir:</h2>
             <h3>¿Cuándo saliste y como tomaste la decisión? Cuenta sobre las razones de tu salida, quien y
                 que tuviste que dejar atrás y como te preparaste para la salida.</h3>
             <div class="c100" id="audio">
@@ -50,7 +50,7 @@
                 (click)="advance[0]=true">siguiente</button>
         </div>
         <div class="audio" *ngIf="advance[0] && !advance[1]">
-            <h2>Salir:</h2>
+            <h2>En camino:</h2>
             <h3>¿Cuáles fueron tus experiencias y dificultades en el camino? Cuenta sobre los desafíos
                 prácticos y personales que tuviste que afrontar en el camino. </h3>
             <div class="c100" id="audio">

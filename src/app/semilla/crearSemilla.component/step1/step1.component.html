@@ -12,7 +12,54 @@
                 #name="ngModel" />
         </div>
     </div>
-   
+    <div class="form-group radio-group">
+        <b>¿Eres Venezolano? <span class="asterisco">*</span></b>
+
+
+        <ul class="list">
+            <li class="list__item">
+                <label class="label--radio">
+                    <input type="radio" class="radio" required [(ngModel)]="semilla.isVenezuelan" #isVenezuelan="ngModel" name="isVenezuelan"
+                        value="true" checked="checked" [checked]="true">
+                    <span>Si</span>
+                </label>
+            </li>
+            <li class="list__item">
+                <label class="label--radio">
+                    <input type="radio" class="radio" required [(ngModel)]="semilla.isVenezuelan" #isVenezuelan="ngModel" name="isVenezuelan"
+                        value="false">
+                    <span>No</span>
+                </label>
+            </li>
+
+        </ul>
+
+
+    </div>
+
+
+    <div class="form-group" style="margin-bottom: 2vh;">
+            <label>Ingresa tu fecha de nacimiento <span class="asterisco">*</span></label>
+            <div style="display: flex; justify-content: space-around; width: 80%">
+                <div class="style-input" style="display: inline-block; width: 15vw;" >
+                    <input placeholder="DD" type="number" [min]="1" [max]="31" id="day" required [(ngModel)]="day" name="day"
+                        #dayVal="ngModel" />
+                </div> 
+                
+                <div class="style-input" style="display: inline-block; width: 15vw;" >
+                    <input placeholder="MM" type="number" [min]="1" [max]="12" id="month" required [(ngModel)]="month" name="month"
+                        #monthVal="ngModel" />
+                </div>
+                
+                <div class="style-input" style="display: inline-block; width: 25vw;" >
+                    <input placeholder="YYYY" type="number" [min]="1900" [max]="this.maxYear" id="year" required [(ngModel)]="year" name="year"
+                        #yearVal="ngModel" />
+                </div>
+            </div>
+            <span *ngIf="!yearVal.valid && yearVal.dirty" style="color: var(--color-naranja)">Pon un año válido.</span>
+            <span *ngIf="!monthVal.valid && monthVal.dirty" style="color: var(--color-naranja)">Pon un mes válido.</span>
+            <span *ngIf="!dayVal.valid && dayVal.dirty" style="color: var(--color-naranja)">Pon un día válido.</span>
+        </div>
     <!-- Género -->
     <div class="form-group radio-group">
         <b>Género <span class="asterisco">*</span></b>
@@ -46,7 +93,7 @@
     </div>
     <!-- Rango de edad -->
     <div class="form-group radio-group">
-        <b>Rango de Edad <span class="asterisco">*</span></b>
+        <b>Rango de edad <span class="asterisco">*</span></b>
 
 
         <ul class="list">
@@ -124,8 +171,8 @@
                    
                    
               </div> -->
-              <div class="form-group radio-group">
-                    <b>Estado Civil</b>
+              <!-- <div class="form-group radio-group">
+                    <b>Estado civil</b>
             
             
                     <ul class="list">
@@ -159,7 +206,7 @@
                     </ul>
             
             
-                </div>
+                </div> -->
     <!-- Nivel Educativo -->
     <!-- <div class="form-group radio-group"  >
                     <b>Nivel Educativo</b>
@@ -189,7 +236,7 @@
                    
               </div> -->
               <div class="form-group radio-group">
-                    <b>Nivel Educativo</b>
+                    <b>Nivel educativo</b>
             
             
                     <ul class="list">
@@ -306,7 +353,7 @@
                 
                     </div>
                     <div class="form-group radio-group">
-                            <b>Ocupación en su país Actual</b>
+                            <b>Ocupación en su país actual</b>
                     
                     
                             <ul class="list">

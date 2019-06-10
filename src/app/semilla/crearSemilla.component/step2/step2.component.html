@@ -1,7 +1,11 @@
 <div class="contenedor">
     <div class="instructions ">
         <p>Cada una de las etapas en nuestros caminos nos marcó y contribuyó a quien somos hoy en día.
-             Con esta aplicación, puedes reproducir tu ruta de migración en un mapa global.</p>
+             Con esta aplicación, puedes reproducir tu ruta de migración en un mapa global.
+            <br> <br>
+            Encontrarás una barra de busqueda en donde tendras que poner los lugares por los que pasaste durante tu camino, en la parte de abajo y en el mapa podras ver en tiempo real tu ruta de exilio. <br> <br>
+            
+            </p>
             <button  class="button green" (click)="instructions()">Llévame al mapa</button>
     </div>
     <div id="map" class="map"></div>
@@ -26,7 +30,7 @@
                                 <span class="badage" *ngSwitchDefault>En Camino</span>
                         </ng-container>
                         <div class="text">
-                            <p>{{i+1}}{{place.place_name}}</p>
+                            <p>{{place.place_name}}</p>
                             <p>{{place.country}}</p>
                             <i class="fas fa-times" (click)="remove(place)"></i>
                         </div>
@@ -42,8 +46,9 @@
                                 <span class="badage" *ngSwitchDefault>En Camino</span>
                         </ng-container>
                         <div class="text">
-                            <p>{{i+1}}{{place}}</p>
-                            <i class="fas fa-cross" (click)="remove(place)"></i></div>
+                            <p>{{place}}</p>
+                            <i class="fas fa-cross" (click)="remove(place)"></i>
+                        </div>
                         <div class="country" >
                             <img  style="width: 100%;height: auto;" [src]="'../../../../assets/images/questionmark.svg '">
                         </div>
@@ -54,7 +59,7 @@
 
 
     <div class="btn left" (click)="step(1)"> <i class="fas fa-arrow-left"></i></div>
-    <div class="btn right" (click)="step(3)"> <i class="fas fa-arrow-right"></i></div>
+    <button class="btn right" (click)="step(3)" [disabled]="!(this.lineString.length>1)"> <i class="fas fa-arrow-right"></i></button>
 </div>
 
 

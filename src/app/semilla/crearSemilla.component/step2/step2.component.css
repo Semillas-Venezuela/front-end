@@ -116,7 +116,7 @@
 .scroll-container-title{ 
   text-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   font-size: 1.2em;
-  font-weight: 900;
+  font-weight: 500;
   text-transform: uppercase;
   z-index: 160;
   position: fixed;
@@ -157,12 +157,17 @@
   vertical-align: middle;
   background-color: #777;
   border-radius: 2vh;
+  z-index: 1000;
 }
 .inner-card .text{
   width: 100%;
   padding: 1vh 3vw;
   overflow: hidden;
   word-wrap: break-word;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  white-space: nowrap;
 }
 .inner-card .text i{
   color: #FF6B6B;
@@ -519,3 +524,6 @@
   }
   
 
+  .btn:disabled{
+    background: #798188;
+}

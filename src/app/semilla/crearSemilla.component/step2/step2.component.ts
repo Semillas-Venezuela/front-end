@@ -243,7 +243,9 @@ export class Step2 implements OnInit {
   }
 
   step(valor) {
-
+    if(!(valor == 1))
+      this.semilla.place = this.users[this.users.length -1].place_name;
+    console.log(this.semilla.place);
     let geoPoints = this.serviceSemillas.arrayToGeopoints(this.lineString)
     this.semilla.geoInfo= {
       "id": "geopoints",
@@ -264,8 +266,9 @@ export class Step2 implements OnInit {
           "line-cap": "round"
       },
       "paint": {
-          "line-color": "red",
-          "line-width": 3
+        "line-color": "#C7AF61",
+        "line-opacity": 1,
+        "line-width": 4
       }
   };
     this.semilla.step = valor;
