@@ -1,12 +1,13 @@
 import {Component,OnInit} from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-declare var ga: Function;
+declare var ga;
 @Component({
   selector: 'app-root',
   templateUrl:'./app.component.html',
-  styles: ['./app.component.css']
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  cookie:boolean;
   constructor(public router: Router) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
@@ -14,6 +15,12 @@ export class AppComponent implements OnInit {
         ga('send', 'pageview');
       }
     });
+
+    if(!localStorage.getItem('cookies')){
+      this.cookie= false;
+    }else{
+      this.cookie = true;
+    }
   }
     ngOnInit(){
       var fixed = document.getElementById('fixed');
@@ -23,5 +30,10 @@ export class AppComponent implements OnInit {
         e.preventDefault();
 
       }, false);
+    }
+
+    cookieAproval(){
+        localStorage.setItem("cookie", "true");
+        this.cookie= true;
     }
 }

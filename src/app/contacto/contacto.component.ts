@@ -15,11 +15,7 @@ export class ContactoComponent implements OnInit{
         this.formInfo= {};
     }
     send(){
-        
-
-
         this.semillaService.anadirMensaje(this.formInfo).then(x=>{})
-        
     }
 
 }

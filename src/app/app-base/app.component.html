@@ -1,3 +1,7 @@
 <app-menu id="fixed"></app-menu>
 <div style="height: 10vh; z-index: -1000;"></div>
 <router-outlet></router-outlet>
+
+<div class="cookies" *ngIf="!cookie">
+    <p>Este sitio recolecta cookies y datos de sesión. al continuar navegando en este aceptas la <a routerLink="./privacy" style="color: var(--color-naranja)">pólitica</a> de uso de cookies.</p> <button class="button-cookie" (click)="cookieAproval()">Entendido</button>
+</div>
