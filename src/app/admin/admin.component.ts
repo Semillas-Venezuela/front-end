@@ -85,8 +85,7 @@ export class AdminComponent implements OnInit {
                         currentOcupation:x.currentOcupation,
                         device:x.device,
                         dateCreated:new Date(x.dateCreated),
-                        birthDate: x.birthDate,
-                        isVenezuelan: x.isVenezuelan,
+                        leaveDate: x.leaveDate
 
                     }
                     
@@ -111,9 +110,7 @@ export class AdminComponent implements OnInit {
                         currentOcupation:x.currentOcupation,
                         device:x.device,
                         dateCreated:new Date(x.dateCreated),
-                        birthDate: x.birthDate,
-                        isVenezuelan: x.isVenezuelan,
-
+                        leaveDate: x.leaveDate
                     }
                 }
                 

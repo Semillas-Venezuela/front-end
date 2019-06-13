@@ -18,5 +18,10 @@
     color: var(--color-blanco);
     border: var(--color-naranja-quem) 2px solid;
     background: var(--color-naranja); 
-    border-radius: 8px;
+    border-radius: 5px;
+    outline: none;
+
+}
+.button-cookie:active{
+    background: var(--color-naranja-quem); 
 }

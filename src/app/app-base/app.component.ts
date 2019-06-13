@@ -16,9 +16,12 @@ export class AppComponent implements OnInit {
       }
     });
 
-    if(!localStorage.getItem('cookies')){
+    if(!localStorage.getItem('cookie')){
+      console.log("no hay cookie");
+      
       this.cookie= false;
     }else{
+      console.log("hay cookie");
       this.cookie = true;
     }
   }
