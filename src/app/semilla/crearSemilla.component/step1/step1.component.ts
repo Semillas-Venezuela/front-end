@@ -9,12 +9,8 @@ import { semillaInfo } from '../../../models/semillaInfo';
   styleUrls: ['./step1.component.css']
 })
 export class Step1 implements OnInit {
-
-
-    day;
-    month;
     year;
-    maxYear
+    maxYear;
     @Input() semilla:semillaInfo;
     @Output() semillaChange= new EventEmitter<semillaInfo>();
    
@@ -27,16 +23,11 @@ export class Step1 implements OnInit {
     }
     step(value){     
       //Avanza al step2
-      let date 
-      if(this.month >=10){
-         date = new Date(`${this.day}/${this.month}/${this.year}`).toString()
+      if(this.semilla.leaveDate){
+        this.semilla.leaveDate = "Nació en el extranjero."
+      }else{
+        this.semilla.leaveDate = this.year;
       }
-      else{
-        date = new Date(`${this.day}/0${this.month}/${this.year}`).toString()
-      }
-      
-
-      this.semilla.birthDate = date;
 
       
       this.semilla.step = value;

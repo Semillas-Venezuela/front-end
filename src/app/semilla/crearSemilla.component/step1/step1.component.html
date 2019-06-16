@@ -1,35 +1,52 @@
 <form (ngSubmit)="step(2)" #semillasForm="ngForm">
-        
-    <p class="introduction-text">Tus datos personales ayudan a entender las dinámicas de la migración venezolana. Solo tu nombre (o seudónimo),
+
+    <p class="introduction-text">Tus datos personales ayudan a entender las dinámicas de la migración venezolana. Solo
+        tu nombre (o seudónimo),
         género y edad aparecerán al lado de tu testimonio. Otros datos serán guardados en una base de datos protegida y
         servirán únicamente fines investigativos. </p>
-        <div class="line"></div>
+    <div class="line"></div>
     <!-- Nombre -->
     <div class="form-group" style="margin-bottom: 2vh;">
         <label for="username">Ingresa tu nombre <span class="asterisco">*</span></label>
-        <div class="style-input"  >
+        <div class="style-input">
             <input placeholder="Nombre/Apodo" type="text" id="name" required [(ngModel)]="semilla.name" name="name"
                 #name="ngModel" />
         </div>
     </div>
     <div class="form-group radio-group">
-        <b>¿Eres Venezolano? <span class="asterisco">*</span></b>
+        <b>¿Naciste en el extranjero? <span class="asterisco">*</span></b>
 
 
         <ul class="list">
             <li class="list__item">
                 <label class="label--radio">
-                    <input type="radio" class="radio" required [(ngModel)]="semilla.isVenezuelan" #isVenezuelan="ngModel" name="isVenezuelan"
-                        value="true" checked="checked" [checked]="true">
+                    <input type="radio" class="radio" required [(ngModel)]="semilla.leaveDate" #isVenezuelan="ngModel"
+                        name="isVenezuelan" value="true" checked="checked" [checked]="true">
                     <span>Si</span>
                 </label>
             </li>
             <li class="list__item">
                 <label class="label--radio">
-                    <input type="radio" class="radio" required [(ngModel)]="semilla.isVenezuelan" #isVenezuelan="ngModel" name="isVenezuelan"
-                        value="false">
+                    <input type="radio" class="radio" required [(ngModel)]="semilla.leaveDate" #isVenezuelan="ngModel"
+                        name="isVenezuelan" value="false">
                     <span>No</span>
+
+     
+
+                    
                 </label>
+                <div *ngIf="(semilla.leaveDate == 'false')">
+                    <p>Ingresa el año de tu salida de Venezuela</p>
+                    <div class="style-input" style="display: inline-block; width: 25vw;" >
+                    
+                        <input placeholder="YYYY" type="number" [min]="1900" [max]="this.maxYear" id="year" required
+                            [(ngModel)]="year" name="year" #yearVal="ngModel" />
+                            
+                    </div>
+                    <span *ngIf="!yearVal.valid && yearVal.dirty" style="color: var(--color-naranja)">Pon un año
+                        válido.</span>
+                </div>
+                
             </li>
 
         </ul>
@@ -38,28 +55,10 @@
     </div>
 
 
-    <div class="form-group" style="margin-bottom: 2vh;">
-            <label>Ingresa tu fecha de nacimiento <span class="asterisco">*</span></label>
-            <div style="display: flex; justify-content: space-around; width: 80%">
-                <div class="style-input" style="display: inline-block; width: 15vw;" >
-                    <input placeholder="DD" type="number" [min]="1" [max]="31" id="day" required [(ngModel)]="day" name="day"
-                        #dayVal="ngModel" />
-                </div> 
-                
-                <div class="style-input" style="display: inline-block; width: 15vw;" >
-                    <input placeholder="MM" type="number" [min]="1" [max]="12" id="month" required [(ngModel)]="month" name="month"
-                        #monthVal="ngModel" />
-                </div>
-                
-                <div class="style-input" style="display: inline-block; width: 25vw;" >
-                    <input placeholder="YYYY" type="number" [min]="1900" [max]="this.maxYear" id="year" required [(ngModel)]="year" name="year"
-                        #yearVal="ngModel" />
-                </div>
-            </div>
-            <span *ngIf="!yearVal.valid && yearVal.dirty" style="color: var(--color-naranja)">Pon un año válido.</span>
-            <span *ngIf="!monthVal.valid && monthVal.dirty" style="color: var(--color-naranja)">Pon un mes válido.</span>
-            <span *ngIf="!dayVal.valid && dayVal.dirty" style="color: var(--color-naranja)">Pon un día válido.</span>
-        </div>
+
+
+
+
     <!-- Género -->
     <div class="form-group radio-group">
         <b>Género <span class="asterisco">*</span></b>
@@ -68,22 +67,22 @@
         <ul class="list">
             <li class="list__item">
                 <label class="label--radio">
-                    <input type="radio" class="radio" required [(ngModel)]="semilla.gender" #gender="ngModel" name="genero"
-                        value="hombre" checked="checked" [checked]="true">
+                    <input type="radio" class="radio" required [(ngModel)]="semilla.gender" #gender="ngModel"
+                        name="genero" value="hombre" checked="checked" [checked]="true">
                     <span>Hombre</span>
                 </label>
             </li>
             <li class="list__item">
                 <label class="label--radio">
-                    <input type="radio" class="radio" required [(ngModel)]="semilla.gender" #gender="ngModel" name="genero"
-                        value="mujer">
+                    <input type="radio" class="radio" required [(ngModel)]="semilla.gender" #gender="ngModel"
+                        name="genero" value="mujer">
                     <span>Mujer</span>
                 </label>
             </li>
             <li class="list__item">
                 <label class="label--radio">
-                    <input type="radio" class="radio" required [(ngModel)]="semilla.gender" #gender="ngModel" name="genero"
-                        value="otro">
+                    <input type="radio" class="radio" required [(ngModel)]="semilla.gender" #gender="ngModel"
+                        name="genero" value="otro">
                     <span>Otro</span>
                 </label>
             </li>
@@ -99,51 +98,57 @@
         <ul class="list">
             <li class="list__item">
                 <label class="label--radio">
-                    <input type="radio" class="radio" required [(ngModel)]="semilla.age" #age="ngModel" name="age" id="b1"
-                        value="menos18" checked="checked">
+                    <input type="radio" class="radio" required [(ngModel)]="semilla.age" #age="ngModel" name="age"
+                        id="b1" value="menos18" checked="checked">
                     <span>Menos de 18</span>
                 </label>
             </li>
             <li class="list__item">
                 <label class="label--radio">
-                    <input type="radio" class="radio" required [(ngModel)]="semilla.age" #age="ngModel" name="age" id="b2"
-                        value="18-24">
+                    <input type="radio" class="radio" required [(ngModel)]="semilla.age" #age="ngModel" name="age"
+                        id="b2" value="18-24">
                     <span>18 a 24 años</span>
                 </label>
             </li>
             <li class="list__item">
                 <label class="label--radio">
-                    <input type="radio" class="radio" required [(ngModel)]="semilla.age" #age="ngModel" name="age" id="b3" value="25-34"  >
+                    <input type="radio" class="radio" required [(ngModel)]="semilla.age" #age="ngModel" name="age"
+                        id="b3" value="25-34">
                     <span>25 a 34 años</span>
                 </label>
             </li>
             <li class="list__item">
                 <label class="label--radio">
-                    <input type="radio" class="radio" required [(ngModel)]="semilla.age" #age="ngModel" name="age" id="b4" value="35-44"  >
+                    <input type="radio" class="radio" required [(ngModel)]="semilla.age" #age="ngModel" name="age"
+                        id="b4" value="35-44">
                     <span>35 a 44 años</span>
                 </label>
             </li>
             <li class="list__item">
                 <label class="label--radio">
-                    <input type="radio" class="radio" required [(ngModel)]="semilla.age" #age="ngModel" name="age" id="b5" value="45-54"  >
+                    <input type="radio" class="radio" required [(ngModel)]="semilla.age" #age="ngModel" name="age"
+                        id="b5" value="45-54">
                     <span>45 a 54 años</span>
                 </label>
             </li>
             <li class="list__item">
                 <label class="label--radio">
-                    <input type="radio" class="radio" required [(ngModel)]="semilla.age" #age="ngModel" name="age" id="b6" value="55-64"  >
+                    <input type="radio" class="radio" required [(ngModel)]="semilla.age" #age="ngModel" name="age"
+                        id="b6" value="55-64">
                     <span>55 a 64 años</span>
                 </label>
             </li>
             <li class="list__item">
                 <label class="label--radio">
-                    <input type="radio" class="radio" required [(ngModel)]="semilla.age" #age="ngModel" name="age" id="b7" value="65-74"  >
+                    <input type="radio" class="radio" required [(ngModel)]="semilla.age" #age="ngModel" name="age"
+                        id="b7" value="65-74">
                     <span>65 a 74 años</span>
                 </label>
             </li>
             <li class="list__item">
                 <label class="label--radio">
-                    <input type="radio" class="radio" required [(ngModel)]="semilla.age" #age="ngModel" name="age" id="b8" value="mas75"  >
+                    <input type="radio" class="radio" required [(ngModel)]="semilla.age" #age="ngModel" name="age"
+                        id="b8" value="mas75">
                     <span>75 años o más</span>
                 </label>
             </li>
@@ -171,7 +176,7 @@
                    
                    
               </div> -->
-              <!-- <div class="form-group radio-group">
+    <!-- <div class="form-group radio-group">
                     <b>Estado civil</b>
             
             
@@ -235,186 +240,214 @@
                    
                    
               </div> -->
-              <div class="form-group radio-group">
-                    <b>Nivel educativo</b>
-            
-            
-                    <ul class="list">
-                        <li class="list__item">
-                            <label class="label--radio">
-                                <input type="radio" class="radio"  [(ngModel)]="semilla.educativeLevel" #education="ngModel" name="education" id="r1" value="primaria incompleta" checked="checked"  >
-                                <span> Primaria incompleta</span>
-                            </label>
-                        </li>
-                        <li class="list__item">
-                            <label class="label--radio">
-                                <input type="radio" class="radio"  [(ngModel)]="semilla.educativeLevel" #education="ngModel" name="education" id="r2" value="primaria completa"  >
-                                    
-                                    <span> Primaria completa</span>
-                            </label>
-                        </li>
-                        <li class="list__item">
-                            <label class="label--radio">
-                                <input type="radio" class="radio"  [(ngModel)]="semilla.educativeLevel" #education="ngModel" name="education" id="r3" value="secundaria incompleta"  >
-                                <span> Secundaria incompleta</span>
-                            </label>
-                        </li>
-                        <li class="list__item">
-                            <label class="label--radio">
-                                <input type="radio" class="radio"  [(ngModel)]="semilla.educativeLevel" #education="ngModel" name="education" id="r3" value="secundaria completa"  >
-                                <span> Secundaria completa</span>
-                            </label>
-                        </li>
-                        <li class="list__item">
-                            <label class="label--radio">
-                                <input type="radio" class="radio"  [(ngModel)]="semilla.educativeLevel" #education="ngModel" name="education" id="r3" value="universitario incompleto"  >
-                                <span> Universitario incompleto</span>
-                            </label>
-                        </li>
-                        <li class="list__item">
-                            <label class="label--radio">
-                                <input type="radio" class="radio"  [(ngModel)]="semilla.educativeLevel" #education="ngModel" name="education" id="r3" value="universitario completo"  >
-                                <span> Universitario completo</span>
-                            </label>
-                        </li>
-                        <li class="list__item">
-                            <label class="label--radio">
-                                <input type="radio" class="radio"  [(ngModel)]="semilla.educativeLevel" #education="ngModel" name="education" id="r3" value="sin formación"  >
-                                <span> Sin formación</span>
-                            </label>
-                        </li>
-                      
-            
-                    </ul>
-            
-            
-                </div>
+    <div class="form-group radio-group">
+        <b>Nivel educativo</b>
+
+
+        <ul class="list">
+            <li class="list__item">
+                <label class="label--radio">
+                    <input type="radio" class="radio" [(ngModel)]="semilla.educativeLevel" #education="ngModel"
+                        name="education" id="r1" value="primaria incompleta" checked="checked">
+                    <span> Primaria incompleta</span>
+                </label>
+            </li>
+            <li class="list__item">
+                <label class="label--radio">
+                    <input type="radio" class="radio" [(ngModel)]="semilla.educativeLevel" #education="ngModel"
+                        name="education" id="r2" value="primaria completa">
+
+                    <span> Primaria completa</span>
+                </label>
+            </li>
+            <li class="list__item">
+                <label class="label--radio">
+                    <input type="radio" class="radio" [(ngModel)]="semilla.educativeLevel" #education="ngModel"
+                        name="education" id="r3" value="secundaria incompleta">
+                    <span> Secundaria incompleta</span>
+                </label>
+            </li>
+            <li class="list__item">
+                <label class="label--radio">
+                    <input type="radio" class="radio" [(ngModel)]="semilla.educativeLevel" #education="ngModel"
+                        name="education" id="r3" value="secundaria completa">
+                    <span> Secundaria completa</span>
+                </label>
+            </li>
+            <li class="list__item">
+                <label class="label--radio">
+                    <input type="radio" class="radio" [(ngModel)]="semilla.educativeLevel" #education="ngModel"
+                        name="education" id="r3" value="universitario incompleto">
+                    <span> Universitario incompleto</span>
+                </label>
+            </li>
+            <li class="list__item">
+                <label class="label--radio">
+                    <input type="radio" class="radio" [(ngModel)]="semilla.educativeLevel" #education="ngModel"
+                        name="education" id="r3" value="universitario completo">
+                    <span> Universitario completo</span>
+                </label>
+            </li>
+            <li class="list__item">
+                <label class="label--radio">
+                    <input type="radio" class="radio" [(ngModel)]="semilla.educativeLevel" #education="ngModel"
+                        name="education" id="r3" value="sin formación">
+                    <span> Sin formación</span>
+                </label>
+            </li>
+
+
+        </ul>
+
+
+    </div>
 
 
 
-                <div class="form-group radio-group">
-                        <b>Ocupación en Venezuela</b>
-                
-                
-                        <ul class="list">
-                            <li class="list__item">
-                                <label class="label--radio">
-                                    <input type="radio" class="radio"  [(ngModel)]="semilla.venezuelaOcupation" #vzlaOcupation="ngModel" name="venezuelaOcupation" id="r1" value="Empresario/a o profesional con asalariados" checked="checked"  >
-                                    <span>Empresario/a o profesional con asalariados</span>
-                                </label>
-                            </li>
-                            <li class="list__item">
-                                <label class="label--radio">
-                                    <input type="radio" class="radio"  [(ngModel)]="semilla.venezuelaOcupation" #vzlaOcupation="ngModel" name="venezuelaOcupation" id="r2" value="Empresario/a o trabajador/a independiente sin asalariados"  >
-                                        
-                                    <span>Empresario/a o trabajador/a independiente sin asalariados</span>
-                                </label>
-                            </li>
-                            <li class="list__item">
-                                <label class="label--radio">
-                                    <input type="radio" class="radio"  [(ngModel)]="semilla.venezuelaOcupation" #vzlaOcupation="ngModel" name="venezuelaOcupation" id="r3" value="Asalariado sector privado"  >
-                                    <span>Asalariado sector privado</span>
-                                </label>
-                            </li>
-                            <li class="list__item">
-                                    <label class="label--radio">
-                                        <input type="radio" class="radio"  [(ngModel)]="semilla.venezuelaOcupation" #vzlaOcupation="ngModel" name="venezuelaOcupation" id="r4" value="Asalariado sector publico"  >
-                                        <span>Asalariado sector público</span>
-                                    </label>
-                                </li>
-                            <li class="list__item">
-                                <label class="label--radio">
-                                    <input type="radio" class="radio"  [(ngModel)]="semilla.venezuelaOcupation" #vzlaOcupation="ngModel" name="venezuelaOcupation" id="r5" value="Ama de casa"  >
-                                    <span>Ama de casa</span>
-                                </label>
-                            </li>
-                            <li class="list__item">
-                                <label class="label--radio">
-                                    <input type="radio" class="radio"  [(ngModel)]="semilla.venezuelaOcupation" #vzlaOcupation="ngModel" name="venezuelaOcupation" id="r6" value="Estudiante"  >
-                                    <span>Estudiante</span>
-                                </label>
-                            </li>
-                            <li class="list__item">
-                                <label class="label--radio">
-                                    <input type="radio" class="radio"  [(ngModel)]="semilla.venezuelaOcupation" #vzlaOcupation="ngModel" name="venezuelaOcupation" id="r7" value="Jubilado"  >
-                                    <span>Jubilado</span>
-                                </label>
-                            </li>
-                            <li class="list__item">
-                                <label class="label--radio">
-                                    <input type="radio" class="radio"  [(ngModel)]="semilla.venezuelaOcupation" #vzlaOcupation="ngModel" name="venezuelaOcupation" id="r8" value="Desempleado"  >
-                                    <span>Desempleado</span>
-                                </label>
-                            </li>
-                          
-                
-                        </ul>
-                
-                
-                    </div>
-                    <div class="form-group radio-group">
-                            <b>Ocupación en su país actual</b>
-                    
-                    
-                            <ul class="list">
-                                <li class="list__item">
-                                    <label class="label--radio">
-                                        <input type="radio" class="radio"  [(ngModel)]="semilla.currentOcupation" #currentOcupation="ngModel" name="currentOcupation" id="r1" value="Empresario/a o profesional con asalariados" checked="checked"  >
-                                        <span>Empresario/a o profesional con asalariados</span>
-                                    </label>
-                                </li>
-                                <li class="list__item">
-                                    <label class="label--radio">
-                                        <input type="radio" class="radio"  [(ngModel)]="semilla.currentOcupation" #currentOcupation="ngModel" name="currentOcupation" id="r2" value="Empresario/a o trabajador/a independiente sin asalariados"  >
-                                            
-                                        <span>Empresario/a o trabajador/a independiente sin asalariados</span>
-                                    </label>
-                                </li>
-                                <li class="list__item">
-                                    <label class="label--radio">
-                                        <input type="radio" class="radio"  [(ngModel)]="semilla.currentOcupation" #currentOcupation="ngModel" name="currentOcupation" id="r3" value="Asalariado sector privado"  >
-                                        <span>Asalariado sector privado</span>
-                                    </label>
-                                </li>
-                                <li class="list__item">
-                                        <label class="label--radio">
-                                            <input type="radio" class="radio"  [(ngModel)]="semilla.currentOcupation" #currentOcupation="ngModel" name="currentOcupation" id="r4" value="Asalariado sector publico"  >
-                                            <span>Asalariado sector público</span>
-                                        </label>
-                                    </li>
-                                <li class="list__item">
-                                    <label class="label--radio">
-                                        <input type="radio" class="radio"  [(ngModel)]="semilla.currentOcupation" #currentOcupation="ngModel" name="currentOcupation" id="r5" value="Ama de casa"  >
-                                        <span>Ama de casa</span>
-                                    </label>
-                                </li>
-                                <li class="list__item">
-                                    <label class="label--radio">
-                                        <input type="radio" class="radio"  [(ngModel)]="semilla.currentOcupation" #currentOcupation="ngModel" name="currentOcupation" id="r6" value="Estudiante"  >
-                                        <span>Estudiante</span>
-                                    </label>
-                                </li>
-                                <li class="list__item">
-                                    <label class="label--radio">
-                                        <input type="radio" class="radio"  [(ngModel)]="semilla.currentOcupation" #currentOcupation="ngModel" name="currentOcupation" id="r7" value="Jubilado"  >
-                                        <span>Jubilado</span>
-                                    </label>
-                                </li>
-                                <li class="list__item">
-                                    <label class="label--radio">
-                                        <input type="radio" class="radio"  [(ngModel)]="semilla.currentOcupation" #currentOcupation="ngModel" name="currentOcupation" id="r8" value="Desempleado"  >
-                                        <span>Desempleado</span>
-                                    </label>
-                                </li>
-                              
-                    
-                            </ul>
-                    
-                    
-                        </div>
+    <div class="form-group radio-group">
+        <b>Ocupación en Venezuela</b>
 
 
-    <button type="submit" class="btn right" [disabled]="!semillasForm.form.valid"><i class="fas fa-arrow-right"></i></button>
+        <ul class="list">
+            <li class="list__item">
+                <label class="label--radio">
+                    <input type="radio" class="radio" [(ngModel)]="semilla.venezuelaOcupation" #vzlaOcupation="ngModel"
+                        name="venezuelaOcupation" id="r1" value="Empresario/a o profesional con asalariados"
+                        checked="checked">
+                    <span>Empresario/a o profesional con asalariados</span>
+                </label>
+            </li>
+            <li class="list__item">
+                <label class="label--radio">
+                    <input type="radio" class="radio" [(ngModel)]="semilla.venezuelaOcupation" #vzlaOcupation="ngModel"
+                        name="venezuelaOcupation" id="r2"
+                        value="Empresario/a o trabajador/a independiente sin asalariados">
+
+                    <span>Empresario/a o trabajador/a independiente sin asalariados</span>
+                </label>
+            </li>
+            <li class="list__item">
+                <label class="label--radio">
+                    <input type="radio" class="radio" [(ngModel)]="semilla.venezuelaOcupation" #vzlaOcupation="ngModel"
+                        name="venezuelaOcupation" id="r3" value="Asalariado sector privado">
+                    <span>Asalariado sector privado</span>
+                </label>
+            </li>
+            <li class="list__item">
+                <label class="label--radio">
+                    <input type="radio" class="radio" [(ngModel)]="semilla.venezuelaOcupation" #vzlaOcupation="ngModel"
+                        name="venezuelaOcupation" id="r4" value="Asalariado sector publico">
+                    <span>Asalariado sector público</span>
+                </label>
+            </li>
+            <li class="list__item">
+                <label class="label--radio">
+                    <input type="radio" class="radio" [(ngModel)]="semilla.venezuelaOcupation" #vzlaOcupation="ngModel"
+                        name="venezuelaOcupation" id="r5" value="Ama de casa">
+                    <span>Ama de casa</span>
+                </label>
+            </li>
+            <li class="list__item">
+                <label class="label--radio">
+                    <input type="radio" class="radio" [(ngModel)]="semilla.venezuelaOcupation" #vzlaOcupation="ngModel"
+                        name="venezuelaOcupation" id="r6" value="Estudiante">
+                    <span>Estudiante</span>
+                </label>
+            </li>
+            <li class="list__item">
+                <label class="label--radio">
+                    <input type="radio" class="radio" [(ngModel)]="semilla.venezuelaOcupation" #vzlaOcupation="ngModel"
+                        name="venezuelaOcupation" id="r7" value="Jubilado">
+                    <span>Jubilado</span>
+                </label>
+            </li>
+            <li class="list__item">
+                <label class="label--radio">
+                    <input type="radio" class="radio" [(ngModel)]="semilla.venezuelaOcupation" #vzlaOcupation="ngModel"
+                        name="venezuelaOcupation" id="r8" value="Desempleado">
+                    <span>Desempleado</span>
+                </label>
+            </li>
+
+
+        </ul>
+
+
+    </div>
+    <div class="form-group radio-group">
+        <b>Ocupación en su país actual</b>
+
+
+        <ul class="list">
+            <li class="list__item">
+                <label class="label--radio">
+                    <input type="radio" class="radio" [(ngModel)]="semilla.currentOcupation" #currentOcupation="ngModel"
+                        name="currentOcupation" id="r1" value="Empresario/a o profesional con asalariados"
+                        checked="checked">
+                    <span>Empresario/a o profesional con asalariados</span>
+                </label>
+            </li>
+            <li class="list__item">
+                <label class="label--radio">
+                    <input type="radio" class="radio" [(ngModel)]="semilla.currentOcupation" #currentOcupation="ngModel"
+                        name="currentOcupation" id="r2"
+                        value="Empresario/a o trabajador/a independiente sin asalariados">
+
+                    <span>Empresario/a o trabajador/a independiente sin asalariados</span>
+                </label>
+            </li>
+            <li class="list__item">
+                <label class="label--radio">
+                    <input type="radio" class="radio" [(ngModel)]="semilla.currentOcupation" #currentOcupation="ngModel"
+                        name="currentOcupation" id="r3" value="Asalariado sector privado">
+                    <span>Asalariado sector privado</span>
+                </label>
+            </li>
+            <li class="list__item">
+                <label class="label--radio">
+                    <input type="radio" class="radio" [(ngModel)]="semilla.currentOcupation" #currentOcupation="ngModel"
+                        name="currentOcupation" id="r4" value="Asalariado sector publico">
+                    <span>Asalariado sector público</span>
+                </label>
+            </li>
+            <li class="list__item">
+                <label class="label--radio">
+                    <input type="radio" class="radio" [(ngModel)]="semilla.currentOcupation" #currentOcupation="ngModel"
+                        name="currentOcupation" id="r5" value="Ama de casa">
+                    <span>Ama de casa</span>
+                </label>
+            </li>
+            <li class="list__item">
+                <label class="label--radio">
+                    <input type="radio" class="radio" [(ngModel)]="semilla.currentOcupation" #currentOcupation="ngModel"
+                        name="currentOcupation" id="r6" value="Estudiante">
+                    <span>Estudiante</span>
+                </label>
+            </li>
+            <li class="list__item">
+                <label class="label--radio">
+                    <input type="radio" class="radio" [(ngModel)]="semilla.currentOcupation" #currentOcupation="ngModel"
+                        name="currentOcupation" id="r7" value="Jubilado">
+                    <span>Jubilado</span>
+                </label>
+            </li>
+            <li class="list__item">
+                <label class="label--radio">
+                    <input type="radio" class="radio" [(ngModel)]="semilla.currentOcupation" #currentOcupation="ngModel"
+                        name="currentOcupation" id="r8" value="Desempleado">
+                    <span>Desempleado</span>
+                </label>
+            </li>
+
+
+        </ul>
+
+
+    </div>
+
+
+    <button type="submit" class="btn right" [disabled]="!semillasForm.form.valid"><i
+            class="fas fa-arrow-right"></i></button>
 
 
 
