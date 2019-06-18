@@ -24,6 +24,6 @@ export class semillaInfo{
     timesShared?:number;
     step?:number;
     userId?:number;
-    birthDate?:string;
-    isVenezuelan?:boolean;
+    leaveDate?:string;
+    
 }
