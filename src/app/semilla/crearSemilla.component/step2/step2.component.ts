@@ -50,7 +50,7 @@ export class Step2 implements OnInit {
 
   ngOnInit() {
 
-    this.initializeMap();
+    this.buildMap();
     this.geocoder = new MapboxGeocoder({
       accessToken: environment['mapbox'].accessToken,
       placeholder: "Buscar",
@@ -64,21 +64,6 @@ export class Step2 implements OnInit {
     });
   }
 
-  private initializeMap() {
-    /// locate the user
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(position => {
-        this.lat = position.coords.latitude;
-        this.lng = position.coords.longitude;
-        this.map.flyTo({
-          center: [this.lng, this.lat]
-        })
-      });
-    }
-
-    this.buildMap()
-
-  }
   public buildMap() {
     this.map = new mapboxgl.Map({
       container: 'map',
