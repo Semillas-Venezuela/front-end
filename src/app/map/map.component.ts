@@ -68,7 +68,7 @@ export class MapComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
   }
   ngOnInit() {
-    this.initializeMap();
+    this.buildMap();
     if (!(typeof this.route.snapshot.params.id === "undefined")) {
       this.map.on("load", () => {
         document.getElementById("i12345").parentNode.removeChild(document.getElementById("i12345"));
@@ -86,20 +86,6 @@ export class MapComponent implements OnInit, AfterViewInit {
   toggleOverlay() {
     document.getElementById("start-info").classList.toggle("active");
     sessionStorage.setItem("mapInstructions", "check");
-  }
-  private initializeMap() {
-    /// locate the user
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(position => {
-        this.lat = position.coords.latitude;
-        this.lng = position.coords.longitude;
-        this.map.flyTo({
-          center: [this.lng, this.lat]
-        });
-      });
-    }
-
-    this.buildMap();
   }
   public buildMap() {
     this.map = new mapboxgl.Map({
