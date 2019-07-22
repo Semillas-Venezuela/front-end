@@ -17,6 +17,7 @@
     flex-wrap: nowrap;
     position: absolute;
     padding: 0 10vw;
+    line-height: 1.5;
 }
 .display-block{
     display: none;
