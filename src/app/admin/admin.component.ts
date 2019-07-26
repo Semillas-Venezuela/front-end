@@ -126,11 +126,19 @@ export class AdminComponent implements OnInit {
         let csvArray = csv.join('\r\n');
     
         var blob = new Blob([csvArray], {type: 'text/csv' })
-        importedSaveAs(blob, "ReportSemillas");
+        importedSaveAs(blob, "ReportSemillas.csv");
   
         
 
     }
+
+    copySegment(value){
+        let input:any  = document.getElementById(value)
+        input.select();
+        document.execCommand("copy")
+
+    }
+
     aprobar() {
 
         let semillaAprobada = this.semillaActual
