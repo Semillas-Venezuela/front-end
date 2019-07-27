@@ -59,7 +59,7 @@
             </div>
             <div *ngIf="semillaActual?.testimonialType == 'text'">
                 <p>Respuesta 1</p>
-                <p>{{semillaActual?.textos[0]}}</p>
+                <textarea style="width: 80%; height: 5vh;" [(ngModel)]="semillaActual?.textos[0]" id="valor" ></textarea><div (click)="copySegment('valor')">Copiar</div>
                 <p>Respuesta 2</p>
                 <p>{{semillaActual?.textos[1]}}</p>
                 <p>Respuesta 3</p>
