@@ -5,6 +5,8 @@ import * as MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import { semillaInfo } from '../../../models/semillaInfo';
 import { SemillasService } from '../../../services/semillas.service';
 import { trigger, transition, style, animate } from '@angular/animations';
+import * as introJs from 'intro.js/intro.js';
+
 
 export class place  {
   coordinates: [number, number];
@@ -33,19 +35,22 @@ export class place  {
 export class Step2 implements OnInit {
   @Input() semilla: semillaInfo;
   @Output() semillaChange = new EventEmitter<semillaInfo>();
+  introJS = introJs();
   map: mapboxgl.Map;
   lat = 17.760267;
   lng = -29.72925;
   style = 'mapbox://styles/mapbox/satellite-streets-v9';
   geocoder;
+  ins:boolean=false;
   chev: boolean = false;
   users: any = [];
   lineString = []
   loaded: boolean;
+  
   constructor(public serviceSemillas:SemillasService) {
     mapboxgl.accessToken = environment['mapbox'].accessToken;
     this.map = mapboxgl.Map;
-
+    
   }
 
   ngOnInit() {
@@ -57,10 +62,26 @@ export class Step2 implements OnInit {
       zoom: 16,
       flyTo: false
     });
-    
+    this.introJS.onexit(()=>{
+      this.lineString = [];
+      this.users = [];
+      this.pintarLinea(this.lineString);
+      this.users.slice();
+    });
 
+    
+    //mapboxgl-ctrl-geocoder mapboxgl-ctrl
+    
+    
     this.geocoder.on('result', (ev) => {
-          this.geocoding(ev.result.geometry.coordinates)
+          if(this.lineString.length == 0){
+              ev.result.place_name.includes("Venezuela") ? this.geocoding(ev.result.geometry.coordinates) : alert("Comienza con tu lugar de origen en Venezuela")
+          }else{
+            this.geocoding(ev.result.geometry.coordinates)
+          }
+          console.log(this.lineString);
+          console.log(this.users);
+          this.geocoder._clear()
     });
   }
 
@@ -76,7 +97,12 @@ export class Step2 implements OnInit {
 
     })
     this.map.on("load", x=>{
+      this.loaded=true
+      
       document.getElementById('geocoder').appendChild(this.geocoder.onAdd(this.map));
+      
+      
+      this.ins ? this.startDemo(): "";
       this.map.addSource("linea-pintada", {
         "type": "geojson",
         "data": {
@@ -155,6 +181,52 @@ export class Step2 implements OnInit {
     }
 
 
+  }
+  startDemo(){
+    let demoLoc = [[-65, 8],[-74.08083, 4.59889],[-80.1937, 25.7743]]
+    demoLoc.forEach(loc=>{this.geocoding(loc)});
+    this.introJS.setOptions({
+      nextLabel: "Siguiente",
+      prevLabel: "Anterior",
+      skipLabel: "Saltar",
+      doneLabel: "Comenzemos",
+      disableInteraction:false,
+      showStepNumbers:false,
+      exitOnOverlayClick:false,
+      exitOnEsc:false,
+      steps: [
+        { 
+          intro: "Te explicaremos un poco de como funciona el trazado de la ruta!"
+        },
+        {
+          element: '.mapboxgl-ctrl-geocoder',
+          intro: "Esta es la barra de busqueda, acá pondras todos los sitios por los que pasaste, comenzando en Venezuela."
+
+        },
+        {
+          element: '.scroll-container',
+          intro: "Acá podrás ver los lugares que has digitado.",
+          position: 'bottom'
+        },
+        {
+          element: 'input',
+          intro: 'Comenzemos!, escribre tu lugar de salida de Venezuela.'
+        }
+      ]
+    })
+   
+    // this.introJS.oncomplete(()=>{
+    //   this.resetValues();
+    // })
+    this.introJS.start();
+    console.log("hoals");
+    
+  }
+  resetValues(){
+    this.lineString = [];
+    this.users = [];
+    this.lineString.slice();
+    this.users.slice();
   }
   pintarLinea(coordinates) {
 
@@ -273,6 +345,9 @@ export class Step2 implements OnInit {
 
   instructions(){
     document.querySelector(".instructions").classList.add("display-block")
+
+    this.map.on("load",this.startDemo());
+    this.ins=true;
   }
 
 
