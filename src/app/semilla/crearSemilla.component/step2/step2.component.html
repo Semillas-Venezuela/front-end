@@ -6,18 +6,20 @@
             <b>Ingresa en la barra de búsqueda cronológicamente tus paradas, empezando por el lugar en Venezuela dónde saliste. Al agregar una nueva parada, vacía la barra de búsqueda. Uno por uno, indica tu ruta hasta llegar a tu destino final. </b> <br> <br>
             
             </p>
-            <button  class="button green" (click)="instructions()">Llévame al mapa</button>
+            <button  class="button green" [disabled]="!loaded" (click)="instructions()">Llévame al mapa</button>
     </div>
     <div id="map" class="map"></div>
-    <div class="busqueda" @fadeIn >
-        <div class="search-bar"  id="geocoder">
-            
+    <div class="busqueda" @fadeIn>
+        <div class="search-bar"  id="geocoder"  >
+            <!-- <div style="height: 100%;width: 100%; position: absolute; top: 0; left: 0;" data-intro='Hello step one!'></div> -->
           </div>
 
          
     </div>
     <h3 class="scroll-container-title" *ngIf="users.length > 0" @fadeIn> 
         Tu ruta de migración
+
+
     </h3>
     <div class="scroll-container">
 
