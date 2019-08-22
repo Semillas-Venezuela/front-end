@@ -98,10 +98,7 @@ export class Step2 implements OnInit {
     })
     this.map.on("load", x=>{
       this.loaded=true
-      
       document.getElementById('geocoder').appendChild(this.geocoder.onAdd(this.map));
-      
-      
       this.ins ? this.startDemo(): "";
       this.map.addSource("linea-pintada", {
         "type": "geojson",
