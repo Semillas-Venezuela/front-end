@@ -1,5 +1,6 @@
-import {Component,OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {Component,OnInit, Input, Output, EventEmitter, ViewChild} from '@angular/core';
 import { semillaInfo } from '../../../models/semillaInfo';
+import { NgForm } from '@angular/forms';
 
 
 
@@ -13,7 +14,7 @@ export class Step1 implements OnInit {
     maxYear;
     @Input() semilla:semillaInfo;
     @Output() semillaChange= new EventEmitter<semillaInfo>();
-   
+    @ViewChild("semillasForm") public userFrm: NgForm;
     
     constructor(){
       this.maxYear = new Date().getFullYear();
@@ -23,15 +24,22 @@ export class Step1 implements OnInit {
     }
     step(value){     
       //Avanza al step2
-      if(this.semilla.leaveDate){
-        this.semilla.leaveDate = "Nació en el extranjero."
-      }else{
-        this.semilla.leaveDate = this.year;
+      if(this.userFrm.valid){
+        if(this.semilla.leaveDate){
+          this.semilla.leaveDate = "Nació en el extranjero."
+        }else{
+          this.semilla.leaveDate = this.year;
+        }
+  
+        
+        this.semilla.step = value;
+        this.semillaChange.emit(this.semilla);
       }
-
-      
-      this.semilla.step = value;
-      this.semillaChange.emit(this.semilla);
     }
- 
+    validForm(){
+      console.log(this.userFrm.valid);
+      
+      this.userFrm.valid ? console.log("valid"): alert("Llena los espacios obligatorios");
+      
+    }
 }
