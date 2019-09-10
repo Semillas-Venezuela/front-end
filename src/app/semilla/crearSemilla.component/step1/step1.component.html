@@ -7,14 +7,14 @@
     <div class="line"></div>
     <!-- Nombre -->
     <div class="form-group" style="margin-bottom: 2vh;">
-        <label for="username">Ingresa tu nombre <span class="asterisco">*</span></label>
-        <div class="style-input">
+        <label for="username">Ingresa tu nombre o apodo <span class="asterisco">* Obligatorio</span></label>
+        <div class="style-input" [ngClass]="{'border-red': name.invalid && (name.dirty || name.touched)}">
             <input placeholder="Nombre/Apodo" type="text" id="name" required [(ngModel)]="semilla.name" name="name"
                 #name="ngModel" />
         </div>
     </div>
     <div class="form-group radio-group">
-        <b>¿Naciste en el extranjero? <span class="asterisco">*</span></b>
+        <b [ngStyle]="{'color:red': isVenezuelan.invalid && (isVenezuelan.dirty || isVenezuelan.touched)}">¿Naciste en el extranjero? <span class="asterisco">* Obligatorio</span></b>
 
 
         <ul class="list">
@@ -61,7 +61,7 @@
 
     <!-- Género -->
     <div class="form-group radio-group">
-        <b>Género <span class="asterisco">*</span></b>
+        <b>Género <span class="asterisco">* Obligatorio</span></b>
 
 
         <ul class="list">
@@ -92,7 +92,7 @@
     </div>
     <!-- Rango de edad -->
     <div class="form-group radio-group">
-        <b>Rango de edad <span class="asterisco">*</span></b>
+        <b>Rango de edad <span class="asterisco">* Obligatorio</span></b>
 
 
         <ul class="list">
@@ -446,7 +446,7 @@
     </div>
 
 
-    <button type="submit" class="btn right" [disabled]="!semillasForm.form.valid"><i
+    <button (click)="validForm()" type="submit" class="btn right" [ngClass]="{'disabled': !semillasForm.form.valid }"><i
             class="fas fa-arrow-right"></i></button>
 
 

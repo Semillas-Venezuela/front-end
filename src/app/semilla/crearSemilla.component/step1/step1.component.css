@@ -58,6 +58,9 @@ form{
   .style-input input::-webkit-input-placeholder {
     color: #000;
   }
+  .border-red{
+    border: red 1px solid;
+  }
   
 
 
@@ -175,7 +178,7 @@ form{
     font-size: 3vmin;
     transition: 0.5s all ease-in-out;
 }
-.btn:disabled{
+.btn.disabled{
     background: #798188;
 }
 .btn.left{
