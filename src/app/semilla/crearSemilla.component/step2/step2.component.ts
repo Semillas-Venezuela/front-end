@@ -193,21 +193,21 @@ export class Step2 implements OnInit {
       exitOnEsc:false,
       steps: [
         { 
-          intro: "Te explicaremos un poco de como funciona el trazado de la ruta!"
+          intro: "¡Bienvenido al mapa! Haz clic en siguiente para aprender cómo ingresar tu ruta. "
         },
         {
           element: '.mapboxgl-ctrl-geocoder',
-          intro: "Esta es la barra de busqueda, acá pondras todos los sitios por los que pasaste, comenzando en Venezuela."
+          intro: "Utiliza la barra de búsqueda para ingresar los lugares que marcaron tu ruta; comenzando desde tu punto inicial en Venezuela, pasando por los lugares que cruzaste, para así llegar a tu destino final."
 
         },
         {
           element: '.scroll-container',
-          intro: "Acá podrás ver los lugares que has digitado.",
+          intro: "Aquí verás la ruta que ingresaste desde tu punto inicial hasta tu punto final. Si te has equivocado, marca la X roja para eliminar los lugares ingresados.",
           position: 'bottom'
         },
         {
           element: 'input',
-          intro: 'Comenzemos!, escribre tu lugar de salida de Venezuela.'
+          intro: '¡Comencemos! ¿En que ciudad de Venezuela iniciaste tu recorrido?'
         }
       ]
     })
